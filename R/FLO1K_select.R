@@ -5,6 +5,10 @@
 #'
 #' @examples
 FLO1K_select <- function() {
+
+  resolution <- dlg_list(title = "Chose resolution (arcmins)", c(10,30))$res
+  resolution <- as.numeric(resolution)
+
   flo1k_files = c()
   flo1k_files_names <- c("av", "mi", "ma")
   #for each avg/min/max, open the fie as a raster, convert it into data frame and add it to abotics_df

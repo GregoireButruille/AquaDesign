@@ -8,9 +8,9 @@
 #' @export
 #'
 #' @examples
-hypervolume_overlap <- function(list_combi, nb_combi, hv_list){
+hypervolume_overlap <- function(hv_list){
 
-  nb_combi <- dlg_list(title = "Chose the max number of species in combinations", c(2:(length(species_list_hv_selected))))$res
+  nb_combi <- dlg_list(title = "Chose the max number of species in combinations", c(2:(length(hv_list@HVList))))$res
   nb_combi <- as.numeric(nb_combi)
 
   species_list_hv_selected <- c()
@@ -64,3 +64,4 @@ hypervolume_overlap <- function(list_combi, nb_combi, hv_list){
   #rescaled_abiotics_df <- rescale.many(species_abiotics_df_sub, c(2:11))
   return(rescaled_combi_df)
 }
+

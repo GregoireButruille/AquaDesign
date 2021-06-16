@@ -15,14 +15,10 @@ download_DB <- function(databases_to_use){
 
   if ("EarthEnv" %in% databases_to_use ){
 
-    cat(sprintf("EarthEnv"))
+    cat(sprintf("Downloading datasets from EarthEnv..."))
 
     download.file("https://data.earthenv.org/streams/hydroclim_average+sum.nc",
                   paste(getwd(), "hydro_avg.nc", sep="/"), mode = "wb")
-    download.file("https://data.earthenv.org/streams/soil_average.nc",
-                  paste(getwd(), "soil_avg.nc", sep="/"), mode = "wb")
-    download.file("https://data.earthenv.org/streams/soil_minimum.nc",
-                  paste(getwd(), "soil_min.nc", sep="/"), mode = "wb")
     download.file("https://data.earthenv.org/streams/soil_maximum.nc",
                   paste(getwd(), "soil_max.nc", sep="/"), mode = "wb")
     download.file("https://data.earthenv.org/streams/elevation.nc",
