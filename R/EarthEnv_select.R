@@ -22,6 +22,6 @@ EarthEnv_select <- function(){
   names(slope_selected) <- paste(c("slope_avg"))
 
   #stack the selected layers in a raster brick
-  result <- stack(hydro_selected, soil_max_selected, elevation_selected, slope_selected)
-  return(result)
+  earthenv_data <- stack(hydro_selected, soil_max_selected, elevation_selected, slope_selected)
+  return(earthenv_data)
 }
