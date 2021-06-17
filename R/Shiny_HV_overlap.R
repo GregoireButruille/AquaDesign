@@ -39,7 +39,7 @@ Shiny_HV_overlap <- function(selected_abiotics, rescaled_combi_df, species_abiot
 
           selectInput(inputId = "nb_species",
                       label = "Choose a number of species:",
-                      choices = 2:as.numeric(nb_combi)),
+                      choices = c("All", 2:as.numeric(nb_combi))),
 
           selectInput(inputId = "nb_combi_display",
                       label = "Choose the number of best combinations to display:",
