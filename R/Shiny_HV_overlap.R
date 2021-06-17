@@ -14,7 +14,7 @@
 #' @examples
 Shiny_HV_overlap <- function(nb_combi, selected_abiotics, rescaled_combi_df, species_abiotics_df){
 
-  nb_combi <- dlg_list(title = "Chose the max number of species in combinations", c(2:(length(species_list_hv_selected))))$res
+  nb_combi <- dlg_list(title = "Chose the max number of species in combinations", c(2:(length(hv_list@HVList))))$res
   nb_combi <- as.numeric(nb_combi)
 
   species_list_hv_selected <- c()
