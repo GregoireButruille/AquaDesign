@@ -4,13 +4,13 @@
 #' @param gbif_user Username on GBIF
 #' @param gbif_pwd Password on GBIF
 #' @param mail email address used for GBIF
-#' @return A dataframe with all the occurence points of the species selected
+#' @return A data frame with all the occurrence points of the species selected
 #' @import taxize
 #' @import rgbif
 #' @export
 #' @examples
 
-
+#get taxon IDs for each species of the list
 gbif_download <- function(species_list, gbif_user, gbif_pwd, mail){
   species_gbifid <- get_gbifid_(species_list) #gives a list of lists with the 3 first results in gbif for each species
   gbif_taxon_keys<-c()
@@ -18,12 +18,17 @@ gbif_download <- function(species_list, gbif_user, gbif_pwd, mail){
     if (species_gbifid[[c(i,5,1)]] == "EXACT"){ #for each species (i) check "matchtype" (5st list) to make sure that the wanted species corresponds to gbif first result (1)
       gbif_taxon_keys <- c(gbif_taxon_keys, species_gbifid[[c(i,1,1)]])  #add "usagekey" (1st list) to the list
     }
-    else { #if the matchtype is not exact, suggest to change species name for gbif 1st result
+    else { #if the matchtype is not exact, suggest to change species name to gbif 1st result
       stop(paste0("!!! Warning !!! Species '",species_list[i],"' not found, please try again with : ",species_gbifid[[c(i,2)]])) #if the species does not exactly match with gbif 1st result, the algorithm suggest to try first result's "scientificname" (2nd list)
     }
   }
-  ###Download the data from GBIF,enter username/password/email. Only keeping data with coordinates (The data is loaded on gbif and ready to download)
-  data <- occ_download(pred_in("taxonKey", gbif_taxon_keys), pred("hasCoordinate", TRUE), format = "SIMPLE_CSV",user, pwd, email)
+  #prepare the dowload, wait for the data set to be ready then download the zip file
+  data <- occ_download(pred_in("taxonKey", gbif_taxon_keys), pred("hasCoordinate", TRUE), format = "SIMPLE_CSV",user=gbif_user, pwd=gbif_pwd, email=mail)
+  occ_download_wait(data)
+  gbif_zip_download<-occ_download_get(data[1],overwrite=TRUE)
+  print(gbif_citation(gbif_zip_download))
+  unzip(gbif_zip_download)
+  result <- read.csv(paste0(data[1],".csv"),header = TRUE, sep = "\t", quote = "")
 
-  return(data)
+  return(result)
 }

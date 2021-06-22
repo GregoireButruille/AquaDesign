@@ -8,6 +8,7 @@
 #' @param resolution Resolution
 #'
 #'@import raster
+#'@import progress
 #'@import sf
 #' @return
 #' @export
@@ -35,9 +36,15 @@ occ_rescaling <- function(data_cl, minlat, maxlat , minlong, maxlong){
     brick_rast <- brick(nrows=nrow(rast),ncol=ncol(rast),nl=length(unique(point$species))) #nl = create as many layers as different species
   }
 
+  #set a progress bar
+  pb <- progress_bar$new(total = length(unique(point$species)))
+  pb$tick(0)
 
   #for each species, rasterize the occurence points in 30 arcmins rasterbricks and get a dataframe
   for(i in 1:length(unique(point$species))){ #might be long
+    if (!pb$finished==TRUE){
+      pb$update(i/length(unique(point$species)))
+    }
     point.i<-point[point$species==unique(point$species)[i],] #point.i is a "sf" dataframe with all the occurence pints of species i
     brick_rast[[i]]<-rasterize(as(point.i, "Spatial"),rast,field=1)
     df <- as.data.frame(brick_rast[[i]], xy=TRUE, centroids = TRUE)
@@ -48,6 +55,8 @@ occ_rescaling <- function(data_cl, minlat, maxlat , minlong, maxlong){
     df <-na.omit(df) #remove NA
     species_df <- rbind(species_df, df) #add to the global dataframe
   }
+
+  pb$terminate()
 
   return(species_df)
 }

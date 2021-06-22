@@ -26,6 +26,7 @@ Imports:
     Hmisc,
     hypervolume,
     parallel,
+    progress,
     purrr,
     raster,
     rgbif,

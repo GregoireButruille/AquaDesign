@@ -9,22 +9,26 @@
 #' @export
 #'
 #' @examples
-generate_species_hypervolumes <- function(species_list_selected, rescaled_abiotics, nb_axis){
+generate_species_hypervolumes <- function(species_list_selected, rescaled_abiotics){
 
   hv_list <- c() #a list to be filled with all the species hypervolumes
 
   for (i in 1:length(species_list_selected)){
-    data <- subset(rescaled_abiotics, species==species_list_selected[i])[,2:(nb_axis+1)]
+    data <- subset(rescaled_abiotics, species==species_list_selected[i])[,2:(length(rescaled_abiotics)-1)]
     print(species_list_selected[i])
-    print(i)
-    if (length(data[[1]])>100){  #if there are not enough occurrences, an error would appear
+    if (log(length(data[[1]]))>(length(rescaled_abiotics)-1)){  #if there are not enough occurrences, an error would appear
       hv_species <- hypervolume(data, method='svm')
       hv_species@Name <- species_list_selected[[i]]
       hv_list<- hypervolume_join(hv_list, hv_species)
     }
     else {
-      warning(paste0(species_list_selected[i], "does not have enough values to be studied and has been removed from the list"))
+      warning(paste0(species_list_selected[i], "does not have enough values(",length(data[[1]]),") to be studied and has been removed from the list"))
     }
   }
   return(hv_list)
 }
+
+#2: In hypervolume(data, method = "svm") :
+#Log number of observations (3.83) is less than or equal to the number of dimensions (9).
+#You may not have enough data to accurately estimate a hypervolume with this dimensionality.
+#Consider reducing the dimensionality of the analysis.

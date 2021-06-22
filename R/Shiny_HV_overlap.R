@@ -6,9 +6,10 @@
 #' @param rescaled_combi_df Data frame with rescaled compatibility index
 #' @param species_abiotics_df dataframe with all abiotic variables
 #'
-#'
 #' @return
 #' @import ggplot2
+#'@importFrom dplyr arrange
+#'@importFrom dplyr select
 #' @export
 #'
 #' @examples

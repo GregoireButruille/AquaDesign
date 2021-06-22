@@ -5,7 +5,7 @@
 #' @param verbose Boolean
 #' @param distance.factor Integer
 #'
-#'@import purrr
+#'@importFrom purrr reduce
 #' @return
 #' @export
 #'

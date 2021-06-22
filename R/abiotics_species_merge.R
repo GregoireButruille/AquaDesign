@@ -8,6 +8,7 @@
 #' @export
 #'
 #' @examples
+
 abiotics_species_merge <- function(abiotics_df, species_df, selected_abiotics) {
   #select variables from abiotics df to have x and y  (annual_rangeT, annual_meanT, annual_prec_wc, ph_max, maxT_WM, srad_30, prec_DM_wc, prec_seasonality_wc, flow_avg (range?), elevation, slope)
   selected_abiotics_df <- cbind(abiotics_df[c(1,2)], abiotics_df[selected_abiotics])
@@ -17,7 +18,16 @@ abiotics_species_merge <- function(abiotics_df, species_df, selected_abiotics) {
   column_names <- names(selected_abiotics_df)[3:length(names(selected_abiotics_df))]
   colnames(species_abiotics_df) <- c("species", column_names)
 
+  #set a progress bar
+  pb <- progress_bar$new(total = length(species_list))
+  pb$tick(0)
+
   for (i in 1:length(species_list)){
+
+    if (!pb$finished==TRUE){
+      pb$update(i/length(species_list))
+    }
+
     species <- species_df[species_df$species==unique(species_df$species)[i],]
     species_name <- merge(species, selected_abiotics_df, by=c("x","y")) #merge species i with factors data frame
     colnames(species_name)[3] <- c("species")                          #rename "species name" column
@@ -26,5 +36,8 @@ abiotics_species_merge <- function(abiotics_df, species_df, selected_abiotics) {
     species_name <- species_name[,-(1:2)]                               #remove x and y columns
     species_abiotics_df <-rbind(species_abiotics_df, species_name)
   }
+
+  pb$terminate()
+
   return(species_abiotics_df)
 }

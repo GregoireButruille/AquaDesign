@@ -4,11 +4,7 @@
 \alias{generate_species_hypervolumes}
 \title{Title}
 \usage{
-generate_species_hypervolumes(
-  species_list_selected,
-  rescaled_abiotics,
-  nb_axis
-)
+generate_species_hypervolumes(species_list_selected, rescaled_abiotics)
 }
 \arguments{
 \item{species_list_selected}{List of the selected species}

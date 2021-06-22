@@ -2,7 +2,7 @@
 #'
 #' @param abiotics_df The dataframe with all abiotic data rasterized
 #'
-#'@import Hmisc
+#'@importFrom Hmisc varclus
 #'@import shiny
 #' @return
 #' @export
@@ -13,7 +13,6 @@ clustering <- function(abiotics_df) {
   variable_names <- c("annual_meanT", "T_seasonality", "maxT_WM", "minT_CM", "annual_rangeT", "meanT_DQ", "annual_prec", "prec_WM", "prec_DM", "prec_seasonality", "ph_max", "elevation_avg", "slope_avg", "flow_df_av", "flow_df_mi", "flow_df_ma", "srad", "vapr", "dl_annual_min", "dl_annual_max", "dl_annual_range")
   variable_names_display<- c("annual mean Temperature", "Temperature seasonality", "maximum Temperature of the Warmest month","minimum Temperature of the Coldest month","Temperature_annual_range","mean Temperature of the Driest quarter", "annual precipitation", "precipitation of the Wettest month", "precipitation of the Driest month", "precipitations seasonality","maximum ph of the soil", "elevation average", "slope average", "average flow","minimum flow","maximum flow", "solar radiations", "water vapor pressure", "daylength annual min", "daylength annual max", "daylength annual range")
   abiotics_df_sub <- abiotics_df[,-(1:2)] #remove x and y columns
-
 
   shinyApp(
     ui <- fluidPage(

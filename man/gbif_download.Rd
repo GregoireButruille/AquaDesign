@@ -16,7 +16,7 @@ gbif_download(species_list, gbif_user, gbif_pwd, mail)
 \item{mail}{email address used for GBIF}
 }
 \value{
-A dataframe with all the occurence points of the species selected
+A data frame with all the occurrence points of the species selected
 }
 \description{
 downloading gbif data

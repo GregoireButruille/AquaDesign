@@ -10,7 +10,6 @@
 #' @examples
 hypervolume_overlap <- function(hv_list){
 
-
   nb_combi <- dlg_list(title = "Chose the max number of species in combinations", c(2:(length(hv_list@HVList))))$res
   nb_combi <- as.numeric(nb_combi)
 
@@ -57,12 +56,6 @@ hypervolume_overlap <- function(hv_list){
   combi_df[nb_combi+1] <- as.numeric(combi_df[[nb_combi+1]])
   rescaled_combi_df <-cbind(combi_df[1:nb_combi], apply(combi_df[nb_combi+1], MARGIN = 2, FUN = function(X) (X - min(X))/diff(range(X))))
 
-
-  #species_abiotics_df_sub <- rescaled_abiotics_save %>% filter(
-  #species %in% c(species_list_hv_selected)
-  #)
-
-  #rescaled_abiotics_df <- rescale.many(species_abiotics_df_sub, c(2:11))
   return(rescaled_combi_df)
 }
 

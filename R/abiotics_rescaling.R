@@ -10,7 +10,7 @@
 #' @param geosphere If TRUE, import data from geosphere, which take a lot of time
 #' @import doParallel
 #' @import foreach
-#' @import geosphere
+#' @importFrom geosphere daylength
 #' @import parallel
 #' @return
 #' @export
@@ -26,10 +26,10 @@ abiotics_rescaling <- function(flo1k_data,worldclim_data,earthenv_data, minlat, 
   registerDoParallel(cl)
   getDoParWorkers()
 
+  cat("EarthEnv  1/4...\n")
+
   abiotics_df <- aggregate(earthenv_data[[1]], fact=2*resolution,fun=mean)
   abiotics_df <- as.data.frame(abiotics_df, xy = TRUE, centroids = TRUE)
-
-  cat(sprintf("EarthEnv  1/4...  "))
 
   abiotics_df <- foreach(i=2:nlayers(earthenv_data), .combine = merge, .packages = c("raster", "ncdf4")) %dopar% {
     options(rasterNCDF4 = TRUE)
@@ -42,7 +42,7 @@ abiotics_rescaling <- function(flo1k_data,worldclim_data,earthenv_data, minlat, 
     abiotics_df <- merge(abiotics_df, tmp_df, by = c("x", "y"))
   }
 
-  cat(sprintf("FLO1K  2/4"))
+  cat("FLO1K  2/4...\n")
 
   for (i in 1:length(flo1k_data)){
     flo1k_files_names <- c("av", "mi", "ma")
@@ -62,7 +62,7 @@ abiotics_rescaling <- function(flo1k_data,worldclim_data,earthenv_data, minlat, 
     abiotics_df <- merge(abiotics_df, flow_df, xy = TRUE, centroids = TRUE, by = c("x", "y"))
   }
 
-  cat(sprintf("WorldClim  3/4"))
+  cat("WorldClim  3/4...\n")
 
   if (resolution == 30){
     srad<-aggregate(worldclim_data[[i]], fact=3,fun=mean)     #fact = 3 to pass from 10 to 30 arcmins
@@ -104,7 +104,7 @@ abiotics_rescaling <- function(flo1k_data,worldclim_data,earthenv_data, minlat, 
   }
 
   if (geosphere == TRUE){
-    cat(sprintf("Geosphere    4/4"))
+    cat("geosphere  4/4...\n")
 
     dl_min_df <- data.frame(matrix(ncol = 3, nrow = 0))
     dl_max_df <- data.frame(matrix(ncol = 3, nrow = 0))

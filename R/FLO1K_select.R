@@ -2,6 +2,7 @@
 #'
 #' @return
 #' @export
+#' @importFrom utils unzip
 #'
 #' @examples
 FLO1K_select <- function() {

@@ -7,7 +7,8 @@
 #' @param maxlong Maximum longitude
 #' @param check.out Check outliers or no (take a long time for a large number of occurences)
 #'
-#'@import dplyr
+#'@importFrom dplyr select
+#'@importFrom dplyr filter
 #'@import countrycode
 #'@import CoordinateCleaner
 #'@import rnaturalearthdata
