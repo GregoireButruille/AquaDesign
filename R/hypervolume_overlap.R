@@ -48,7 +48,7 @@ hypervolume_overlap <- function(hv_list){
     }
 
     hv_list_test <-  hv_list[[ind]]
-    intersection <- HV_intersection(hv_list_test)
+    intersection <- hypervolume_set_n_intersection(hv_list_test)
     combi_df[[nb_combi+1]][i] <- intersection@Volume
   }
 
