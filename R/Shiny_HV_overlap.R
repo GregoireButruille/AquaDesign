@@ -9,7 +9,7 @@
 #' @return
 #' @import ggplot2
 #'@importFrom dplyr arrange
-#'@importFrom dplyr select
+#'@importFrom dplyr slice
 #' @export
 #'
 #' @examples
