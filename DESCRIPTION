@@ -25,6 +25,7 @@ Imports:
     ggplot2,
     Hmisc,
     hypervolume,
+    ncdf4,
     parallel,
     progress,
     purrr,

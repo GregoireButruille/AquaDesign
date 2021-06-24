@@ -197,7 +197,7 @@ abiotics_rescaling <- function(flo1k_data,worldclim_data,earthenv_data, minlat, 
   abiotics_df <- abiotics_df %>%
     filter(y<maxlat, y>(minlat), x>(minlong), x<maxlong)
   abiotics_df <-na.omit(abiotics_df) #remove NA values
-  abiotics_df <-subset(abiotics_df, ph_max!=0 & ph_min!=0 & ph_avg!=0) #remove null ph values
+  abiotics_df <-subset(abiotics_df, ph_max!=0) #remove null ph values
 
   return(abiotics_df)
 }

@@ -2,6 +2,7 @@
 #'
 #' @return
 #' @import raster
+#' @import ncdf4
 #' @export
 #'
 #' @examples
