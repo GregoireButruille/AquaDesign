@@ -7,6 +7,7 @@
 #' @param maxlat Maximum latitude
 #' @param minlong Minimum longitude
 #' @param maxlong Maximum longitude
+#' @param resolution Resolution
 #' @param geosphere If TRUE, import data from geosphere, which take a lot of time
 #' @import doParallel
 #' @import foreach
@@ -17,10 +18,7 @@
 #'
 #' @examples
 #'
-abiotics_rescaling <- function(flo1k_data,worldclim_data,earthenv_data, minlat, maxlat, minlong, maxlong, geosphere = FALSE){
-
-  resolution <- dlg_list(title = "Chose resolution (arcmins)", c(10,30))$res
-  resolution <- as.numeric(resolution)
+abiotics_rescaling <- function(flo1k_data,worldclim_data,earthenv_data, minlat, maxlat, minlong, maxlong, resolution, geosphere = FALSE){
 
   cl <- makePSOCKcluster(detectCores()-2)
   registerDoParallel(cl)

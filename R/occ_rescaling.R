@@ -14,10 +14,7 @@
 #' @export
 #'
 #' @examples
-occ_rescaling <- function(data_cl, minlat, maxlat , minlong, maxlong){
-
-  resolution <- dlg_list(title = "Chose resolution (arcmins)", c(10,30))$res
-  resolution <- as.numeric(resolution)
+occ_rescaling <- function(data_cl, minlat, maxlat , minlong, maxlong, resolution){
 
   species_df<- data.frame(matrix(ncol = 3, nrow = 0))
   colnames(species_df) <- c("x", "y", "species")

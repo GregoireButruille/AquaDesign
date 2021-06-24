@@ -1,6 +1,7 @@
 #' Title
 #'
 #' @param databases_to_use List of databases to use
+#' @param resolution Resolution
 #'
 #'@importFrom utils download.file
 #'@import svDialogs
@@ -8,10 +9,7 @@
 #' @export
 #'
 #' @examples
-download_DB <- function(databases_to_use){
-
-  resolution <- dlg_list(title = "Chose resolution (arcmins)", c(10,30))$res
-  resolution <- as.numeric(resolution)
+download_DB <- function(databases_to_use, resolution){
 
   if ("EarthEnv" %in% databases_to_use ){
 
