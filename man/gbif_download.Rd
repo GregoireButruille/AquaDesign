@@ -4,7 +4,7 @@
 \alias{gbif_download}
 \title{downloading gbif data}
 \usage{
-gbif_download(species_list, gbif_user, gbif_pwd, mail)
+gbif_download(species_list)
 }
 \arguments{
 \item{species_list}{The list of species to be considered (Scientific names)}

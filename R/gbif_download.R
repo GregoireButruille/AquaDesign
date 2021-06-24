@@ -1,9 +1,6 @@
 #' downloading gbif data
 #'
 #' @param species_list The list of species to be considered (Scientific names)
-#' @param gbif_user Username on GBIF
-#' @param gbif_pwd Password on GBIF
-#' @param mail email address used for GBIF
 #' @return A data frame with all the occurrence points of the species selected
 #' @import taxize
 #' @import rgbif
@@ -11,7 +8,12 @@
 #' @examples
 
 #get taxon IDs for each species of the list
-gbif_download <- function(species_list, gbif_user, gbif_pwd, mail){
+gbif_download <- function(species_list){
+
+  gbif_user <- dlgInput("Enter your gbif username", "username")$res
+  gbif_pwd <- dlgInput("Enter your gbif password", "password")$res
+  mail <- dlgInput("Enter the mail address used on gbif", "email@address.com")$res
+
   species_gbifid <- get_gbifid_(species_list) #gives a list of lists with the 3 first results in gbif for each species
   gbif_taxon_keys<-c()
   for (i in 1:length(species_gbifid)) {
