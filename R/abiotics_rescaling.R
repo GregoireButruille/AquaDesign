@@ -63,15 +63,15 @@ abiotics_rescaling <- function(flo1k_data,worldclim_data,earthenv_data, minlat, 
   cat("WorldClim  3/4...\n")
 
   if (resolution == 30){
-    srad<-aggregate(worldclim_data[[i]], fact=3,fun=mean)     #fact = 3 to pass from 10 to 30 arcmins
-    vapr<-aggregate(worldclim_data[[i]], fact=3,fun=mean)
-    prec<-aggregate(worldclim_data[[i]], fact=3,fun=mean)
+    srad<-aggregate(worldclim_data[[1]], fact=3,fun=mean)     #fact = 3 to pass from 10 to 30 arcmins
+    vapr<-aggregate(worldclim_data[[2]], fact=3,fun=mean)
+    prec<-aggregate(worldclim_data[[3]], fact=3,fun=mean)
   }
 
   if (resolution == 10){
-    srad <- worldclim_data[[i]]
-    vapr <- worldclim_data[[i]]
-    prec <- worldclim_data[[i]]
+    srad <- worldclim_data[[1]]
+    vapr <- worldclim_data[[2]]
+    prec <- worldclim_data[[3]]
   }
 
   annual_prec <- prec[[1]]

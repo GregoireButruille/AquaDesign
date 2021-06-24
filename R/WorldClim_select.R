@@ -23,7 +23,7 @@ WorldClim_select <- function(){
   }
 
   #Unzip each layer/month and rename it
-  for(i in length(bio)){
+  for(i in 1:length(bio)){
     name_bio <-paste0("wc2.1_10m_bio_",bio[i],".tif")
     prec[[i]]<-raster(unzip("bio_zip.zip",name_bio))
   }
