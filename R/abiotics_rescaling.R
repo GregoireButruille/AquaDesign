@@ -113,6 +113,14 @@ abiotics_rescaling <- function(flo1k_data,worldclim_data,earthenv_data, minlat, 
     #loop that calculate min/max/range for each latitude
     #/!\ takes a long time /!\
     if (resolution == 30){
+
+      ymin = -55.75
+      ymax =59.75
+      xmin  = -144.75
+      xmax = 179.75
+      step = 0.5
+
+
       for (y in seq(ymin,ymax,step)){
 
         min <- min(daylength(y, 1:365))
@@ -131,9 +139,15 @@ abiotics_rescaling <- function(flo1k_data,worldclim_data,earthenv_data, minlat, 
       }
     }
 
-    ky = 1
-    kx = 1
+
     if (resolution == 10){
+
+      ky = 1
+      kx = 1
+      ymin = -55.91667
+      ymax =59.91667
+      xmin  = -144.9167
+      xmax = 179.9167
       y = ymin
       x = xmin
 
