@@ -8,12 +8,6 @@ gbif_download(species_list)
 }
 \arguments{
 \item{species_list}{The list of species to be considered (Scientific names)}
-
-\item{gbif_user}{Username on GBIF}
-
-\item{gbif_pwd}{Password on GBIF}
-
-\item{mail}{email address used for GBIF}
 }
 \value{
 A data frame with all the occurrence points of the species selected

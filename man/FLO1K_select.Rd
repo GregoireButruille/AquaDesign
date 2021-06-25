@@ -4,7 +4,10 @@
 \alias{FLO1K_select}
 \title{Title}
 \usage{
-FLO1K_select()
+FLO1K_select(resolution)
+}
+\arguments{
+\item{resolution}{Resolution}
 }
 \value{
 

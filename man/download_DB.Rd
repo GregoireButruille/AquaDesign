@@ -4,10 +4,12 @@
 \alias{download_DB}
 \title{Title}
 \usage{
-download_DB(databases_to_use)
+download_DB(databases_to_use, resolution)
 }
 \arguments{
 \item{databases_to_use}{List of databases to use}
+
+\item{resolution}{Resolution}
 }
 \value{
 

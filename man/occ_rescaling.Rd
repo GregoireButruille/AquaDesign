@@ -4,7 +4,7 @@
 \alias{occ_rescaling}
 \title{Title}
 \usage{
-occ_rescaling(data_cl, minlat, maxlat, minlong, maxlong)
+occ_rescaling(data_cl, minlat, maxlat, minlong, maxlong, resolution)
 }
 \arguments{
 \item{data_cl}{GBIF cleaned data frame}

@@ -12,6 +12,7 @@ abiotics_rescaling(
   maxlat,
   minlong,
   maxlong,
+  resolution,
   geosphere = FALSE
 )
 }
@@ -29,6 +30,8 @@ abiotics_rescaling(
 \item{minlong}{Minimum longitude}
 
 \item{maxlong}{Maximum longitude}
+
+\item{resolution}{Resolution}
 
 \item{geosphere}{If TRUE, import data from geosphere, which take a lot of time}
 }

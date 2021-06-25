@@ -104,103 +104,78 @@ abiotics_rescaling <- function(flo1k_data,worldclim_data,earthenv_data, minlat, 
   if (geosphere == TRUE){
     cat("geosphere  4/4...\n")
 
-    dl_min_df <- data.frame(matrix(ncol = 3, nrow = 0))
-    dl_max_df <- data.frame(matrix(ncol = 3, nrow = 0))
-    dl_range_df <- data.frame(matrix(ncol = 3, nrow = 0))
-
-    #loop that calculate min/max/range for each latitude
-    #/!\ takes a long time /!\
-    if (resolution == 30){
-
+    dl_min_df <- data.frame(matrix(ncol = 2, nrow = 0))
+    dl_max_df <- data.frame(matrix(ncol = 2, nrow = 0))
+    dl_range_df <- data.frame(matrix(ncol = 2, nrow = 0))
+    if (resolution == 30) {
       ymin = -55.75
-      ymax =59.75
-      xmin  = -144.75
-      xmax = 179.75
+      ymax = 59.75
       step = 0.5
-
-      for (y in seq(ymin,ymax,step)){
-
+      for (y in seq(ymin, ymax, step)) {
         min <- min(daylength(y, 1:365))
         max <- max(daylength(y, 1:365))
-        range <- max-min
+        range <- max - min
 
-        for (x in seq(xmin,xmax,step)){
-          dl_min <- c(x, y, min)
-          dl_max <- c(x, y, max)
-          dl_range <- c(x, y, range)
+        dl_min <- data.frame(y, min)
+        dl_max <- data.frame(y, max)
+        dl_range <- data.frame(y, range)
 
-          dl_min_df <- rbind(dl_min_df, dl_min)
-          dl_max_df <- rbind(dl_max_df, dl_max)
-          dl_range_df <- rbind(dl_range_df, dl_range)
-        }
+        dl_min_df <- rbind(dl_min_df, dl_min)
+        dl_max_df <- rbind(dl_max_df, dl_max)
+        dl_range_df <- rbind(dl_range_df, dl_range)
+
       }
     }
 
 
-    if (resolution == 10){
-
+    if (resolution == 10) {
       ky = 1
-      kx = 1
       ymin = -55.91667
-      ymax =59.91667
-      xmin  = -144.9167
-      xmax = 179.9167
+      ymax = 59.91667
       y = ymin
-      x = xmin
 
-      while (y < ymax){
-        x = xmin
-
+      while (y < ymax) {
         min <- min(daylength(y, 1:365))
         max <- max(daylength(y, 1:365))
-        range <- max-min
+        range <- max - min
 
-        while (x < xmax){
-          dl_min <- c(x, y, min)
-          dl_max <- c(x, y, max)
-          dl_range <- c(x, y, range)
+        dl_min <- data.frame(y, min)
+        dl_max <- data.frame(y, max)
+        dl_range <- data.frame(y, range)
 
-          dl_min_df <- rbind(dl_min_df, dl_min)
-          dl_max_df <- rbind(dl_max_df, dl_max)
-          dl_range_df <- rbind(dl_range_df, dl_range)
+        dl_min_df <- rbind(dl_min_df, dl_min)
+        dl_max_df <- rbind(dl_max_df, dl_max)
+        dl_range_df <- rbind(dl_range_df, dl_range)
 
-          if (kx == 3){
-            x = x+0.1666
-            kx = 0
-          }
-          else {
-            x = x+0.1667
-          }
-          kx = kx + 1
-
-        }
-
-        if (ky == 3){
-          y = y+0.16666
+        if (ky == 3) {
+          y = y + 0.16666
           ky = 0
         }
         else {
-          y = y+0.16667
+          y = y + 0.16667
         }
         ky = ky + 1
-      }
 
+      }
     }
 
-    colnames(dl_min_df) <- c("x", "y", paste0("dl_annual_min"))
-    colnames(dl_max_df) <- c("x", "y", paste0("dl_annual_max"))
-    colnames(dl_range_df) <- c("x", "y", paste0("dl_annual_range"))
+    colnames(dl_min_df) <- c("y", "dl_annual_min")
+    colnames(dl_max_df) <- c("y", "dl_annual_max")
+    colnames(dl_range_df) <- c("y", "dl_annual_range")
 
     is.num <- sapply(dl_min_df, is.numeric)
-    dl_min_df[is.num] <- lapply(dl_min_df[is.num], round, 4)
+    dl_min_df[is.num] <- lapply(dl_min_df[is.num], round,
+                                4)
     is.num <- sapply(dl_max_df, is.numeric)
-    dl_max_df[is.num] <- lapply(dl_max_df[is.num], round, 4)
+    dl_max_df[is.num] <- lapply(dl_max_df[is.num], round,
+                                4)
     is.num <- sapply(dl_range_df, is.numeric)
-    dl_range_df[is.num] <- lapply(dl_range_df[is.num], round, 4)
+    dl_range_df[is.num] <- lapply(dl_range_df[is.num], round,
+                                  4)
 
-    abiotics_df <- merge(abiotics_df, dl_min_df, by = c("x", "y"))
-    abiotics_df <- merge(abiotics_df, dl_max_df, by = c("x", "y"))
-    abiotics_df <- merge(abiotics_df, dl_range_df, by = c("x", "y"))
+    abiotics_df <- merge (abiotics_df, dl_min_df, by = c("y"))
+    abiotics_df <- merge (abiotics_df, dl_max_df, by = c("y"))
+    abiotics_df <- merge (abiotics_df, dl_range_df, by = c("y"))
   }
 
   #finalize
