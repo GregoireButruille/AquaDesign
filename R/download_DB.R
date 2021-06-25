@@ -47,10 +47,4 @@ download_DB <- function(databases_to_use, resolution){
     }
   }
 
-  #create multilayers raster bricks from the netCDF files
-  files_list <- list("hydro_avg", "soil_avg", "soil_min", "soil_max", "elevation", "slope")
-  for (i in 1:length(files_list)){
-    assign(as.character(files_list[i]), brick(paste0(files_list[i],".nc")) )
-  }
-
 }

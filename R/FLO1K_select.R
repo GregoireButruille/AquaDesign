@@ -3,12 +3,10 @@
 #' @return
 #' @export
 #' @importFrom utils unzip
+#' @param resolution Resolution
 #'
 #' @examples
-FLO1K_select <- function() {
-
-  resolution <- dlg_list(title = "Chose resolution (arcmins)", c(10,30))$res
-  resolution <- as.numeric(resolution)
+FLO1K_select <- function(resolution) {
 
   flo1k_files = c()
   flo1k_files_names <- c("av", "mi", "ma")
