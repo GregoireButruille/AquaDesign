@@ -53,6 +53,12 @@ occ_rescaling <- function(data_cl, minlat, maxlat , minlong, maxlong, resolution
     species_df <- rbind(species_df, df) #add to the global dataframe
   }
 
+  is.num <- sapply(species_df, is.numeric)
+  species_df[is.num] <- lapply(species_df[is.num], round,
+                              4)
+
+
+
   pb$terminate()
 
   return(species_df)
