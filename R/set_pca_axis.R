@@ -20,7 +20,7 @@ set_pca_axis <- function(species_abiotics_df, nb_variables){
   #Npc = number of principal components retained
   # Kaiser-Guttman rule. A modified rule suggest an acceptance from over 0.7
   Npc <- as.numeric(summary(res$sd^2 > 1)["TRUE"])
-  print(paste("using",Npc,"axis"))
+  print(paste("using",Npc,"axes"))
   ####test package ade4
   res <- dudi.pca(df = rescaled_abiotics, scannf = FALSE, nf = Npc)
   rescaled_abiotics <- cbind(rescaled_abiotics_save$species , data.frame(res$li))
