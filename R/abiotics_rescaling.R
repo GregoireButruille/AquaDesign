@@ -134,7 +134,7 @@ abiotics_rescaling <- function(flo1k_data,worldclim_data,earthenv_data, minlat, 
       ymax = 59.91667
       y = ymin
 
-      while (y < ymax) {
+      while (y < ymax+0.5) {
         min <- min(daylength(y, 1:365))
         max <- max(daylength(y, 1:365))
         range <- max - min
