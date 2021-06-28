@@ -57,8 +57,6 @@ occ_rescaling <- function(data_cl, minlat, maxlat , minlong, maxlong, resolution
   species_df[is.num] <- lapply(species_df[is.num], round,
                               4)
 
-
-
   pb$terminate()
 
   return(species_df)

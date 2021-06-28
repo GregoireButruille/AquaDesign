@@ -142,7 +142,9 @@ Shiny_HV_overlap <- function(selected_abiotics, rescaled_combi_df, species_abiot
 
         ggplot(data = best_combi, aes(x = reorder(names_list,-Intersection_volume) , y = Intersection_volume)) +
           geom_bar(stat="identity")+
-          xlab("combinations")
+          xlab("combinations")+
+          geom_errorbar(aes(ymin=Intersection_volume-(Intersection_volume/10), ymax=Intersection_volume+(Intersection_volume/10)), width=.2,
+                        position=position_dodge(.9))
 
 
       })
