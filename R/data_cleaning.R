@@ -61,7 +61,7 @@ data_cleaning <- function(data, minlat, maxlat, minlong, maxlong, check.out = TR
   if(plot.occ == TRUE){
 
     world <- ne_countries(scale = "medium", returnclass = "sf")
-
+    species_list <- unique(data_cl$species)
 
     shinyApp(ui = fluidPage(
 
