@@ -12,7 +12,7 @@
 #'@import countrycode
 #'@import CoordinateCleaner
 #'@import rnaturalearthdata
-#'#'@import rnaturalearth
+#'@import rnaturalearth
 #' @return
 #' @export
 #'
