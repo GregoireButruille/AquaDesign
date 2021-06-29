@@ -1,11 +1,14 @@
 #' Title
 #'
+#' @param data
+#' @param data_cl
+#'
 #' @return
 #' @export
 #' @import rnaturalearth
 #' @examples
 
-plot_occ <- function(gbif_data, data_cl){
+plot_occ <- function(data, data_cl){
 
   world <- ne_countries(scale = "medium", returnclass = "sf")
   species_list <- unique(data_cl$species)
