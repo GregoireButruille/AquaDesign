@@ -4,14 +4,12 @@
 \alias{abiotics_species_merge}
 \title{Title}
 \usage{
-abiotics_species_merge(abiotics_df, species_df, selected_abiotics)
+abiotics_species_merge(abiotics_df, species_df)
 }
 \arguments{
 \item{abiotics_df}{data frame with abiotics data}
 
 \item{species_df}{data frame with species occurrences}
-
-\item{selected_abiotics}{list of the selected abiotic variables}
 }
 \value{
 
