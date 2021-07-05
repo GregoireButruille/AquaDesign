@@ -1,8 +1,5 @@
 #' Title
 #'
-#' @param species_list_hv_selected List of species selected
-#' @param nb_combi Maximum number of species in a combinationn
-#' @param selected_abiotics list of selected abiotics
 #' @param rescaled_combi_df Data frame with rescaled compatibility index
 #' @param species_abiotics_df dataframe with all abiotic variables
 #'
@@ -13,8 +10,9 @@
 #' @export
 #'
 #' @examples
-Shiny_HV_overlap <- function(selected_abiotics, rescaled_combi_df, species_abiotics_df){
+Shiny_HV_overlap <- function(rescaled_combi_df, species_abiotics_df){
 
+  selected_abiotics <- as.list(colnames(species_abiotics_df[,-1]))
   names(selected_abiotics)  <- c("Annual mean temperature (°C*10)", "Maximum temperature of the warmest month (°C*10)", "Minimum temperature of the coldest month (°C*10)", "Mean temperature of the driest quarter (°C*10)", "Temperature seasonnality", "Temperature annual range", "Maximum pH of the soil (*10)", "Average elevation (meters)","Average slope", "Average flow", "Minimum flow", "Maximum flow","Solar radiation", "Water vapor pressure", "Annual precipitations", "Precipitation of the wettest month", "Precipitation of the driest month","Precipitation seasonnality","Daylength annual min","Daylength annual max", "Daylength annual range")
 
   nb_combi <- dlg_list(title = "Chose the max number of species in combinations", c(2:(length(hv_list@HVList))))$res
