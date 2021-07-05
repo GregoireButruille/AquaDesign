@@ -1,8 +1,6 @@
 #' Title
 #'
-#' @param nb_combi Maximum number of species in a combination
 #' @param hv_list A list of hypervolumes
-#' @param species_list_hv_selected List of the species represented by the hypervolumes
 #'
 #' @return
 #' @export
@@ -21,7 +19,7 @@ hypervolume_overlap <- function(hv_list){
   list_combi <- do.call("c", lapply(1:nb_combi, function(i) combn(species_list_hv_selected, i, FUN = list)))
   list_combi <- list_combi[-(1:length(species_list_hv_selected))]
 
-  warning(paste0("combinations to calculate :" , as.character(length(list_combi))))
+  print(paste0("combinations to calculate :" , as.character(length(list_combi))))
 
 
   combi_df <- data.frame(matrix(ncol = nb_combi, nrow = 0))

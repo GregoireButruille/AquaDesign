@@ -16,7 +16,7 @@
 #' @export
 #'
 #' @examples
-data_cleaning <- function(data, minlat, maxlat, minlong, maxlong, check.out = TRUE, plot.occ = FALSE){
+data_cleaning <- function(data, minlat, maxlat, minlong, maxlong, check.out = TRUE){
   data_cl <- data%>%
     dplyr::select(species, decimalLongitude, decimalLatitude, gbifID, countryCode)%>%
     filter(decimalLatitude<maxlat)%>%

@@ -15,6 +15,8 @@
 #' @examples
 Shiny_HV_overlap <- function(selected_abiotics, rescaled_combi_df, species_abiotics_df){
 
+  names(selected_abiotics)  <- c("Annual mean temperature (°C*10)", "Maximum temperature of the warmest month (°C*10)", "Minimum temperature of the coldest month (°C*10)", "Mean temperature of the driest quarter (°C*10)", "Temperature seasonnality", "Temperature annual range", "Maximum pH of the soil (*10)", "Average elevation (meters)","Average slope", "Average flow", "Minimum flow", "Maximum flow","Solar radiation", "Water vapor pressure", "Annual precipitations", "Precipitation of the wettest month", "Precipitation of the driest month","Precipitation seasonnality","Daylength annual min","Daylength annual max", "Daylength annual range")
+
   nb_combi <- dlg_list(title = "Chose the max number of species in combinations", c(2:(length(hv_list@HVList))))$res
   nb_combi <- as.numeric(nb_combi)
 
@@ -79,8 +81,6 @@ Shiny_HV_overlap <- function(selected_abiotics, rescaled_combi_df, species_abiot
       #static background map
       output$plot1 <- renderPlot({
 
-
-
         if(input$nb_species == "All"){
           best_combi <- rescaled_combi_df %>% arrange(desc(as.numeric(rescaled_combi_df[[nb_combi+1]]))) %>% ## sort by index
             slice(1:input$nb_combi_display) ## keep only best combinations
@@ -89,7 +89,6 @@ Shiny_HV_overlap <- function(selected_abiotics, rescaled_combi_df, species_abiot
 
         else{
           if (input$central_species == "None"){
-
             combi_df_sp <- data.frame(matrix(ncol = as.numeric(input$nb_species), nrow = 0))
             for (i in 1:length(rescaled_combi_df[,1])){
               n <- rowSums(rescaled_combi_df == "None")
@@ -121,8 +120,6 @@ Shiny_HV_overlap <- function(selected_abiotics, rescaled_combi_df, species_abiot
           }
 
         }
-
-
 
         names_list <- c()
         for (i in 1:length(best_combi[,1])){
@@ -159,7 +156,7 @@ Shiny_HV_overlap <- function(selected_abiotics, rescaled_combi_df, species_abiot
                aes(x = species_abiotics_df_sub[,input$Factor],
                    fill = species)) +
           geom_density(alpha = 0.4) +
-          xlab(paste0(as.character(input$Factor)))
+          xlab(names(selected_abiotics[which( selected_abiotics %in% input$Factor )]))
 
       })
 

@@ -10,6 +10,11 @@
 
 abiotics_species_merge <- function(abiotics_df, species_df) {
 
+  is.num <- sapply(abiotics_df, is.numeric)
+  abiotics_df[is.num] <- lapply(abiotics_df[is.num], round, 4)
+
+  species_list <- unique(species_df$species)
+
   #merge and crop datasets to obtain columns as : Species / var 1 / var 2 / ...
   species_abiotics_df <- data.frame(matrix(ncol = length(names(abiotics_df)), nrow = 0))
   column_names <- names(abiotics_df)[3:length(names(abiotics_df))]

@@ -30,7 +30,7 @@ gbif_download <- function(species_list){
   gbif_zip_download<-occ_download_get(data[1],overwrite=TRUE)
   print(gbif_citation(gbif_zip_download))
   unzip(gbif_zip_download)
-  result <- read.csv(paste0(data[1],".csv"),header = TRUE, sep = "\t", quote = "")
+  data <- read.csv(paste0(data[1],".csv"),header = TRUE, sep = "\t", quote = "")
 
   return(result)
 }
