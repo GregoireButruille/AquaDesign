@@ -1,14 +1,16 @@
 #' Title
 #'
 #' @param species_abiotics_df data frame with species and abiotics
-#' @param nb_variables number of selected variables
 #'
 #'@import ade4
 #' @return
 #' @export
 #'
 #' @examples
-set_pca_axis <- function(species_abiotics_df, nb_variables){
+set_pca_axis <- function(species_abiotics_df){
+
+  nb_variables <- length(species_abiotics_df)-1
+
   rescaled_abiotics <- cbind(species_abiotics_df[1],apply(species_abiotics_df[2:nb_variables+1], MARGIN = 2, FUN = function(X) (X - min(X))/diff(range(X))))
   rescaled_abiotics_save <- rescaled_abiotics
 
