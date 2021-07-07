@@ -13,6 +13,9 @@ abiotics_species_merge <- function(abiotics_df, species_df) {
   is.num <- sapply(abiotics_df, is.numeric)
   abiotics_df[is.num] <- lapply(abiotics_df[is.num], round, 4)
 
+  is.num <- sapply(species_df, is.numeric)
+  species_df[is.num] <- lapply(species_df[is.num], round, 4)
+
   species_list <- unique(species_df$species)
 
   #merge and crop datasets to obtain columns as : Species / var 1 / var 2 / ...
