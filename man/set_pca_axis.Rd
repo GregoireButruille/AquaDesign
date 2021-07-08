@@ -4,12 +4,10 @@
 \alias{set_pca_axis}
 \title{Title}
 \usage{
-set_pca_axis(species_abiotics_df, nb_variables)
+set_pca_axis(species_abiotics_df)
 }
 \arguments{
 \item{species_abiotics_df}{data frame with species and abiotics}
-
-\item{nb_variables}{number of selected variables}
 }
 \value{
 

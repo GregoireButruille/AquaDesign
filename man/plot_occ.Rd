@@ -4,7 +4,10 @@
 \alias{plot_occ}
 \title{Title}
 \usage{
-plot_occ(gbif_data, data_cl)
+plot_occ(data, data_cl)
+}
+\arguments{
+\item{data_cl}{}
 }
 \value{
 

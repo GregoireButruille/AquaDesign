@@ -8,10 +8,6 @@ hypervolume_overlap(hv_list)
 }
 \arguments{
 \item{hv_list}{A list of hypervolumes}
-
-\item{nb_combi}{Maximum number of species in a combination}
-
-\item{species_list_hv_selected}{List of the species represented by the hypervolumes}
 }
 \value{
 

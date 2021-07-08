@@ -4,15 +4,7 @@
 \alias{data_cleaning}
 \title{Title}
 \usage{
-data_cleaning(
-  data,
-  minlat,
-  maxlat,
-  minlong,
-  maxlong,
-  check.out = TRUE,
-  plot.occ = FALSE
-)
+data_cleaning(data, minlat, maxlat, minlong, maxlong, check.out = TRUE)
 }
 \arguments{
 \item{data}{A data frame downloaded from GBIF}

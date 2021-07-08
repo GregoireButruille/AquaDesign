@@ -4,18 +4,12 @@
 \alias{Shiny_HV_overlap}
 \title{Title}
 \usage{
-Shiny_HV_overlap(selected_abiotics, rescaled_combi_df, species_abiotics_df)
+Shiny_HV_overlap(rescaled_combi_df, species_abiotics_df)
 }
 \arguments{
-\item{selected_abiotics}{list of selected abiotics}
-
 \item{rescaled_combi_df}{Data frame with rescaled compatibility index}
 
 \item{species_abiotics_df}{dataframe with all abiotic variables}
-
-\item{species_list_hv_selected}{List of species selected}
-
-\item{nb_combi}{Maximum number of species in a combinationn}
 }
 \value{
 
