@@ -43,6 +43,14 @@ generate_intersection_hv <- function (hv_list){
 
     hv_list_test <- hv_list[[ind]]
     intersection <- hypervolume_set_n_intersection(hv_list_test)
+
+    #set intersection hypervolumes names
+    hv_name <- c()
+    for (k in 1:length(list_combi[[i]])){
+      hv_name <- paste(hv_name,list_combi[[i]][k])
+    }
+    intersection@Name <- hv_name
+
     hv_intersection_list <- hypervolume_join(hv_intersection_list, intersection)
   }
 
