@@ -30,6 +30,11 @@ system_compatibility_app <- function(hv_list, abiotics_df, user_param_syst, user
     }
 
   }
+
+  if (length(possible_combi)==0){
+    stop("No species or combination can be reared in the system")
+  }
+
   #############################################################################
   species_list_possible <- c()
   for (i in 1:length(possible_combi)){
