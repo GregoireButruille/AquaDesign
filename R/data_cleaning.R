@@ -17,6 +17,8 @@
 #'
 #' @examples
 data_cleaning <- function(data, minlat, maxlat, minlong, maxlong, check.out = TRUE){
+
+  #keep only the columns of interest and set spatial extent
   data_cl <- data%>%
     dplyr::select(species, decimalLongitude, decimalLatitude, gbifID, countryCode)%>%
     filter(decimalLatitude<maxlat)%>%
@@ -28,24 +30,24 @@ data_cleaning <- function(data, minlat, maxlat, minlong, maxlong, check.out = TR
   names(data_cl)[2:3] <- c("decimallongitude", "decimallatitude") #these are default names for latitude and longitude in the following functions
   data_cl$countryCode <-  countrycode(data_cl$countryCode, origin =  'iso2c', destination = 'iso3c') #iso 2 --> iso 3 changes countrycode from 2 letters to 3 letters (ex : FR --> FRA) to be able to use cc_count()
 
-  #country code puts Na for coutrycodes not matched unambiguously (XK and ZZ = Kosovo and undefined countres), remove the Na
+  #country code puts Na for countrycodes not matched unambiguously (XK and ZZ = Kosovo and undefined countries), remove the Na
   data_cl <- na.omit(data_cl)
 
-  #removes invalid values, capitals, country centroids, country mismatches, institutions, gbif HQ, sea, bufffer = range in meters)
-  data_cl <- data_cl%>%   #/!\ takes quite a long time /!\
-    cc_val()%>%
-    cc_cap(buffer=10000)%>%
-    cc_cen(buffer = 1000)%>%
-    cc_coun(iso3 = "countryCode")%>%
-    cc_gbif(buffer=1000)%>%
-    cc_inst(buffer=100)%>%
-    cc_sea()
+  #removes suspicious points (bufffer = range in meters)
+  data_cl <- data_cl%>%
+    cc_val()%>%  #invalid values
+    cc_cap(buffer=10000)%>%   #capitals
+    cc_cen(buffer = 1000)%>%  #country centroids
+    cc_coun(iso3 = "countryCode")%>%  #country mismatches
+    cc_gbif(buffer=1000)%>%  #gbif HeadQuarters
+    cc_inst(buffer=100)%>%  #institutions
+    cc_sea()  #sea
 
   if (check.out == TRUE){
     #check outliers
     data_cl <- data_cl%>%   #/!\ takes quite a long time /!\
       cc_outl(
-        species = "species", #check outliers species by species
+        species = "species", #check species by species
         method = "distance",
         tdi = 1000,          #if a point is more than 1000km away from every other points from the same species, it is removed
         value = "clean",

@@ -12,6 +12,10 @@
 #' @examples
 system_compatibility_app <- function(hv_list, abiotics_df, user_param_syst, user_param_rescaled, species_list){
 
+  selected_abiotics <- as.list(colnames(abiotics_df[,-(1:2)]))
+  names(selected_abiotics)  <- c("Annual mean temperature (°C*10)", "Maximum temperature of the warmest month (°C*10)", "Minimum temperature of the coldest month (°C*10)", "Mean temperature of the driest quarter (°C*10)", "Temperature seasonnality", "Temperature annual range", "Maximum pH of the soil (*10)", "Average elevation (meters)","Average slope", "Average flow", "Minimum flow", "Maximum flow","Solar radiation", "Water vapor pressure", "Annual precipitations", "Precipitation of the wettest month", "Precipitation of the driest month","Precipitation seasonnality","Daylength annual min","Daylength annual max", "Daylength annual range")
+
+
   possible_combi <- c()
   for (i in 1:length(hv_list@HVList)){
     distance.factor = 1

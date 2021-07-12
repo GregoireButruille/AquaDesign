@@ -10,9 +10,11 @@
 
 abiotics_species_merge <- function(abiotics_df, species_df) {
 
+  #round to have homogenous coordinates
   is.num <- sapply(abiotics_df, is.numeric)
   abiotics_df[is.num] <- lapply(abiotics_df[is.num], round, 4)
 
+  #round to have homogenous coordinates
   is.num <- sapply(species_df, is.numeric)
   species_df[is.num] <- lapply(species_df[is.num], round, 4)
 
@@ -29,6 +31,7 @@ abiotics_species_merge <- function(abiotics_df, species_df) {
 
   for (i in 1:length(species_list)){
 
+    #update the progress bar
     if (!pb$finished==TRUE){
       pb$update(i/length(species_list))
     }

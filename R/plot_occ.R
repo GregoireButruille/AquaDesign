@@ -10,7 +10,10 @@
 
 plot_occ <- function(data, data_cl){
 
+  #load worldmap
   world <- ne_countries(scale = "medium", returnclass = "sf")
+
+  #get the species list
   species_list <- unique(data_cl$species)
 
   shinyApp(ui = fluidPage(
@@ -28,7 +31,7 @@ plot_occ <- function(data, data_cl){
 
       # Main panel for displaying outputs ----
       mainPanel(
-        # Output: HTML table with requested number of observations ----
+
         plotOutput("map", width = "100%", height = 800)
 
       )
@@ -38,8 +41,11 @@ plot_occ <- function(data, data_cl){
   server = function(input, output) {
 
     observeEvent(input$Species,{
+      #get the data points for the selected species
       data_filtered <- data[data$species==input$Species,]
+      #get the cleaned data points for the selected species
       data_cl_filtered <- data_cl[data_cl$species==input$Species,]
+      #plot the map
       output$map <- renderPlot({
         ggplot(data = world)+
           geom_sf()+

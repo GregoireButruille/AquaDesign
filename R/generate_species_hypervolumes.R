@@ -28,7 +28,4 @@ generate_species_hypervolumes <- function(species_list_selected, rescaled_abioti
   return(hv_list)
 }
 
-#2: In hypervolume(data, method = "svm") :
-#Log number of observations (3.83) is less than or equal to the number of dimensions (9).
-#You may not have enough data to accurately estimate a hypervolume with this dimensionality.
-#Consider reducing the dimensionality of the analysis.
+

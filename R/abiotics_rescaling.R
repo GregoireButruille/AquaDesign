@@ -20,23 +20,26 @@
 #'
 abiotics_rescaling <- function(flo1k_data,worldclim_data,earthenv_data, minlat, maxlat, minlong, maxlong, resolution, geosphere = FALSE){
 
+  #set parallelisation
   cl <- makePSOCKcluster(detectCores()-2)
   registerDoParallel(cl)
   getDoParWorkers()
 
   cat("EarthEnv  1/4...\n")
 
-  abiotics_df <- aggregate(earthenv_data[[1]], fact=2*resolution,fun=mean)
+  #create abiotics_df by rescaling the first layer of earthenv_data
+  abiotics_df <- aggregate(earthenv_data[[1]], fact=2*resolution,fun=mean)#60 arcsecs * 60 = 30 arcmins    #60 arcsecs * 20 = 10 arcmins
   abiotics_df <- as.data.frame(abiotics_df, xy = TRUE, centroids = TRUE)
 
+  #add the other layers
   abiotics_df <- foreach(i=2:nlayers(earthenv_data), .combine = merge, .packages = c("raster", "ncdf4")) %dopar% {
     options(rasterNCDF4 = TRUE)
     tmp <- aggregate(earthenv_data[[i]], fact=2*resolution,fun=mean)   #60 arcsecs * 60 = 30 arcmins    #60 arcsecs * 20 = 10 arcmins
     tmp_df <- as.data.frame(tmp, xy = TRUE, centroids = TRUE)
     is.num <- sapply(tmp_df, is.numeric)
-    tmp_df[is.num] <- lapply(tmp_df[is.num], round, 4)
+    tmp_df[is.num] <- lapply(tmp_df[is.num], round, 4) #round to have homogenous coordinates
     is.num <- sapply(abiotics_df, is.numeric)
-    abiotics_df[is.num] <- lapply(abiotics_df[is.num], round, 4)
+    abiotics_df[is.num] <- lapply(abiotics_df[is.num], round, 4) #round to have homogenous coordinates
     abiotics_df <- merge(abiotics_df, tmp_df, by = c("x", "y"))
   }
 
@@ -56,7 +59,7 @@ abiotics_rescaling <- function(flo1k_data,worldclim_data,earthenv_data, minlat, 
     flow_df <- as.data.frame(flow, xy = TRUE, centroids = TRUE)
     names(flow_df)<- paste0(c("x", "y", paste0("flow_df_",flo1k_files_names[i])))
     is.num <- sapply(flow_df, is.numeric)
-    flow_df[is.num] <- lapply(flow_df[is.num], round, 4)
+    flow_df[is.num] <- lapply(flow_df[is.num], round, 4)#round to have homogenous coordinates
     abiotics_df <- merge(abiotics_df, flow_df, xy = TRUE, centroids = TRUE, by = c("x", "y"))
   }
 
