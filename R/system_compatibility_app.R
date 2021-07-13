@@ -18,14 +18,10 @@ system_compatibility_app <- function(hv_list, abiotics_df, user_param_syst, user
 
   possible_combi <- c()
   for (i in 1:length(hv_list@HVList)){
-    distance.factor = 1
-    point_density = nrow(hv_list[[i]]@RandomPoints)/hv_list[[i]]@Volume
-    cutoff_dist = point_density^(-1/ncol(hv_list[[i]]@RandomPoints)) * distance.factor
 
-    test <- evalfspherical(data = hv_list[[i]]@RandomPoints, radius = cutoff_dist,
-                           points =  user_param_rescaled[,-1] )
+    test <- hypervolume_inclusion_test(hv_list[[i]], points=user_param_rescaled[,-1], fast.or.accurate = "accurate")
 
-    if (test > 0){
+    if (test == TRUE){
       possible_combi <- c(possible_combi, hv_list[[i]]@Name)
     }
 
@@ -82,7 +78,8 @@ system_compatibility_app <- function(hv_list, abiotics_df, user_param_syst, user
       ggplot(species_abiotics_df_sub, aes(x = species_abiotics_df_sub[,input$Factor], fill = species))+
         geom_density(alpha = 0.4) +
         xlab(names(selected_abiotics[which(selected_abiotics %in%
-                                             input$Factor)]))
+                                             input$Factor)]))+
+        geom_vline(xintercept =  user_param_syst[,input$Factor])
     })
   }
 
