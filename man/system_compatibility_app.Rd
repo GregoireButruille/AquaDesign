@@ -2,14 +2,13 @@
 % Please edit documentation in R/system_compatibility_app.R
 \name{system_compatibility_app}
 \alias{system_compatibility_app}
-\title{Title}
+\title{Title App to test if the user's system is suitable to a species or combination}
 \usage{
 system_compatibility_app(
   hv_list,
   abiotics_df,
   user_param_syst,
-  user_param_rescaled,
-  species_list
+  user_param_rescaled
 )
 }
 \arguments{
@@ -20,12 +19,10 @@ system_compatibility_app(
 \item{user_param_syst}{user parameters}
 
 \item{user_param_rescaled}{user parameters rescaled}
-
-\item{species_list}{list of species}
 }
 \value{
 
 }
 \description{
-Title
+Title App to test if the user's system is suitable to a species or combination
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/data_cleaning.R
 \name{data_cleaning}
 \alias{data_cleaning}
-\title{Title}
+\title{Title Remove suspicious occurence points}
 \usage{
 data_cleaning(data, minlat, maxlat, minlong, maxlong, check.out = TRUE)
 }
@@ -23,5 +23,5 @@ data_cleaning(data, minlat, maxlat, minlong, maxlong, check.out = TRUE)
 
 }
 \description{
-Title
+Title Remove suspicious occurence points
 }

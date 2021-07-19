@@ -2,7 +2,7 @@
 % Please edit documentation in R/plot_occ.R
 \name{plot_occ}
 \alias{plot_occ}
-\title{Title}
+\title{Title Plot retained and remove occurence points per species}
 \usage{
 plot_occ(data, data_cl)
 }
@@ -13,5 +13,5 @@ plot_occ(data, data_cl)
 
 }
 \description{
-Title
+Title Plot retained and remove occurence points per species
 }

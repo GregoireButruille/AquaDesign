@@ -2,7 +2,7 @@
 % Please edit documentation in R/input_user_system.R
 \name{input_user_system}
 \alias{input_user_system}
-\title{Title}
+\title{Title Register the parameters corresponding to user's system}
 \usage{
 input_user_system(abiotics_df)
 }
@@ -13,5 +13,5 @@ input_user_system(abiotics_df)
 
 }
 \description{
-Title
+Title Register the parameters corresponding to user's system
 }

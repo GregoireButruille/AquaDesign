@@ -2,7 +2,7 @@
 % Please edit documentation in R/download_DB.R
 \name{download_DB}
 \alias{download_DB}
-\title{Title}
+\title{Title Download datasets from various databases}
 \usage{
 download_DB(databases_to_use, resolution)
 }
@@ -15,5 +15,5 @@ download_DB(databases_to_use, resolution)
 
 }
 \description{
-Title
+Title Download datasets from various databases
 }

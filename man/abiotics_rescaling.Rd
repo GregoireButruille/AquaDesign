@@ -2,7 +2,7 @@
 % Please edit documentation in R/abiotics_rescaling.R
 \name{abiotics_rescaling}
 \alias{abiotics_rescaling}
-\title{Title}
+\title{Title Rescale abiotics data to 10 or 30 arcmins}
 \usage{
 abiotics_rescaling(
   flo1k_data,
@@ -39,7 +39,7 @@ abiotics_rescaling(
 
 }
 \description{
-Title
+Title Rescale abiotics data to 10 or 30 arcmins
 }
 \examples{
 

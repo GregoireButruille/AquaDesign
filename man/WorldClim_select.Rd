@@ -2,7 +2,7 @@
 % Please edit documentation in R/WorldClim_select.R
 \name{WorldClim_select}
 \alias{WorldClim_select}
-\title{Title}
+\title{Title Exctract chosen paramters from WorldClim}
 \usage{
 WorldClim_select()
 }
@@ -10,5 +10,5 @@ WorldClim_select()
 
 }
 \description{
-Title
+Title Exctract chosen paramters from WorldClim
 }

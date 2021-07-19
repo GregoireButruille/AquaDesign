@@ -2,7 +2,7 @@
 % Please edit documentation in R/abiotics_species_merge.R
 \name{abiotics_species_merge}
 \alias{abiotics_species_merge}
-\title{Title}
+\title{Title Merge species and abiotics dataframes by matching coordinates}
 \usage{
 abiotics_species_merge(abiotics_df, species_df)
 }
@@ -15,5 +15,5 @@ abiotics_species_merge(abiotics_df, species_df)
 
 }
 \description{
-Title
+Title Merge species and abiotics dataframes by matching coordinates
 }

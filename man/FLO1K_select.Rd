@@ -2,7 +2,7 @@
 % Please edit documentation in R/FLO1K_select.R
 \name{FLO1K_select}
 \alias{FLO1K_select}
-\title{Title}
+\title{Title Exctract chosen paramters from FLO1K}
 \usage{
 FLO1K_select(resolution)
 }
@@ -13,5 +13,5 @@ FLO1K_select(resolution)
 
 }
 \description{
-Title
+Title Exctract chosen paramters from FLO1K
 }

@@ -2,12 +2,12 @@
 #'
 #' @param species_abiotics_df data frame with species and abiotics
 #'
-#'@import
+#'
 #' @return
 #' @export
 #'
 #' @examples
-set_pca_axis2 <- function(species_abiotics_df){
+set_pca_axis <- function(species_abiotics_df){
 
   #Npc = number of principal components retained
   # Kaiser-Guttman rule

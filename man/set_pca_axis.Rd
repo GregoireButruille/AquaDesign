@@ -2,7 +2,7 @@
 % Please edit documentation in R/set_pca_axis.R
 \name{set_pca_axis}
 \alias{set_pca_axis}
-\title{Title}
+\title{Title Convert dataframe into PCA projection}
 \usage{
 set_pca_axis(species_abiotics_df)
 }
@@ -13,5 +13,5 @@ set_pca_axis(species_abiotics_df)
 
 }
 \description{
-Title
+Title Convert dataframe into PCA projection
 }

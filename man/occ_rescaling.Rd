@@ -2,7 +2,7 @@
 % Please edit documentation in R/occ_rescaling.R
 \name{occ_rescaling}
 \alias{occ_rescaling}
-\title{Title}
+\title{Title Rescale occurence data at 10 or 30 arcmins}
 \usage{
 occ_rescaling(data_cl, minlat, maxlat, minlong, maxlong, resolution)
 }
@@ -23,5 +23,5 @@ occ_rescaling(data_cl, minlat, maxlat, minlong, maxlong, resolution)
 
 }
 \description{
-Title
+Title Rescale occurence data at 10 or 30 arcmins
 }

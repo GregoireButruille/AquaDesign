@@ -2,7 +2,7 @@
 % Please edit documentation in R/EarthEnv_select.R
 \name{EarthEnv_select}
 \alias{EarthEnv_select}
-\title{Title}
+\title{Title Exctract chosen paramters from EarthEnv}
 \usage{
 EarthEnv_select()
 }
@@ -10,7 +10,7 @@ EarthEnv_select()
 
 }
 \description{
-Title
+Title Exctract chosen paramters from EarthEnv
 }
 \examples{
 

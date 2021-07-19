@@ -11,6 +11,7 @@ design_monoculture_app <- function (abiotics_df, species_list){
 
   selected_abiotics <- as.list(colnames(species_abiotics_df[, -1]))
 
+  #set abiotics names to display
   names(selected_abiotics) <- c("Annual mean temperature (?C*10)",
                                 "Maximum temperature of the warmest month (?C*10)",
                                 "Minimum temperature of the coldest month (?C*10)",
