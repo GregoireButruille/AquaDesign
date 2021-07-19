@@ -2,32 +2,23 @@
 #'
 #' @param species_abiotics_df data frame with species and abiotics
 #'
-#'@import ade4
+#'@import
 #' @return
 #' @export
 #'
 #' @examples
-set_pca_axis <- function(species_abiotics_df){
-
-  nb_variables <- length(species_abiotics_df)-1
-
-  #rescale between 0 and 1
-  rescaled_abiotics <- cbind(species_abiotics_df[1],apply(species_abiotics_df[2:nb_variables+1], MARGIN = 2, FUN = function(X) (X - min(X))/diff(range(X))))
-  rescaled_abiotics_save <- rescaled_abiotics
-
-  rescaled_abiotics$species = as.numeric(as.factor(rescaled_abiotics$species))
-
-  ####test package factoextra
-  res <- prcomp(rescaled_abiotics, scale = TRUE)
+set_pca_axis2 <- function(species_abiotics_df){
 
   #Npc = number of principal components retained
   # Kaiser-Guttman rule
+  res <- prcomp(species_abiotics_df[-1], scale = TRUE)
   Npc <- as.numeric(summary(res$sd^2 > 1)["TRUE"])
   print(paste("using",Npc,"axes"))
 
-  #set pca using ade4 package
-  res <- dudi.pca(df = rescaled_abiotics, scannf = FALSE, nf = Npc)
-  rescaled_abiotics <- cbind(rescaled_abiotics_save$species , data.frame(res$li))
+  rescaled_abiotics <- res$x[,1:Npc]
+
+  rescaled_abiotics <- cbind(rescaled_abiotics_save$species , as.data.frame(rescaled_abiotics))
+
 
   #set axes names
   axis_names <- c()
