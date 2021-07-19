@@ -1,4 +1,4 @@
-#' Title
+#' Title Register the parameters corresponding to user's system
 #'
 #' @param abiotics_df data frame with abiotics data
 #'

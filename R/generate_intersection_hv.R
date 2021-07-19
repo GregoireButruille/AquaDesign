@@ -1,4 +1,4 @@
-#' Title
+#' Title Generate a list of hypervolumes corresponding to the intersections of the input hypervolume list.
 #'
 #' @param hv_list list of species hypervolumes
 #'

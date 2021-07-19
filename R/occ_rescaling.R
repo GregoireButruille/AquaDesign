@@ -1,4 +1,4 @@
-#' Title
+#' Title Rescale occurence data at 10 or 30 arcmins
 #'
 #' @param data_cl GBIF cleaned data frame
 #' @param minlat Minimum latitude

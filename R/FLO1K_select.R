@@ -1,4 +1,4 @@
-#' Title
+#' Title Exctract chosen paramters from FLO1K
 #'
 #' @return
 #' @export

@@ -1,4 +1,4 @@
-#' Title
+#' Title Merge species and abiotics dataframes by matching coordinates
 #'
 #' @param abiotics_df data frame with abiotics data
 #' @param species_df data frame with species occurrences

@@ -1,4 +1,4 @@
-#' Title
+#' Title Convert dataframe into PCA projection
 #'
 #' @param species_abiotics_df data frame with species and abiotics
 #'

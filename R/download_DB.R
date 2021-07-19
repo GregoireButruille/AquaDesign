@@ -1,4 +1,4 @@
-#' Title
+#' Title Download datasets from various databases
 #'
 #' @param databases_to_use List of databases to use
 #' @param resolution Resolution

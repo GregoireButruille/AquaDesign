@@ -1,4 +1,13 @@
-species_density <- function (abiotics_df, species_list){
+#' Title Plot species density diagrams for individual species
+#'
+#' @param abiotics_df
+#' @param species_list
+#'
+#' @return
+#' @export
+#'
+#' @examples
+design_monoculture_app <- function (abiotics_df, species_list){
 
   selected_abiotics <- as.list(colnames(species_abiotics_df[, -1]))
 

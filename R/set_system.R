@@ -1,3 +1,12 @@
+#' Title Project user's system into PCA space
+#'
+#' @param species_abiotics_df
+#' @param user_param_syst
+#'
+#' @return
+#' @export
+#'
+#' @examples
 set_system <- function(species_abiotics_df, user_param_syst){
 
   #Npc = number of principal components retained

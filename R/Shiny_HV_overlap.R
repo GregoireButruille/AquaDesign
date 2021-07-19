@@ -1,4 +1,4 @@
-#' Title
+#' Title App to design polyculture system
 #'
 #' @param rescaled_combi_df Data frame with rescaled compatibility index
 #' @param species_abiotics_df dataframe with all abiotic variables
@@ -10,7 +10,7 @@
 #' @export
 #'
 #' @examples
-Shiny_HV_overlap <- function(rescaled_combi_df, species_abiotics_df){
+design_polyculture_app <- function(rescaled_combi_df, species_abiotics_df){
 
   selected_abiotics <- as.list(colnames(species_abiotics_df[,-1]))
   names(selected_abiotics)  <- c("Annual mean temperature (°C*10)", "Maximum temperature of the warmest month (°C*10)", "Minimum temperature of the coldest month (°C*10)", "Mean temperature of the driest quarter (°C*10)", "Temperature seasonnality", "Temperature annual range", "Maximum pH of the soil (*10)", "Average elevation (meters)","Average slope", "Average flow", "Minimum flow", "Maximum flow","Solar radiation", "Water vapor pressure", "Annual precipitations", "Precipitation of the wettest month", "Precipitation of the driest month","Precipitation seasonnality","Daylength annual min","Daylength annual max", "Daylength annual range")
@@ -79,9 +79,26 @@ Shiny_HV_overlap <- function(rescaled_combi_df, species_abiotics_df){
       #static background map
       output$plot1 <- renderPlot({
 
-        if(input$nb_species == "All"){
-          best_combi <- rescaled_combi_df %>% arrange(desc(as.numeric(rescaled_combi_df[[nb_combi+1]]))) %>% ## sort by index
-            slice(1:input$nb_combi_display) ## keep only best combinations
+        if (input$nb_species == "All") {
+          if(input$central_species == "None")
+            best_combi <- rescaled_combi_df %>% arrange(desc(as.numeric(rescaled_combi_df[[nb_combi + 1]]))) %>%
+              slice(1:input$nb_combi_display)
+          else {
+            row_sub = apply(rescaled_combi_df, 1, function(row) all(row != input$central_species))
+            combi_df_sub <- rescaled_combi_df[!row_sub,]
+            combi_df_central_sp <- data.frame(matrincol = as.numeric(nb_combi), nrow = 0)
+
+            for (i in 1:length(combi_df_sub[, 1])) {
+              n <- rowSums(combi_df_sub == "None")
+              if ((nb_combi - n[i]) == as.numeric(nb_combi)) {
+                vect <- combi_df_sub[i, ]
+                combi_df_central_sp <- rbind(combi_df_central_sp,
+                                             vect)
+              }
+            }
+            best_combi <- combi_df_central_sp %>% arrange(desc(as.numeric(combi_df_central_sp[[nb_combi +1]]))) %>%
+                          slice(1:input$nb_combi_display)
+          }
         }
 
 

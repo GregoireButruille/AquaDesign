@@ -1,4 +1,4 @@
-#' Title
+#' Title Generate a list of hypervolume from a list of species
 #'
 #' @param species_list_selected List of the selected species
 #' @param rescaled_abiotics Selected and rescaled abiotics pca axis in a data frame
@@ -9,7 +9,7 @@
 #' @export
 #'
 #' @examples
-generate_species_hypervolumes <- function(species_list_selected, rescaled_abiotics){
+generate_species_hv <- function(species_list_selected, rescaled_abiotics){
 
   hv_list <- c() #a list to be filled with all the species hypervolumes
 

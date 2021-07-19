@@ -1,4 +1,4 @@
-#' Title
+#' Title Remove suspicious occurence points
 #'
 #' @param data A data frame downloaded from GBIF
 #' @param minlat Minimum latitude

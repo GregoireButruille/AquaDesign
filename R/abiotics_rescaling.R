@@ -1,4 +1,4 @@
-#' Title
+#' Title Rescale abiotics data to 10 or 30 arcmins
 #'
 #' @param flo1k_data raster stack with data from FLO1K
 #' @param worldclim_data  raster stack with data from WorldClim

@@ -1,4 +1,4 @@
-#' Title
+#' Title Plot retained and remove occurence points per species
 #'
 #' @param data
 #' @param data_cl

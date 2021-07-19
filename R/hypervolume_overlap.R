@@ -1,4 +1,4 @@
-#' Title
+#' Title Generate a dataframe with all the combination's intersections volumes
 #'
 #' @param hv_list A list of hypervolumes
 #'
@@ -6,7 +6,7 @@
 #' @export
 #'
 #' @examples
-hypervolume_overlap <- function(hv_list){
+get_hv_intersection_volumes <- function(hv_list){
 
   nb_combi <- dlg_list(title = "Chose the max number of species in combinations", c(2:(length(hv_list@HVList))))$res
   nb_combi <- as.numeric(nb_combi)
