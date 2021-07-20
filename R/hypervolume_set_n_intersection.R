@@ -1,5 +1,5 @@
-hypervolume_set_n_intersection <- function (hv_list, num.points.max = NULL, verbose = TRUE, check.memory = TRUE,
-                                            distance.factor = 1) {
+hypervolume_set_n_intersection <- function (hv_list, num.points.max = NULL, verbose = TRUE,
+                                            distance.factor = 1, check.hyperplane = FALSE) {
 
   ########################################################################################################################
   np_list <- c()
@@ -23,20 +23,31 @@ hypervolume_set_n_intersection <- function (hv_list, num.points.max = NULL, verb
     np_list <- c(np_list, np)
     hv_point_density_list <- c(hv_point_density_list, hv_point_density)
     dimhv_list <- c(dimhv_list, dimhv)
-  }
 
-  #check that each dimensionality is the same as the dimensionality of the 1st HV
-  for (i in 2:length(dimhv_list)){
-    if (dimhv_list[i] != dimhv_list[1]) {
-      stop("Dimensionality of hypervolumes is not the same.")
+    if (check.hyperplane == TRUE){
+      hv_df <- as.data.frame(hv_list[[i]]@Data)
+
+      res <- caret::findLinearCombos(hv_df)
+
+      if (res[2] != "NULL") {
+        warning("Some data is hyperplanar")
+      }
     }
   }
+
+  #check that each dimensionality is the same as for the 1st HV
+  if(length(unique(dimhv_list)) > 1) stop("Dimensionality of hypervolumes is not the same.")
+
+  #check that the building method is unique
+  method_check <- unlist(lapply(hv_list@HVList, function(x) x@Method))
+  if(length(unique(method_check)) > 1) stop("Hypervolumes building method is not the same.")
+
   dim = dimhv_list[1]   #dim is the unique dimensionality
 
   #calculate max number of points according to dimensionality
   if (is.null(num.points.max)) {
     num.points.max = ceiling(10^(3 + sqrt(hv_list[[i]]@Dimensionality)))
-    if (verbose == TRUE) {
+    if (verbose) {
       cat(sprintf("Choosing num.points.max=%.0f (use a larger value for more accuracy.)\n",
                   num.points.max))
     }
@@ -50,7 +61,7 @@ hypervolume_set_n_intersection <- function (hv_list, num.points.max = NULL, verb
                      na.rm = T)
   }
 
-  if (verbose == TRUE) {
+  if (verbose) {
     cat(sprintf("Using minimum density of %f\n", mindensity))
   }
 
@@ -98,7 +109,7 @@ hypervolume_set_n_intersection <- function (hv_list, num.points.max = NULL, verb
 
   #####################################################################################################################
   #####################################################################################################################
-  if (verbose == TRUE) {
+  if (verbose) {
     cat("Beginning ball queries... \n")
   }
 
@@ -115,10 +126,22 @@ hypervolume_set_n_intersection <- function (hv_list, num.points.max = NULL, verb
   final_points_intersection_list <- c()
 
   #compare the set to the resampled HVs, individually
+
+  if (verbose){
+    pb <- progress_bar$new(total = length(hv_points_ss_list))
+    pb$tick(0)
+  }
+
   for (i in 1:length(hv_points_ss_list)){
-    ### GREGOIRE TO ADD PROGRESS BAR HERE
+
+    if (verbose){
+      if (!pb$finished == TRUE){
+        pb$update(i/length(hv_points_ss_list))
+      }
+    }
+
     hv_points_in_i_all <- evalfspherical(data = hv_points_ss_list[[i]], radius = cutoff_dist,
-                                         points =  total_hv_points_ss )
+                                         points =  total_hv_points_ss, verbose = verbose )
 
     hv_points_in_i = as.data.frame(total_hv_points_ss)[hv_points_in_i_all > 0,
                                                        , drop = FALSE]
@@ -126,8 +149,12 @@ hypervolume_set_n_intersection <- function (hv_list, num.points.max = NULL, verb
     final_points_intersection_list[[i]] <- hv_points_in_i
   }
 
+  if (verbose){
+    pb$terminate()
+  }
+
   #keep only the points that are common for all the dataframes of the list
-  final_points_intersection <- unique(purrr::reduce(final_points_intersection_list, dplyr::inner_join))
+  final_points_intersection <- unique(purrr::reduce(final_points_intersection_list, dplyr::inner_join, by = names(final_points_intersection_list[[1]])))
 
   #resample the points dividing their number by the number of hypervolumes compared
   num_points_to_sample_in_intersection = nrow(final_points_intersection)/length(hv_points_ss_list)
