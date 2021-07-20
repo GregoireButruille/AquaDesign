@@ -17,7 +17,7 @@ set_pca_axis <- function(species_abiotics_df){
 
   rescaled_abiotics <- res$x[,1:Npc]
 
-  rescaled_abiotics <- cbind(rescaled_abiotics_save$species , as.data.frame(rescaled_abiotics))
+  rescaled_abiotics <- cbind(species_abiotics_df$species , as.data.frame(rescaled_abiotics))
 
 
   #set axes names

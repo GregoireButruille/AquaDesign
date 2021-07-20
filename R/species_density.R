@@ -16,12 +16,12 @@ design_monoculture_app <- function (abiotics_df, species_list){
                                 "Maximum temperature of the warmest month (?C*10)",
                                 "Minimum temperature of the coldest month (?C*10)",
                                 "Mean temperature of the driest quarter (?C*10)", "Temperature seasonnality",
-                                "Temperature annual range", "Maximum pH of the soil (*10)",
-                                "Average elevation (meters)", "Average slope", "Average flow",
-                                "Minimum flow", "Maximum flow", "Solar radiation", "Water vapor pressure",
-                                "Annual precipitations", "Precipitation of the wettest month",
-                                "Precipitation of the driest month", "Precipitation seasonnality",
-                                "Daylength annual min", "Daylength annual max", "Daylength annual range")
+                                "Temperature annual range (°C)", "Maximum pH of the soil (*10)",
+                                "Average elevation (meters)", "Average slope([°]*100)", "Average flow (m3.s-1)",
+                                "Minimum flow (m3.s-1)", "Maximum flow (m3.s-1)", "Solar radiation (kJ.m-2.day-1)", "Water vapor pressure (kPa)",
+                                "Annual precipitations (mm)", "Precipitation of the wettest month (mm)",
+                                "Precipitation of the driest month (mm)", "Precipitation seasonnality",
+                                "Daylength annual min (Hours)", "Daylength annual max (Hours)", "Daylength annual range (Hours)")
 
   shinyApp(ui = fluidPage(titlePanel("Species density"),
                           sidebarLayout(
