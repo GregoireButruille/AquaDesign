@@ -4,12 +4,12 @@
 \alias{generate_species_hv}
 \title{Title Generate a list of hypervolume from a list of species}
 \usage{
-generate_species_hv(species_list_selected, rescaled_abiotics)
+generate_species_hv(species_list, rescaled_abiotics)
 }
 \arguments{
-\item{species_list_selected}{List of the selected species}
-
 \item{rescaled_abiotics}{Selected and rescaled abiotics pca axis in a data frame}
+
+\item{species_list_selected}{List of the selected species}
 
 \item{nb_axis}{Number of axis retained in the pca}
 }

@@ -7,7 +7,7 @@
 set_pca_axis(species_abiotics_df)
 }
 \arguments{
-\item{species_abiotics_df}{data frame with species and abiotics}
+\item{species_abiotics_df}{data frame with merged species and abiotics}
 }
 \value{
 

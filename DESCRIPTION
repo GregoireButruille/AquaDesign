@@ -18,6 +18,7 @@ Imports:
     ade4,
     CoordinateCleaner,
     countrycode,
+    data.table,
     doParallel,
     dplyr,
     foreach,

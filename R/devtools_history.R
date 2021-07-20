@@ -24,3 +24,4 @@ usethis::use_git_config(user.name = "GregoireButruille", user.email = "gregoire.
 usethis::use_package("progress")
 usethis::use_package("ncdf4")
 usethis::use_package("rnaturalearth")
+usethis::use_package("data.table")
