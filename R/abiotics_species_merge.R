@@ -10,14 +10,15 @@
 
 abiotics_species_merge <- function(abiotics_df, species_df) {
 
-  #round to have homogenous coordinates
+  #round abiotics to have homogeneous coordinates
   is.num <- sapply(abiotics_df, is.numeric)
   abiotics_df[is.num] <- lapply(abiotics_df[is.num], round, 4)
 
-  #round to have homogenous coordinates
+  #round species to have homogeneous coordinates
   is.num <- sapply(species_df, is.numeric)
   species_df[is.num] <- lapply(species_df[is.num], round, 4)
 
+  #get species list
   species_list <- unique(species_df$species)
 
   #merge and crop datasets to obtain columns as : Species / var 1 / var 2 / ...
@@ -38,7 +39,7 @@ abiotics_species_merge <- function(abiotics_df, species_df) {
 
     species <- species_df[species_df$species==unique(species_df$species)[i],]
     species_name <- merge(species, abiotics_df, by=c("x","y")) #merge species i with factors data frame
-    colnames(species_name)[3] <- c("species")                          #rename "species name" column
+    colnames(species_name)[3] <- c("species")                  #rename "species name" column
     species_name$species[species_name$species==1] <- as.character(unique(species_df$species)[i]) #replace cell with value = 1 with the species name
     species_name <-na.omit(species_name)                                #remove NA
     species_name <- species_name[,-(1:2)]                               #remove x and y columns

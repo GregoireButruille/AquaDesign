@@ -9,20 +9,20 @@
 #' @export
 #'
 #' @examples
-generate_species_hv <- function(species_list_selected, rescaled_abiotics){
+generate_species_hv <- function(species_list, rescaled_abiotics){
 
   hv_list <- c() #a list to be filled with all the species hypervolumes
 
-  for (i in 1:length(species_list_selected)){
-    data <- subset(rescaled_abiotics, species==species_list_selected[i])[,2:length(rescaled_abiotics)]
-    print(species_list_selected[i])
-    if (log(length(data[[1]]))>(length(rescaled_abiotics)-1)){  #if there are not enough occurrences, an error would appear
-      hv_species <- hypervolume(data, method='svm')
-      hv_species@Name <- species_list_selected[[i]]
-      hv_list<- hypervolume_join(hv_list, hv_species)
+  for (i in 1:length(species_list)){
+    data <- subset(rescaled_abiotics, species==species_list[i])[,2:length(rescaled_abiotics)]
+    print(species_list[i])
+    if (log(length(data[[1]]))>(length(rescaled_abiotics)-1)){  #if there are not enough occurrences for some species, a warning appear
+      hv_species <- hypervolume(data, method='svm') #generate hypervolume with single vector method
+      hv_species@Name <- species_list[[i]] #set hypervolume name
+      hv_list<- hypervolume_join(hv_list, hv_species) #add the hypervolume to the list
     }
     else {
-      warning(paste0(species_list_selected[i], "does not have enough values(",length(data[[1]]),") to be studied and has been removed from the list"))
+      warning(paste0(species_list[i], " does not have enough values( ",length(data[[1]]), ") to be studied and has been removed from the list, please remove them from species_list and rerun it"))
     }
   }
   return(hv_list)

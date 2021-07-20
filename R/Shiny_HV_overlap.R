@@ -12,17 +12,30 @@
 #' @examples
 design_polyculture_app <- function(rescaled_combi_df, species_abiotics_df){
 
+  #get the list of parameters from the dataframe
   selected_abiotics <- as.list(colnames(species_abiotics_df[,-1]))
-  names(selected_abiotics)  <- c("Annual mean temperature (°C*10)", "Maximum temperature of the warmest month (°C*10)", "Minimum temperature of the coldest month (°C*10)", "Mean temperature of the driest quarter (°C*10)", "Temperature seasonnality", "Temperature annual range", "Maximum pH of the soil (*10)", "Average elevation (meters)","Average slope", "Average flow", "Minimum flow", "Maximum flow","Solar radiation", "Water vapor pressure", "Annual precipitations", "Precipitation of the wettest month", "Precipitation of the driest month","Precipitation seasonnality","Daylength annual min","Daylength annual max", "Daylength annual range")
 
+  #set abiotics names to display
+  names(selected_abiotics) <- c("Annual mean temperature (?C*10)",
+                                "Maximum temperature of the warmest month (?C*10)",
+                                "Minimum temperature of the coldest month (?C*10)",
+                                "Mean temperature of the driest quarter (?C*10)", "Temperature seasonnality",
+                                "Temperature annual range (°C)", "Maximum pH of the soil (*10)",
+                                "Average elevation (meters)", "Average slope([°]*100)", "Average flow (m3.s-1)",
+                                "Minimum flow (m3.s-1)", "Maximum flow (m3.s-1)", "Solar radiation (kJ.m-2.day-1)", "Water vapor pressure (kPa)",
+                                "Annual precipitations (mm)", "Precipitation of the wettest month (mm)",
+                                "Precipitation of the driest month (mm)", "Precipitation seasonnality",
+                                "Daylength annual min (Hours)", "Daylength annual max (Hours)", "Daylength annual range (Hours)")
+
+  #ask users for the max number of species in combinations
   nb_combi <- dlg_list(title = "Chose the max number of species in combinations", c(2:(length(hv_list@HVList))))$res
   nb_combi <- as.numeric(nb_combi)
 
+  #get species list from the hypervolume list
   species_list_hv_selected <- c()
   for (i in 1:length(hv_list@HVList)){
     species_list_hv_selected <- c(species_list_hv_selected, hv_list[[i]]@Name)
   }
-
 
   shinyApp(
 
@@ -34,22 +47,27 @@ design_polyculture_app <- function(rescaled_combi_df, species_abiotics_df){
 
         sidebarPanel(
 
+          #select central species
           selectInput(inputId = "central_species",
                       label = "Choose a central species:",
                       choices = c("None", species_list_hv_selected)),
 
+          #select number of species in combinations
           selectInput(inputId = "nb_species",
                       label = "Choose a number of species:",
                       choices = c("All", 2:as.numeric(nb_combi))),
 
+          #select number of combinations to show
           selectInput(inputId = "nb_combi_display",
                       label = "Choose the number of best combinations to display:",
                       choices = 5:50),
 
+          #select abiotics for density diagram
           selectInput(inputId = "Factor",
                       label = "Choose a factor:",
                       choices = selected_abiotics),
 
+          #select specis to show on the density diagram
           checkboxGroupInput(inputId = "species_show",
                              label = "Chose species to show:",
                              choiceNames = species_list_hv_selected,
@@ -60,8 +78,9 @@ design_polyculture_app <- function(rescaled_combi_df, species_abiotics_df){
 
         # Main panel for displaying outputs ----
         mainPanel(
-          # Output: HTML table with requested number of observations ----
+          # plot ranking
           plotOutput("plot1", width = "100%", height = 600),
+          #plot density diagrams
           plotOutput("plot2", width = "100%", height = 400)
         )
       )
@@ -79,11 +98,17 @@ design_polyculture_app <- function(rescaled_combi_df, species_abiotics_df){
       #static background map
       output$plot1 <- renderPlot({
 
+        #either you compare combinations with the same number of species (else, line 130), or all combinations (first case below)
         if (input$nb_species == "All") {
-          if(input$central_species == "None")
+
+          #either you set a central species or not
+          if(input$central_species == "None"){
+            #sort the combinations by volume and retain only the "nb_combi_display" first
             best_combi <- rescaled_combi_df %>% arrange(desc(as.numeric(rescaled_combi_df[[nb_combi + 1]]))) %>%
               slice(1:input$nb_combi_display)
+          }
           else {
+            #keep only rows including the central species
             row_sub = apply(rescaled_combi_df, 1, function(row) all(row != input$central_species))
             combi_df_sub <- rescaled_combi_df[!row_sub,]
             combi_df_central_sp <- data.frame(matrincol = as.numeric(nb_combi), nrow = 0)
@@ -101,7 +126,7 @@ design_polyculture_app <- function(rescaled_combi_df, species_abiotics_df){
           }
         }
 
-
+        #same as before but with combinations of the same number of species
         else{
           if (input$central_species == "None"){
             combi_df_sp <- data.frame(matrix(ncol = as.numeric(input$nb_species), nrow = 0))
@@ -136,6 +161,7 @@ design_polyculture_app <- function(rescaled_combi_df, species_abiotics_df){
 
         }
 
+        #set the name of the combinations to display
         names_list <- c()
         for (i in 1:length(best_combi[,1])){
           combi_name <- c()
@@ -152,6 +178,7 @@ design_polyculture_app <- function(rescaled_combi_df, species_abiotics_df){
         colnames(best_combi)[nb_combi+1] <- c("Intersection_volume")
         colnames(best_combi)[nb_combi+2] <- c("names_list")
 
+        #plot the barchart
         ggplot(data = best_combi, aes(x = reorder(names_list,-Intersection_volume) , y = Intersection_volume)) +
           geom_bar(stat="identity")+
           xlab("combinations")+
@@ -161,12 +188,15 @@ design_polyculture_app <- function(rescaled_combi_df, species_abiotics_df){
 
       })
 
+      #plot density diagram
       output$plot2 <- renderPlot({
 
+        #subset
         species_abiotics_df_sub <- species_abiotics_df %>% filter(
           species %in% input$species_show
         )
 
+        #plot
         ggplot(species_abiotics_df_sub,
                aes(x = species_abiotics_df_sub[,input$Factor],
                    fill = species)) +

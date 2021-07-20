@@ -9,17 +9,16 @@
 #' @examples
 set_system <- function(species_abiotics_df, user_param_syst){
 
-  #Npc = number of principal components retained
-  # Kaiser-Guttman rule
-
+  # Guttman-Kaiser rule
   res <- prcomp(species_abiotics_df[-1], scale = TRUE)
-  Npc <- as.numeric(summary(res$sd^2 > 1)["TRUE"])
+  Npc <- as.numeric(summary(res$sd^2 > 1)["TRUE"])   #Npc = number of principal components retained, res$sd^2 = eigenvalue
+
   print(paste("using",Npc,"axes"))
 
   # project new data onto the PCA space
   user_param_rescaled <- predict(res, user_param_syst)
 
-  user_param_rescaled <- user_param_rescaled[,1:Npc]
+  user_param_rescaled <- user_param_rescaled[,1:Npc]#only keep the "Npc" first columns/dimensions
 
   return(user_param_rescaled)
 

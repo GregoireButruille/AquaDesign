@@ -9,6 +9,7 @@
 #' @examples
 design_monoculture_app <- function (abiotics_df, species_list){
 
+  #get abiotics list from the dataframe
   selected_abiotics <- as.list(colnames(species_abiotics_df[, -1]))
 
   #set abiotics names to display
@@ -23,20 +24,25 @@ design_monoculture_app <- function (abiotics_df, species_list){
                                 "Precipitation of the driest month (mm)", "Precipitation seasonnality",
                                 "Daylength annual min (Hours)", "Daylength annual max (Hours)", "Daylength annual range (Hours)")
 
+
   shinyApp(ui = fluidPage(titlePanel("Species density"),
                           sidebarLayout(
 
                             sidebarPanel(
+
+                              #Choice of the parameter
                               selectInput(inputId = "Factor",
                                           label = "Choose a factor:",
                                           choices = selected_abiotics),
 
+                              #choice of the species to show
                               checkboxGroupInput(inputId = "species_show",
                                                  label = "Chose species to show:",
                                                  choiceNames = species_list,
                                                  choiceValues = species_list)
                             ),
 
+                            #plotting of the density diagram
                             mainPanel(plotOutput("plot", width = "100%", height = 400)
 
 
@@ -47,8 +53,10 @@ design_monoculture_app <- function (abiotics_df, species_list){
   server = function(input, output) {
 
     output$plot <- renderPlot({
+      #subset the dataframe to the species to show
       species_abiotics_df_sub <- species_abiotics_df %>%
         filter(species %in% input$species_show)
+      #plot density diagram
       ggplot(species_abiotics_df_sub, aes(x = species_abiotics_df_sub[,input$Factor], fill = species))+
         geom_density(alpha = 0.4) +
         xlab(names(selected_abiotics[which(selected_abiotics %in%
