@@ -111,18 +111,9 @@ design_polyculture_app <- function(rescaled_combi_df, species_abiotics_df){
             #keep only rows including the central species
             row_sub = apply(rescaled_combi_df, 1, function(row) all(row != input$central_species))
             combi_df_sub <- rescaled_combi_df[!row_sub,]
-            combi_df_central_sp <- data.frame(matrincol = as.numeric(nb_combi), nrow = 0)
 
-            for (i in 1:length(combi_df_sub[, 1])) {
-              n <- rowSums(combi_df_sub == "None")
-              if ((nb_combi - n[i]) == as.numeric(nb_combi)) {
-                vect <- combi_df_sub[i, ]
-                combi_df_central_sp <- rbind(combi_df_central_sp,
-                                             vect)
-              }
-            }
-            best_combi <- combi_df_central_sp %>% arrange(desc(as.numeric(combi_df_central_sp[[nb_combi +1]]))) %>%
-                          slice(1:input$nb_combi_display)
+            best_combi <- combi_df_sub %>% arrange(desc(as.numeric(combi_df_sub[[nb_combi +1]]))) %>%
+              slice(1:input$nb_combi_display)
           }
         }
 
