@@ -8,7 +8,9 @@ system_compatibility_app(
   hv_list,
   abiotics_df,
   user_param_syst,
-  user_param_rescaled
+  user_param_rescaled,
+  species_abiotics_df,
+  species_list
 )
 }
 \arguments{
