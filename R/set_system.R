@@ -10,7 +10,7 @@
 set_system <- function(species_abiotics_df, user_param_syst){
 
   # Guttman-Kaiser rule
-  res <- prcomp(species_abiotics_df[-1], scale = TRUE)
+  res <- prcomp(species_abiotics_df[-1], scale = TRUE)#remove first column (species)
   Npc <- as.numeric(summary(res$sd^2 > 1)["TRUE"])   #Npc = number of principal components retained, res$sd^2 = eigenvalue
 
   print(paste("using",Npc,"axes"))

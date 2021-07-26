@@ -16,16 +16,18 @@ system_compatibility_app <- function(hv_list, abiotics_df, user_param_syst, user
   selected_abiotics <- as.list(colnames(abiotics_df[,-(1:2)]))
 
   #set abiotics names to display
-  names(selected_abiotics) <- c("Annual mean temperature (?C*10)",
-                                "Maximum temperature of the warmest month (?C*10)",
-                                "Minimum temperature of the coldest month (?C*10)",
-                                "Mean temperature of the driest quarter (?C*10)", "Temperature seasonnality",
-                                "Temperature annual range (°C)", "Maximum pH of the soil (*10)",
+  names(selected_abiotics) <- c("Annual mean temperature (°C)",
+                                "Maximum temperature of the warmest month (°C)",
+                                "Minimum temperature of the coldest month (°C)",
+                                "Mean temperature of the driest quarter (°C)", "Temperature seasonnality",
+                                "Temperature annual range (°C)", "Maximum pH of the soil",
                                 "Average elevation (meters)", "Average slope([°]*100)", "Average flow (m3.s-1)",
                                 "Minimum flow (m3.s-1)", "Maximum flow (m3.s-1)", "Solar radiation (kJ.m-2.day-1)", "Water vapor pressure (kPa)",
                                 "Annual precipitations (mm)", "Precipitation of the wettest month (mm)",
                                 "Precipitation of the driest month (mm)", "Precipitation seasonnality",
                                 "Daylength annual min (Hours)", "Daylength annual max (Hours)", "Daylength annual range (Hours)")
+
+#############################################################################
 
   #test system inclusion in species or combination hypervolume
   possible_combi <- c()
@@ -43,7 +45,6 @@ system_compatibility_app <- function(hv_list, abiotics_df, user_param_syst, user
     stop("No species or combination can be reared in the system")
   }
 
-  #############################################################################
   species_list_possible <- c()
   for (i in 1:length(possible_combi)){
     for (j in 1:length(species_list)){
@@ -57,6 +58,15 @@ system_compatibility_app <- function(hv_list, abiotics_df, user_param_syst, user
   species_list_possible <- unique(species_list_possible)
 
   #############################################################################
+
+  #divide temperatures and pH by 10
+  abiotics_df$annual_meanT <- abiotics_df$annual_meanT/10
+  abiotics_df$maxT_WM <- abiotics_df$maxT_WM/10
+  abiotics_df$annual_rangeT <- abiotics_df$annual_rangeT/10
+  abiotics_df$ph_max <- abiotics_df$ph_max/10
+  abiotics_df$minT_CM <- abiotics_df$minT_CM/10
+  abiotics_df$meanT_DQ <- abiotics_df$meanT_DQ/10
+
 
   shinyApp(ui = fluidPage(
     titlePanel("Species density"),
