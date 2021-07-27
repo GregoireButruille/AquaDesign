@@ -1,10 +1,6 @@
 #' Title Rescale occurence data at 10 or 30 arcmins
 #'
 #' @param data_cl GBIF cleaned data frame
-#' @param minlat Minimum latitude
-#' @param maxlat Maximum latitude
-#' @param minlong Minimum longitude
-#' @param maxlong Maximum longitude
 #' @param resolution Resolution
 #'
 #'@import raster
@@ -14,7 +10,7 @@
 #' @export
 #'
 #' @examples
-occ_rescaling <- function(data_cl, minlat, maxlat , minlong, maxlong, resolution){
+occ_rescaling <- function(data_cl, resolution){
 
   #create empty dataframe
   species_df<- data.frame(matrix(ncol = 3, nrow = 0))

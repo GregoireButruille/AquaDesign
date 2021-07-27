@@ -7,7 +7,7 @@
 #' @export
 #'
 #' @examples
-design_monoculture_app <- function (species_abiotics_df, species_list, minlat = -56, maxlat = 60 , minlong =-145, maxlong = 180){
+design_monoculture_app <- function (species_df, abiotics_df, species_list , minlat = -56, maxlat = 60 , minlong =-145, maxlong = 180){
 
   #get abiotics list from the dataframe
   selected_abiotics <- as.list(colnames(species_abiotics_df[,-1]))
@@ -33,6 +33,25 @@ design_monoculture_app <- function (species_abiotics_df, species_list, minlat = 
                                 "Daylength annual min (Hours)",
                                 "Daylength annual max (Hours)",
                                 "Daylength annual range (Hours)")
+
+
+  #round abiotics to have homogeneous coordinates
+  is.num <- sapply(abiotics_df, is.numeric)
+  abiotics_df[is.num] <- lapply(abiotics_df[is.num], round, 4)
+
+  #round species to have homogeneous coordinates
+  is.num <- sapply(species_df, is.numeric)
+  species_df[is.num] <- lapply(species_df[is.num], round, 4)
+
+  abiotics_df_sub <- abiotics_df %>%
+    dplyr::filter(y<maxlat, y>(minlat), x>(minlong), x<maxlong)
+
+  species_abiotics_df <- merge(species_df, abiotics_df_sub, by=c("x","y"))
+  species_abiotics_df <- species_abiotics_df[-(1:2)]
+
+  if (length(abiotics_df[,1]) == 0){
+    stop("The are no occcurences in this area")
+  }
 
 
   #divide temperatures and pH by 10
