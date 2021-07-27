@@ -16,13 +16,13 @@ system_compatibility_app <- function(hv_list, abiotics_df, user_param_syst, user
   selected_abiotics <- as.list(colnames(abiotics_df[,-(1:2)]))
 
   #set abiotics names to display
-  names(selected_abiotics) <- c("Annual mean temperature (?C)",
-                                "Maximum temperature of the warmest month (?C)",
+  names(selected_abiotics) <- c("Annual mean temperature (°C)",
+                                "Maximum temperature of the warmest month (°C)",
                                 "Temperature annual range (°C)",
                                 "Maximum pH of the soil",
                                 "Temperature seasonnality",
-                                "Minimum temperature of the coldest month (?C)",
-                                "Mean temperature of the driest quarter (?C)",
+                                "Minimum temperature of the coldest month (°C)",
+                                "Mean temperature of the driest quarter (°C)",
                                 "Average elevation (meters)",
                                 "Average slope([°]*100)", "Average flow (m3.s-1)",
                                 "Minimum flow (m3.s-1)",
@@ -126,7 +126,7 @@ system_compatibility_app <- function(hv_list, abiotics_df, user_param_syst, user
         geom_density(alpha = 0.4) +
         xlab(names(selected_abiotics[which(selected_abiotics %in%
                                              input$Factor)]))+
-        geom_vline(xintercept =  user_param_syst[,input$Factor])
+        geom_vline(xintercept =  user_param_syst[,input$Factor], alpha = 0.4)
     })
   }
 

@@ -13,13 +13,13 @@ design_monoculture_app <- function (species_abiotics_df, species_list, minlat = 
   selected_abiotics <- as.list(colnames(species_abiotics_df[,-1]))
 
   #set abiotics names to display
-  names(selected_abiotics) <- c("Annual mean temperature (?C)",
-                                "Maximum temperature of the warmest month (?C)",
+  names(selected_abiotics) <- c("Annual mean temperature (°C)",
+                                "Maximum temperature of the warmest month (°C)",
                                 "Temperature annual range (°C)",
                                 "Maximum pH of the soil ",
                                 "Temperature seasonnality",
-                                "Minimum temperature of the coldest month (?C)",
-                                "Mean temperature of the driest quarter (?C)",
+                                "Minimum temperature of the coldest month (°C)",
+                                "Mean temperature of the driest quarter (°C)",
                                 "Average elevation (meters)",
                                 "Average slope([°]*100)", "Average flow (m3.s-1)",
                                 "Minimum flow (m3.s-1)",

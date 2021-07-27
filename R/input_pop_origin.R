@@ -16,7 +16,7 @@ input_pop_origin <- function(abiotics_df){
 
   #get the closest cell to coordinates
   rank <- which(abs(abiotics_df$y - pop_lat) == min(abs(abiotics_df$y - pop_lat))&abs(abiotics_df$x - pop_long) == min(abs(abiotics_df$x - pop_long)))
-  pop_lat <- abitoics_df$y[rank]
+  pop_lat <- abiotics_df$y[rank]
   pop_long <- abiotics_df$x[rank]
 
 
