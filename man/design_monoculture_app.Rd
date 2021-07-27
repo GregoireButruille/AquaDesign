@@ -4,7 +4,15 @@
 \alias{design_monoculture_app}
 \title{Title Plot species density diagrams for individual species}
 \usage{
-design_monoculture_app(abiotics_df, species_list)
+design_monoculture_app(
+  species_abiotics_df,
+  abiotics_df,
+  species_list,
+  minlat = -56,
+  maxlat = 60,
+  minlong = -145,
+  maxlong = 180
+)
 }
 \arguments{
 \item{species_list}{}

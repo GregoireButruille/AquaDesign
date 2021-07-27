@@ -7,7 +7,7 @@
 #' @export
 #'
 #' @examples
-design_monoculture_app <- function (abiotics_df, species_list, minlat = -56, maxlat = 60 , minlong =-145, maxlong = 180){
+design_monoculture_app <- function (species_abiotics_df, abiotics_df, species_list, minlat = -56, maxlat = 60 , minlong =-145, maxlong = 180){
 
   #get abiotics list from the dataframe
   selected_abiotics <- as.list(colnames(species_abiotics_df[, -1]))
@@ -43,7 +43,7 @@ design_monoculture_app <- function (abiotics_df, species_list, minlat = -56, max
   abiotics_df$meanT_DQ <- abiotics_df$meanT_DQ/10
 
   abiotics_df <- abiotics_df %>%
-    filter(y<maxlat, y>(minlat), x>(minlong), x<maxlong)
+    dplyr::filter(y<maxlat, y>(minlat), x>(minlong), x<maxlong)
 
   shinyApp(ui = fluidPage(titlePanel("Species density"),
                           sidebarLayout(
