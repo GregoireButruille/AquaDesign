@@ -15,7 +15,7 @@ input_user_area <- function(abiotics_df){
   #get the line of the abiotics_df corresponding to these coordinates
 
   area_param <- abiotics_df %>%
-    filter(y<max_lat, y>(min_lat), x>(min_long), x<max_long)
+    dplyr::filter(y<max_lat, y>(min_lat), x>(min_long), x<max_long)
 
 
   return(area_param)
