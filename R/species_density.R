@@ -7,7 +7,7 @@
 #' @export
 #'
 #' @examples
-design_monoculture_app <- function (abiotics_df, species_abiotics_df, species_list, minlat = -56, maxlat = 60 , minlong =-145, maxlong = 180){
+design_monoculture_app <- function (species_abiotics_df, species_list, minlat = -56, maxlat = 60 , minlong =-145, maxlong = 180){
 
   #get abiotics list from the dataframe
   selected_abiotics <- as.list(colnames(species_abiotics_df[,-1]))
@@ -76,7 +76,7 @@ design_monoculture_app <- function (abiotics_df, species_abiotics_df, species_li
       species_abiotics_df_sub <- species_abiotics_df %>%
         filter(species %in% input$species_show)
       #plot density diagram
-      ggplot(species_abiotics_df_sub, aes(x = species_biotics_df_sub[,input$Factor], fill = species))+
+      ggplot(species_abiotics_df_sub, aes(x = species_abiotics_df_sub[,input$Factor], fill = species))+
         geom_density(alpha = 0.4) +
         xlab(names(selected_abiotics[which(selected_abiotics %in%
                                              input$Factor)]))
