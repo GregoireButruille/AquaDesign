@@ -7,10 +7,10 @@
 #' @export
 #'
 #' @examples
-design_monoculture_app <- function (abiotics_df, species_list, minlat = -56, maxlat = 60 , minlong =-145, maxlong = 180){
+design_monoculture_app <- function (abiotics_df, species_abiotics_df, species_list, minlat = -56, maxlat = 60 , minlong =-145, maxlong = 180){
 
   #get abiotics list from the dataframe
-  selected_abiotics <- as.list(colnames(abiotics_df[,-(1:2)]))
+  selected_abiotics <- as.list(colnames(species_abiotics_df[,-1]))
 
   #set abiotics names to display
   names(selected_abiotics) <- c("Annual mean temperature (?C)",
@@ -34,16 +34,15 @@ design_monoculture_app <- function (abiotics_df, species_list, minlat = -56, max
                                 "Daylength annual max (Hours)",
                                 "Daylength annual range (Hours)")
 
-  #divide temperatures and pH by 10
-  abiotics_df$annual_meanT <-abiotics_df$annual_meanT/10
-  abiotics_df$maxT_WM <- abiotics_df$maxT_WM/10
-  abiotics_df$annual_rangeT <- abiotics_df$annual_rangeT/10
-  abiotics_df$ph_max <- abiotics_df$ph_max/10
-  abiotics_df$minT_CM <- abiotics_df$minT_CM/10
-  abiotics_df$meanT_DQ <- abiotics_df$meanT_DQ/10
 
-  abiotics_df <- abiotics_df %>%
-    dplyr::filter(y<maxlat, y>(minlat), x>(minlong), x<maxlong)
+  #divide temperatures and pH by 10
+  species_abiotics_df$annual_meanT <- species_abiotics_df$annual_meanT/10
+  species_abiotics_df$maxT_WM <-  species_abiotics_df$maxT_WM/10
+  species_abiotics_df$annual_rangeT <-  species_abiotics_df$annual_rangeT/10
+  species_abiotics_df$ph_max <-  species_abiotics_df$ph_max/10
+  species_abiotics_df$minT_CM <-  species_abiotics_df$minT_CM/10
+  species_abiotics_df$meanT_DQ <-  species_abiotics_df$meanT_DQ/10
+
 
   shinyApp(ui = fluidPage(titlePanel("Species density"),
                           sidebarLayout(
@@ -74,10 +73,10 @@ design_monoculture_app <- function (abiotics_df, species_list, minlat = -56, max
 
     output$plot <- renderPlot({
       #subset the dataframe to the species to show
-     abiotics_df_sub <- abiotics_df %>%
+      species_abiotics_df_sub <- species_abiotics_df %>%
         filter(species %in% input$species_show)
       #plot density diagram
-      ggplot(abiotics_df_sub, aes(x = abiotics_df_sub[,input$Factor], fill = species))+
+      ggplot(species_abiotics_df_sub, aes(x = species_biotics_df_sub[,input$Factor], fill = species))+
         geom_density(alpha = 0.4) +
         xlab(names(selected_abiotics[which(selected_abiotics %in%
                                              input$Factor)]))
