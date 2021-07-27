@@ -35,12 +35,12 @@ design_monoculture_app <- function (species_abiotics_df, species_list, minlat = 
                                 "Daylength annual range (Hours)")
 
   #divide temperatures and pH by 10
-  species_abiotics_df$annual_meanT <- abiotics_df$annual_meanT/10
-  species_abiotics_df$maxT_WM <- abiotics_df$maxT_WM/10
-  species_abiotics_df$annual_rangeT <- abiotics_df$annual_rangeT/10
-  species_abiotics_df$ph_max <- abiotics_df$ph_max/10
-  species_abiotics_df$minT_CM <- abiotics_df$minT_CM/10
-  species_abiotics_df$meanT_DQ <- abiotics_df$meanT_DQ/10
+  species_abiotics_df$annual_meanT <- species_abiotics_df$annual_meanT/10
+  species_abiotics_df$maxT_WM <- species_abiotics_df$maxT_WM/10
+  species_abiotics_df$annual_rangeT <- species_abiotics_df$annual_rangeT/10
+  species_abiotics_df$ph_max <- species_abiotics_df$ph_max/10
+  species_abiotics_df$minT_CM <- species_abiotics_df$minT_CM/10
+  species_abiotics_df$meanT_DQ <- species_abiotics_df$meanT_DQ/10
 
   species_abiotics_df <- species_abiotics_df %>%
     dplyr::filter(y<maxlat, y>(minlat), x>(minlong), x<maxlong)
