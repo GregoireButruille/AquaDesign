@@ -6,7 +6,6 @@
 \usage{
 design_monoculture_app(
   species_abiotics_df,
-  abiotics_df,
   species_list,
   minlat = -56,
   maxlat = 60,

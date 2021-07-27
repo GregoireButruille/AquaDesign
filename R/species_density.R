@@ -7,19 +7,19 @@
 #' @export
 #'
 #' @examples
-design_monoculture_app <- function (species_abiotics_df, abiotics_df, species_list, minlat = -56, maxlat = 60 , minlong =-145, maxlong = 180){
+design_monoculture_app <- function (species_abiotics_df, species_list, minlat = -56, maxlat = 60 , minlong =-145, maxlong = 180){
 
   #get abiotics list from the dataframe
   selected_abiotics <- as.list(colnames(species_abiotics_df[, -1]))
 
   #set abiotics names to display
-  names(selected_abiotics) <- c("Annual mean temperature (?C*10)",
-                                "Maximum temperature of the warmest month (?C*10)",
-                                "Temperature annual range (°C*10)",
-                                "Maximum pH of the soil (*10)",
+  names(selected_abiotics) <- c("Annual mean temperature (?C)",
+                                "Maximum temperature of the warmest month (?C)",
+                                "Temperature annual range (°C)",
+                                "Maximum pH of the soil ",
                                 "Temperature seasonnality",
-                                "Minimum temperature of the coldest month (?C*10)",
-                                "Mean temperature of the driest quarter (?C*10)",
+                                "Minimum temperature of the coldest month (?C)",
+                                "Mean temperature of the driest quarter (?C)",
                                 "Average elevation (meters)",
                                 "Average slope([°]*100)", "Average flow (m3.s-1)",
                                 "Minimum flow (m3.s-1)",
@@ -35,14 +35,14 @@ design_monoculture_app <- function (species_abiotics_df, abiotics_df, species_li
                                 "Daylength annual range (Hours)")
 
   #divide temperatures and pH by 10
-  abiotics_df$annual_meanT <- abiotics_df$annual_meanT/10
-  abiotics_df$maxT_WM <- abiotics_df$maxT_WM/10
-  abiotics_df$annual_rangeT <- abiotics_df$annual_rangeT/10
-  abiotics_df$ph_max <- abiotics_df$ph_max/10
-  abiotics_df$minT_CM <- abiotics_df$minT_CM/10
-  abiotics_df$meanT_DQ <- abiotics_df$meanT_DQ/10
+  species_abiotics_df$annual_meanT <- abiotics_df$annual_meanT/10
+  species_abiotics_df$maxT_WM <- abiotics_df$maxT_WM/10
+  species_abiotics_df$annual_rangeT <- abiotics_df$annual_rangeT/10
+  species_abiotics_df$ph_max <- abiotics_df$ph_max/10
+  species_abiotics_df$minT_CM <- abiotics_df$minT_CM/10
+  species_abiotics_df$meanT_DQ <- abiotics_df$meanT_DQ/10
 
-  abiotics_df <- abiotics_df %>%
+  species_abiotics_df <- species_abiotics_df %>%
     dplyr::filter(y<maxlat, y>(minlat), x>(minlong), x<maxlong)
 
   shinyApp(ui = fluidPage(titlePanel("Species density"),
