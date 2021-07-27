@@ -41,7 +41,7 @@ input_user_system <- function(abiotics_df){
 
   #get the closest cell to coordinates
   rank <- which(abs(abiotics_df$y - user_lat) == min(abs(abiotics_df$y - user_lat))&abs(abiotics_df$x - user_long) == min(abs(abiotics_df$x - user_long)))
-  user_lat <- abitoics_df$y[rank]
+  user_lat <- abiotics_df$y[rank]
   user_long <- abiotics_df$x[rank]
 
 
