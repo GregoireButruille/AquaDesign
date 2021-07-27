@@ -8,6 +8,8 @@
 #' @examples
 input_user_system <- function(abiotics_df){
 
+
+
   selected_abiotics <- as.list(colnames(abiotics_df[,-(1:2)]))
 
   #set abiotics names to display
@@ -32,9 +34,17 @@ input_user_system <- function(abiotics_df){
                                 "Daylength annual max (Hours)",
                                 "Daylength annual range (Hours)")
 
+
   #ask for latitude and longitude
   user_lat <- as.numeric(dlgInput("Enter your site location latitude", "47.75")$res)
   user_long <- as.numeric(dlgInput("Enter your site location longitude", "6.2500")$res)
+
+  #get the closest cell to coordinates
+  rank <- which(abs(abiotics_df$y - user_lat) == min(abs(abiotics_df$y - user_lat))&abs(abiotics_df$x - user_long) == min(abs(abiotics_df$x - user_long)))
+  user_lat <- abitoics_df$y[rank]
+  user_long <- abiotics_df$x[rank]
+
+
 
   #get the line of the abiotics_df corresponding to these coordinates
   user_coords <- data.frame(y = user_lat, x =user_long)

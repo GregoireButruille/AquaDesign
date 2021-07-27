@@ -16,16 +16,26 @@ design_polyculture_app <- function(rescaled_combi_df, species_abiotics_df){
   selected_abiotics <- as.list(colnames(species_abiotics_df[,-1]))
 
   #set abiotics names to display
-  names(selected_abiotics) <- c("Annual mean temperature (°C)",
-                                "Maximum temperature of the warmest month (°C)",
-                                "Minimum temperature of the coldest month (°C)",
-                                "Mean temperature of the driest quarter (°C)", "Temperature seasonnality",
-                                "Temperature annual range (°C)", "Maximum pH of the soil",
-                                "Average elevation (meters)", "Average slope([°]*100)", "Average flow (m3.s-1)",
-                                "Minimum flow (m3.s-1)", "Maximum flow (m3.s-1)", "Solar radiation (kJ.m-2.day-1)", "Water vapor pressure (kPa)",
-                                "Annual precipitations (mm)", "Precipitation of the wettest month (mm)",
-                                "Precipitation of the driest month (mm)", "Precipitation seasonnality",
-                                "Daylength annual min (Hours)", "Daylength annual max (Hours)", "Daylength annual range (Hours)")
+  names(selected_abiotics) <- c("Annual mean temperature (?C*10)",
+                                "Maximum temperature of the warmest month (?C*10)",
+                                "Temperature annual range (°C*10)",
+                                "Maximum pH of the soil (*10)",
+                                "Temperature seasonnality",
+                                "Minimum temperature of the coldest month (?C*10)",
+                                "Mean temperature of the driest quarter (?C*10)",
+                                "Average elevation (meters)",
+                                "Average slope([°]*100)", "Average flow (m3.s-1)",
+                                "Minimum flow (m3.s-1)",
+                                "Maximum flow (m3.s-1)",
+                                "Solar radiation (kJ.m-2.day-1)",
+                                "Water vapor pressure (kPa)",
+                                "Annual precipitations (mm)",
+                                "Precipitation of the wettest month (mm)",
+                                "Precipitation of the driest month (mm)",
+                                "Precipitation seasonnality",
+                                "Daylength annual min (Hours)",
+                                "Daylength annual max (Hours)",
+                                "Daylength annual range (Hours)")
 
   #ask users for the max number of species in combinations
   nb_combi <- dlg_list(title = "Chose the max number of species in combinations", c(2:(length(hv_list@HVList))))$res
