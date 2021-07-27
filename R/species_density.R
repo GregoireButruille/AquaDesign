@@ -10,7 +10,7 @@
 design_monoculture_app <- function (abiotics_df, species_list, minlat = -56, maxlat = 60 , minlong =-145, maxlong = 180){
 
   #get abiotics list from the dataframe
-  selected_abiotics <- as.list(colnames(abiotics_df))
+  selected_abiotics <- as.list(colnames(abiotics_df[,-(1:2)]))
 
   #set abiotics names to display
   names(selected_abiotics) <- c("Annual mean temperature (?C)",
