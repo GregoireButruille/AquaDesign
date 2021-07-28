@@ -32,7 +32,7 @@ plot_occ <- function(data, data_cl){
       # Main panel for displaying outputs ----
       mainPanel(
 
-        plotOutput("map", width = "100%", height = 800)
+        plotOutput("map", width = "100%", height = 400)
 
       )
     )
