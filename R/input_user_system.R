@@ -13,13 +13,13 @@ input_user_system <- function(abiotics_df){
   selected_abiotics <- as.list(colnames(abiotics_df[,-(1:2)]))
 
   #set abiotics names to display
-  names(selected_abiotics) <- c("Annual mean temperature (°C)",
-                                "Maximum temperature of the warmest month (°C)",
-                                "Temperature annual range (°C)",
-                                "Maximum pH of the soil",
+  names(selected_abiotics) <- c("Annual mean temperature (°C*10)",
+                                "Maximum temperature of the warmest month (°C*10)",
+                                "Temperature annual range (°C*10)",
+                                "Maximum pH of the soil (*10)",
                                 "Temperature seasonnality",
-                                "Minimum temperature of the coldest month (°C)",
-                                "Mean temperature of the driest quarter (°C)",
+                                "Minimum temperature of the coldest month (°C*10)",
+                                "Mean temperature of the driest quarter (°C*10)",
                                 "Average elevation (meters)",
                                 "Average slope([°]*100)", "Average flow (m3.s-1)",
                                 "Minimum flow (m3.s-1)",
@@ -35,13 +35,6 @@ input_user_system <- function(abiotics_df){
                                 "Daylength annual range (Hours)")
 
 
-  #divide temperatures and pH by 10
-  abiotics_df$annual_meanT <- abiotics_df$annual_meanT/10
-  abiotics_df$maxT_WM <- abiotics_df$maxT_WM/10
-  abiotics_df$annual_rangeT <- abiotics_df$annual_rangeT/10
-  abiotics_df$ph_max <- abiotics_df$ph_max/10
-  abiotics_df$minT_CM <- abiotics_df$minT_CM/10
-  abiotics_df$meanT_DQ <- abiotics_df$meanT_DQ/10
 
 
   #ask for latitude and longitude
