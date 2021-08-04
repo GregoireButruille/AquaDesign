@@ -16,26 +16,28 @@ system_compatibility_app <- function(hv_list, abiotics_df, user_param_syst, user
   selected_abiotics <- as.list(colnames(abiotics_df[,-(1:2)]))
 
   #set abiotics names to display
-  names(selected_abiotics) <- c("Annual mean temperature (°C)",
-                                "Maximum temperature of the warmest month (°C)",
-                                "Temperature annual range (°C)",
-                                "Maximum pH of the soil",
-                                "Temperature seasonnality",
-                                "Minimum temperature of the coldest month (°C)",
-                                "Mean temperature of the driest quarter (°C)",
-                                "Average elevation (meters)",
-                                "Average slope([°]*100)", "Average flow (m3.s-1)",
-                                "Minimum flow (m3.s-1)",
-                                "Maximum flow (m3.s-1)",
-                                "Solar radiation (kJ.m-2.day-1)",
-                                "Water vapor pressure (kPa)",
-                                "Annual precipitations (mm)",
-                                "Precipitation of the wettest month (mm)",
-                                "Precipitation of the driest month (mm)",
-                                "Precipitation seasonnality",
-                                "Daylength annual min (Hours)",
-                                "Daylength annual max (Hours)",
-                                "Daylength annual range (Hours)")
+  names(selected_abiotics)[selected_abiotics=="annual_meanT"] <- "Annual mean temperature (°C)"
+  names(selected_abiotics)[selected_abiotics=="maxT_WM"] <- "Maximum temperature of the warmest month (°C)"
+  names(selected_abiotics)[selected_abiotics=="annual_rangeT"] <- "Temperature annual range (°C)"
+  names(selected_abiotics)[selected_abiotics=="ph_max"] <- "Maximum pH of the soil"
+  names(selected_abiotics)[selected_abiotics=="T_seasonality"] <- "Temperature seasonality"
+  names(selected_abiotics)[selected_abiotics=="minT_CM"] <- "Minimum temperature of the coldest month (°C)"
+  names(selected_abiotics)[selected_abiotics=="meanT_DQ"] <- "Mean temperature of the driest quarter (°C)"
+  names(selected_abiotics)[selected_abiotics=="elevation_avg"] <- "Average elevation (meters)"
+  names(selected_abiotics)[selected_abiotics=="slope_avg"] <- "Average slope([°]*100)"
+  names(selected_abiotics)[selected_abiotics=="flow_df_av"] <- "Average flow (m3.s-1)"
+  names(selected_abiotics)[selected_abiotics=="flow_df_mi"] <- "Minimum flow (m3.s-1)"
+  names(selected_abiotics)[selected_abiotics=="flow_df_ma"] <- "Maximum flow (m3.s-1)"
+  names(selected_abiotics)[selected_abiotics=="srad"] <- "Solar radiation (kJ.m-2.day-1)"
+  names(selected_abiotics)[selected_abiotics=="vapr"] <- "Water vapor pressure (kPa)"
+  names(selected_abiotics)[selected_abiotics=="annual_prec"] <- "Annual precipitations (mm)"
+  names(selected_abiotics)[selected_abiotics=="prec_WM"] <- "Precipitation of the wettest month (mm)"
+  names(selected_abiotics)[selected_abiotics=="prec_DM"] <- "Precipitation of the driest month (mm)"
+  names(selected_abiotics)[selected_abiotics=="prec_seasonality"] <- "Precipitation seasonality"
+  names(selected_abiotics)[selected_abiotics=="dl_annual_min"] <- "Daylength annual min (Hours)"
+  names(selected_abiotics)[selected_abiotics=="dl_annual_max"] <- "Daylength annual max (Hours)"
+  names(selected_abiotics)[selected_abiotics=="dl_annual_range"] <- "Daylength annual range (Hours)"
+
 
 #############################################################################
 
