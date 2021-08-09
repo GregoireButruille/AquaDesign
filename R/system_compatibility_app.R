@@ -103,7 +103,7 @@ system_compatibility_app <- function(hv_list, abiotics_df, user_param_syst, user
                     choices = selected_abiotics),
 
         checkboxGroupInput(inputId = "species_show",
-                           label = "Chose species to show:",
+                           label = "Choose species to show:",
                            choiceNames = species_list,
                            choiceValues = species_list)
       ),

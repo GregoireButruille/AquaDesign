@@ -39,7 +39,7 @@ design_polyculture_app <- function(rescaled_combi_df, species_abiotics_df){
   names(selected_abiotics)[selected_abiotics=="dl_annual_range"] <- "Daylength annual range (Hours)"
 
   #ask users for the max number of species in combinations
-  nb_combi <- dlg_list(title = "Chose the max number of species in combinations", c(2:(length(hv_list@HVList))))$res
+  nb_combi <- dlg_list(title = "Choose the max number of species in combinations", c(2:(length(hv_list@HVList))))$res
   nb_combi <- as.numeric(nb_combi)
 
   #get species list from the hypervolume list
@@ -50,12 +50,12 @@ design_polyculture_app <- function(rescaled_combi_df, species_abiotics_df){
 
 
   #divide temperatures and pH by 10
-  abiotics_df$annual_meanT <- abiotics_df$annual_meanT/10
-  abiotics_df$maxT_WM <- abiotics_df$maxT_WM/10
-  abiotics_df$annual_rangeT <- abiotics_df$annual_rangeT/10
-  abiotics_df$ph_max <- abiotics_df$ph_max/10
-  abiotics_df$minT_CM <- abiotics_df$minT_CM/10
-  abiotics_df$meanT_DQ <- abiotics_df$meanT_DQ/10
+  abiotics_df$annual_meanT <- species_abiotics_df$annual_meanT/10
+  abiotics_df$maxT_WM <- species_abiotics_df$maxT_WM/10
+  abiotics_df$annual_rangeT <- species_abiotics_df$annual_rangeT/10
+  abiotics_df$ph_max <- species_abiotics_df$ph_max/10
+  abiotics_df$minT_CM <- species_abiotics_df$minT_CM/10
+  abiotics_df$meanT_DQ <- species_abiotics_df$meanT_DQ/10
 
 
   shinyApp(
