@@ -93,7 +93,7 @@ design_monoculture_app <- function (species_df, abiotics_df, species_list , minl
     output$plot <- renderPlot({
       #subset the dataframe to the species to show
       species_abiotics_df_sub <- species_abiotics_df %>%
-        filter(species %in% input$species_show)
+        dplyr::filter(species %in% input$species_show)
       #plot density diagram
       ggplot(species_abiotics_df_sub, aes(x = species_abiotics_df_sub[,input$Factor], fill = species))+
         geom_density(alpha = 0.4) +
