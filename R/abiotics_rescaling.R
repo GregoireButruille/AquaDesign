@@ -20,6 +20,7 @@
 #'
 abiotics_rescaling <- function(flo1k_data,worldclim_data,earthenv_data, minlat, maxlat, minlong, maxlong, resolution, geosphere = FALSE){
 
+  #test
   #set parallelisation
   cl <- makePSOCKcluster(detectCores()-2)
   registerDoParallel(cl)
