@@ -20,6 +20,8 @@ system_compatibility_app <- function(hv_list, abiotics_df, user_param_syst, user
   names(selected_abiotics)[selected_abiotics=="maxT_WM"] <- "Maximum temperature of the warmest month (°C)"
   names(selected_abiotics)[selected_abiotics=="annual_rangeT"] <- "Temperature annual range (°C)"
   names(selected_abiotics)[selected_abiotics=="ph_max"] <- "Maximum pH of the soil"
+  names(selected_abiotics)[selected_abiotics=="ph_min"] <- "Minimum pH of the soil"
+  names(selected_abiotics)[selected_abiotics=="ph_avg"] <- "Average pH of the soil"
   names(selected_abiotics)[selected_abiotics=="T_seasonality"] <- "Temperature seasonality"
   names(selected_abiotics)[selected_abiotics=="minT_CM"] <- "Minimum temperature of the coldest month (°C)"
   names(selected_abiotics)[selected_abiotics=="meanT_DQ"] <- "Mean temperature of the driest quarter (°C)"
@@ -90,6 +92,8 @@ system_compatibility_app <- function(hv_list, abiotics_df, user_param_syst, user
   abiotics_df$maxT_WM <- abiotics_df$maxT_WM/10
   abiotics_df$annual_rangeT <- abiotics_df$annual_rangeT/10
   abiotics_df$ph_max <- abiotics_df$ph_max/10
+  abiotics_df$ph_min <- abiotics_df$ph_min/10
+  abiotics_df$ph_avg <- abiotics_df$ph_avg/10
   abiotics_df$minT_CM <- abiotics_df$minT_CM/10
   abiotics_df$meanT_DQ <- abiotics_df$meanT_DQ/10
 
