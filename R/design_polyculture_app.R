@@ -20,8 +20,6 @@ design_polyculture_app <- function(rescaled_combi_df, species_abiotics_df){
   names(selected_abiotics)[selected_abiotics=="maxT_WM"] <- "Maximum temperature of the warmest month (°C)"
   names(selected_abiotics)[selected_abiotics=="annual_rangeT"] <- "Temperature annual range (°C)"
   names(selected_abiotics)[selected_abiotics=="ph_max"] <- "Maximum pH of the soil"
-  names(selected_abiotics)[selected_abiotics=="ph_min"] <- "Minimum pH of the soil"
-  names(selected_abiotics)[selected_abiotics=="ph_avg"] <- "Average pH of the soil"
   names(selected_abiotics)[selected_abiotics=="T_seasonality"] <- "Temperature seasonality"
   names(selected_abiotics)[selected_abiotics=="minT_CM"] <- "Minimum temperature of the coldest month (°C)"
   names(selected_abiotics)[selected_abiotics=="meanT_DQ"] <- "Mean temperature of the driest quarter (°C)"
@@ -36,9 +34,7 @@ design_polyculture_app <- function(rescaled_combi_df, species_abiotics_df){
   names(selected_abiotics)[selected_abiotics=="prec_WM"] <- "Precipitation of the wettest month (mm)"
   names(selected_abiotics)[selected_abiotics=="prec_DM"] <- "Precipitation of the driest month (mm)"
   names(selected_abiotics)[selected_abiotics=="prec_seasonality"] <- "Precipitation seasonality"
-  names(selected_abiotics)[selected_abiotics=="dl_annual_min"] <- "Daylength annual min (Hours)"
-  names(selected_abiotics)[selected_abiotics=="dl_annual_max"] <- "Daylength annual max (Hours)"
-  names(selected_abiotics)[selected_abiotics=="dl_annual_range"] <- "Daylength annual range (Hours)"
+
 
   #ask users for the max number of species in combinations
   nb_combi <- dlg_list(title = "Choose the max number of species in combinations", c(2:(length(hv_list@HVList))))$res
@@ -56,8 +52,6 @@ design_polyculture_app <- function(rescaled_combi_df, species_abiotics_df){
   species_abiotics_df$maxT_WM <- species_abiotics_df$maxT_WM/10
   species_abiotics_df$annual_rangeT <- species_abiotics_df$annual_rangeT/10
   species_abiotics_df$ph_max <- species_abiotics_df$ph_max/10
-  species_abiotics_df$ph_min <- species_abiotics_df$ph_min/10
-  species_abiotics_df$ph_avg <- species_abiotics_df$ph_avg/10
   species_abiotics_df$minT_CM <- species_abiotics_df$minT_CM/10
   species_abiotics_df$meanT_DQ <- species_abiotics_df$meanT_DQ/10
 
