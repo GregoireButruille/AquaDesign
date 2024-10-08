@@ -10,7 +10,7 @@
 #'
 #' @examples
 download_DB <- function(databases_to_use, resolution){
-
+  options(timeout = 1000)
   if ("EarthEnv" %in% databases_to_use ){
 
     cat("Downloading datasets from EarthEnv...\n")
@@ -29,9 +29,13 @@ download_DB <- function(databases_to_use, resolution){
 
     cat("Downloading datasets from WorldClim...\n")
 
-    download.file("https://biogeo.ucdavis.edu/data/worldclim/v2.1/base/wc2.1_10m_srad.zip", paste(getwd(), "srad_zip.zip", sep="/"), mode = "wb")
-    download.file("https://biogeo.ucdavis.edu/data/worldclim/v2.1/base/wc2.1_10m_vapr.zip", paste(getwd(), "vapr_zip.zip", sep="/"), mode = "wb")
-    download.file("https://biogeo.ucdavis.edu/data/worldclim/v2.1/base/wc2.1_10m_bio.zip", paste(getwd(), "bio_zip.zip", sep="/"), mode = "wb")
+    #old download links
+    #download.file("https://biogeo.ucdavis.edu/data/worldclim/v2.1/base/wc2.1_10m_srad.zip", paste(getwd(), "srad_zip.zip", sep="/"), mode = "wb")
+    #download.file("https://biogeo.ucdavis.edu/data/worldclim/v2.1/base/wc2.1_10m_vapr.zip", paste(getwd(), "vapr_zip.zip", sep="/"), mode = "wb")
+    #download.file("https://biogeo.ucdavis.edu/data/worldclim/v2.1/base/wc2.1_10m_bio.zip", paste(getwd(), "bio_zip.zip", sep="/"), mode = "wb")
+    download.file("https://geodata.ucdavis.edu/climate/worldclim/2_1/base/wc2.1_10m_srad.zip", paste(getwd(), "srad_zip.zip", sep="/"), mode = "wb")
+    download.file("https://geodata.ucdavis.edu/climate/worldclim/2_1/base/wc2.1_10m_vapr.zip", paste(getwd(), "vapr_zip.zip", sep="/"), mode = "wb")
+    download.file("https://geodata.ucdavis.edu/climate/worldclim/2_1/base/wc2.1_10m_bio.zip", paste(getwd(), "bio_zip.zip", sep="/"), mode = "wb")
   }
 
   if ("FLO1K" %in% databases_to_use ){
