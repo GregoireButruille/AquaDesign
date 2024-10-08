@@ -27,21 +27,27 @@ data_cleaning <- function(data, minlat, maxlat, minlong, maxlong, check.out = TR
     filter(decimalLongitude>(minlong))
 
   #prepare data for cleaning
-  names(data_cl)[2:3] <- c("decimallongitude", "decimallatitude") #these are default names for latitude and longitude in the following functions
+  #an update to CoordinateCleaner passed the default column names "decimallongitude" and "decimallatitude" to "decimalLongitude" and "decimalLatitude", respectively, breaking the functions calls
+  #hence, I'm removing the column renaming, keeping the correct ones
+  #names(data_cl)[2:3] <- c("decimallongitude", "decimallatitude") #these are default names for latitude and longitude in the following functions
   data_cl$countryCode <-  countrycode(data_cl$countryCode, origin =  'iso2c', destination = 'iso3c') #iso 2 --> iso 3 changes countrycode from 2 letters to 3 letters (ex : FR --> FRA) to be able to use cc_count()
 
   #country code puts Na for countrycodes not matched unambiguously (XK and ZZ = Kosovo and undefined countries), remove the Na
   data_cl <- na.omit(data_cl)
 
-  #removes suspicious points (bufffer = range in meters)
+   #removes suspicious points (buffer = range in meters)
+  #cc_coun is at least 30 minutes long (it didn't end after 30min), the other functions are mere seconds, there is probably a problem with it, so I'm removing it
+  #cc_sea() is also long, launch a weird download, and we're treating sea water fishes sometimes
   data_cl <- data_cl%>%
     cc_val()%>%  #invalid values
     cc_cap(buffer=10000)%>%   #capitals
     cc_cen(buffer = 1000)%>%  #country centroids
-    cc_coun(iso3 = "countryCode")%>%  #country mismatches
+  #  cc_coun(iso3 = "countryCode")%>%  #country mismatches
     cc_gbif(buffer=1000)%>%  #gbif HeadQuarters
-    cc_inst(buffer=100)%>%  #institutions
-    cc_sea()  #sea
+  #  cc_inst(buffer=100)%>%  #institutions
+    cc_inst(buffer=100)  #institutions
+  #  cc_sea()  #sea
+  
 
   if (check.out == TRUE){
     #check outliers
@@ -56,8 +62,8 @@ data_cleaning <- function(data, minlat, maxlat, minlong, maxlong, check.out = TR
       )
   }
 
-  #Rename latitude and longitude
-  names(data_cl)[2:3] <- c("decimalLongitude", "decimalLatitude")
+  #Renaming back latitude and longitude is obsolete since the columns stays at deciamlLongitude and decimalLatitude from the start
+  #names(data_cl)[2:3] <- c("decimalLongitude", "decimalLatitude")
 
   return(data_cl)
 }
