@@ -30,12 +30,12 @@ FLO1K_select <- function(resolution) {
   for(i in 1:length(flo1k_files_names)){
     if (resolution == 30){
       name_flow <-paste0("FLO1K.30min.ts.1960.2015.q",flo1k_files_names[i],".nc")
-      unzip(name_flow)
+      unzip("flow_30_zip.zip",name_flow)
       flo1k_files <- c(flo1k_files, name_flow)
     }
     if (resolution == 10){
       name_flow <-paste0("FLO1K.5min.ts.1960.2015.q",flo1k_files_names[i],".nc")
-      unzip(name_flow)
+      unzip("flow_5_zip.zip",name_flow)
       flo1k_files <- c(flo1k_files, name_flow)
     }
   }
