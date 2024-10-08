@@ -33,6 +33,11 @@ FLO1K_select <- function(resolution) {
       unzip(name_flow)
       flo1k_files <- c(flo1k_files, name_flow)
     }
+    if (resolution == 10){
+      name_flow <-paste0("FLO1K.5min.ts.1960.2015.q",flo1k_files_names[i],".nc")
+      unzip(name_flow)
+      flo1k_files <- c(flo1k_files, name_flow)
+    }
   }
   
   #result <- flo1k_files
