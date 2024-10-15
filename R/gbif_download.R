@@ -7,12 +7,24 @@
 #' @export
 #' @examples
 
-gbif_download <- function(species_list){
+gbif_download <- function(species_list,user=NA,pwd=NA,mail=NA){
 
-  #ask user for is GBIF IDs
-  gbif_user <- dlgInput("Enter your gbif username", "username")$res
-  gbif_pwd <- dlgInput("Enter your gbif password", "password")$res
-  mail <- dlgInput("Enter the mail address used on gbif", "email@address.com")$res
+  #ask user for its GBIF IDs
+  if (is.na(user)){
+    gbif_user <- dlgInput("Enter your gbif username", "username")$res
+  } else{
+    gbif_user<-user
+  }
+  if (is.na(pwd)){
+    gbif_pwd <- dlgInput("Enter your gbif password", "password")$res
+  } else{
+    gbif_pwd <- pwd
+  }
+  if (is.na(mail)){
+    gbif_mail <- dlgInput("Enter the mail address used on gbif", "email@address.com")$res
+  } else{
+    gbif_mail <- mail
+  }
 
   species_gbifid <- get_gbifid_(species_list) #returns a list of lists with the 3 first results in gbif for each species
   gbif_taxon_keys<-c()
@@ -25,7 +37,7 @@ gbif_download <- function(species_list){
     }
   }
   #prepare the download, wait for the data set to be ready then download the zip filen unzip it and read the csv
-  data <- occ_download(pred_in("taxonKey", gbif_taxon_keys), pred("hasCoordinate", TRUE), format = "SIMPLE_CSV",user=gbif_user, pwd=gbif_pwd, email=mail)
+  data <- occ_download(pred_in("taxonKey", gbif_taxon_keys), pred("hasCoordinate", TRUE), format = "SIMPLE_CSV",user=gbif_user, pwd=gbif_pwd, email=gbif_mail)
   occ_download_wait(data)
   gbif_zip_download<-occ_download_get(data[1],overwrite=TRUE)
   print(gbif_citation(gbif_zip_download))
