@@ -6,11 +6,15 @@
 #' @export
 #'
 #' @examples
-get_hv_intersection_volumes <- function(hv_list){
+get_hv_intersection_volumes <- function(hv_list,nb = NA){
 
-  #ask for the max number of species in combinations
-  nb_combi <- dlg_list(title = "Chose the max number of species in combinations", c(2:(length(hv_list@HVList))))$res
-  nb_combi <- as.numeric(nb_combi)
+  if (is.na(nb)){
+    #ask for the max number of species in combinations
+    nb_combi <- dlg_list(title = "Chose the max number of species in combinations", c(2:(length(hv_list@HVList))))$res
+    nb_combi <- as.numeric(nb_combi)
+  } else{
+    nb_combi <-nb
+  }
 
   #get species_list from hv_list
   species_list <- c()
