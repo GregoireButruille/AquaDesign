@@ -10,20 +10,20 @@
 #'
 #' @examples
 
-checkAndDownload <- function(url,filePath) {
-    print(filepath)
-    if (!file.exists(filePath)) {
-      tryCatch(download.file(url,filePath, mode = "wb", quiet = FALSE), 
-        error = function(e) print(paste0("The download failed on url ",url)))
-        quit()
-    }
-    else{
-      warningMsg=paste0("The file ",filePath," already exist. If you wish to update it, please remove this file and rerun Aquadesign.")
-      cat(warningMsg)
-    }
-}
-
 download_DB <- function(databases_to_use, resolution){
+
+  checkAndDownload <- function(url,filePath) {
+      if (!file.exists(filePath)) {
+        tryCatch(download.file(url,filePath, mode = "wb", quiet = FALSE), 
+          error = function(e) print(paste0("The download failed on url ",url)))
+          quit()
+      }
+      else{
+        warningMsg=paste0("The file ",filePath," already exist. If you wish to update it, please remove this file and rerun Aquadesign.")
+        cat(warningMsg)
+      }
+  }
+    
   options(timeout = 1000)
   workingDir=getwd()
 
