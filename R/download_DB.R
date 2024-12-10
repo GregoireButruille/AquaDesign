@@ -24,9 +24,9 @@ download_DB <- function(databases_to_use, resolution){
   #https://biogeo.ucdavis.edu/data/worldclim/v2.1/base/wc2.1_10m_srad.zip
   #https://biogeo.ucdavis.edu/data/worldclim/v2.1/base/wc2.1_10m_vapr.zip
   #https://biogeo.ucdavis.edu/data/worldclim/v2.1/base/wc2.1_10m_bio.zip
-  sradUrl="https://biogeo.ucdavis.edu/data/worldclim/v2.1/base/wc2.1_10m_srad.zip"
-  vaprUrl="https://biogeo.ucdavis.edu/data/worldclim/v2.1/base/wc2.1_10m_vapr.zip"
-  bioUrl="https://biogeo.ucdavis.edu/data/worldclim/v2.1/base/wc2.1_10m_bio.zip"
+  sradUrl="https://geodata.ucdavis.edu/climate/worldclim/2_1/base/wc2.1_10m_srad.zip"
+  vaprUrl="https://geodata.ucdavis.edu/climate/worldclim/2_1/base/wc2.1_10m_vapr.zip"
+  bioUrl="https://geodata.ucdavis.edu/climate/worldclim/2_1/base/wc2.1_10m_bio.zip"
   
   flow30Url="https://ndownloader.figshare.com/files/10597966"
   flow10Url="https://ndownloader.figshare.com/files/10597972"
