@@ -11,6 +11,7 @@
 #' @examples
 
 checkAndDownload <- function(url,filePath) {
+    print(filepath)
     if (!file.exists(filePath)) {
       tryCatch(download.file(url,filePath, mode = "wb", quiet = FALSE), 
         error = function(e) print(paste0("The download failed on url ",url)))
