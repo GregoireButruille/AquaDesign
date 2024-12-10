@@ -64,7 +64,7 @@ download_DB <- function(databases_to_use, resolution){
 
   if ("FLO1K" %in% databases_to_use ){
 
-    cat("Downloading datasets from FLO1K...")
+    cat("Downloading datasets from FLO1K...\n")
 
     if (resolution == 30){
       checkAndDownload(flow30Url,flow30Filepath)
