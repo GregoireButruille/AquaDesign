@@ -16,7 +16,7 @@ checkAndDownload <- function(url,filePath) {
         quit()
     }
     else{
-      warningMsg=paste0("The file ",filePath," already exist. If you wish to update it, please remove this file and rerun Aquadesign.")
+      warningMsg=paste0("The file ",filePath," already exist. If you wish to update it, please remove this file and rerun Aquadesign.\n")
       cat(warningMsg)
     }
 }
