@@ -9,33 +9,68 @@
 #' @export
 #'
 #' @examples
+
+checkAndDownload <- function(url,filePath) {
+    if (!file.exists(filePath)) {
+      tryCatch(download.file(url,filePath, mode = "wb", quiet = FALSE), 
+        error = function(e) print(paste0("The download failed on url ",url)))
+        quit()
+    }
+    else{
+      warningMsg=paste0("The file ",filePath," already exist. If you wish to update it, please remove this file and rerun Aquadesign.")
+      cat(warningMsg)
+    }
+}
+
 download_DB <- function(databases_to_use, resolution){
   options(timeout = 1000)
+  workingDir=getwd()
+
+  hydroUrl="https://data.earthenv.org/streams/hydroclim_average+sum.nc"
+  soilUrl="https://data.earthenv.org/streams/soil_maximum.nc"
+  elevationUrl="https://data.earthenv.org/streams/elevation.nc"
+  slopeUrl="https://data.earthenv.org/streams/slope.nc"
+
+  #old urls
+  #https://biogeo.ucdavis.edu/data/worldclim/v2.1/base/wc2.1_10m_srad.zip
+  #https://biogeo.ucdavis.edu/data/worldclim/v2.1/base/wc2.1_10m_vapr.zip
+  #https://biogeo.ucdavis.edu/data/worldclim/v2.1/base/wc2.1_10m_bio.zip
+  sradUrl="https://biogeo.ucdavis.edu/data/worldclim/v2.1/base/wc2.1_10m_srad.zip"
+  vaprUrl="https://biogeo.ucdavis.edu/data/worldclim/v2.1/base/wc2.1_10m_vapr.zip"
+  bioUrl="https://biogeo.ucdavis.edu/data/worldclim/v2.1/base/wc2.1_10m_bio.zip"
+  
+  flow30Url="https://ndownloader.figshare.com/files/10597966"
+  flow10Url="https://ndownloader.figshare.com/files/10597972"
+
+  hydroFilepath=file.path(workingDir,"hydro_avg.nc")
+  soilFilepath=file.path(workingDir,"soil_max.nc")
+  elevationFilepath=file.path(workingDir,"elevation.nc")
+  slopeFilepath=file.path(workingDir,"slope.nc")
+
+  sradFilepath=file.path(workingDir,"srad_zip.zip")
+  vaprFilepath=file.path(workingDir,"vapr_zip.zip")
+  bioFilepath=file.path(workingDir,"bio_zip.zip")
+
+  flow30Filepath=file.path(workingDir,"flow_30_zip.zip")
+  flow10Filepath=file.path(workingDir,"flow_5_zip.zip")  
+  
   if ("EarthEnv" %in% databases_to_use ){
 
     cat("Downloading datasets from EarthEnv...\n")
 
-    download.file("https://data.earthenv.org/streams/hydroclim_average+sum.nc",
-                  paste(getwd(), "hydro_avg.nc", sep="/"), mode = "wb")
-    download.file("https://data.earthenv.org/streams/soil_maximum.nc",
-                  paste(getwd(), "soil_max.nc", sep="/"), mode = "wb")
-    download.file("https://data.earthenv.org/streams/elevation.nc",
-                  paste(getwd(), "elevation.nc", sep="/"), mode = "wb")
-    download.file("https://data.earthenv.org/streams/slope.nc",
-                  paste(getwd(), "slope.nc", sep="/"), mode = "wb")
+    checkAndDownload(hydroUrl,hydroFilepath)
+    checkAndDownload(soilUrl,soilFilepath)
+    checkAndDownload(elevationUrl,elevationFilepath)
+    checkAndDownload(slopeUrl,slopeFilepath)
   }
 
   if ("WorldClim" %in% databases_to_use ){
 
     cat("Downloading datasets from WorldClim...\n")
 
-    #old download links
-    #download.file("https://biogeo.ucdavis.edu/data/worldclim/v2.1/base/wc2.1_10m_srad.zip", paste(getwd(), "srad_zip.zip", sep="/"), mode = "wb")
-    #download.file("https://biogeo.ucdavis.edu/data/worldclim/v2.1/base/wc2.1_10m_vapr.zip", paste(getwd(), "vapr_zip.zip", sep="/"), mode = "wb")
-    #download.file("https://biogeo.ucdavis.edu/data/worldclim/v2.1/base/wc2.1_10m_bio.zip", paste(getwd(), "bio_zip.zip", sep="/"), mode = "wb")
-    download.file("https://geodata.ucdavis.edu/climate/worldclim/2_1/base/wc2.1_10m_srad.zip", paste(getwd(), "srad_zip.zip", sep="/"), mode = "wb")
-    download.file("https://geodata.ucdavis.edu/climate/worldclim/2_1/base/wc2.1_10m_vapr.zip", paste(getwd(), "vapr_zip.zip", sep="/"), mode = "wb")
-    download.file("https://geodata.ucdavis.edu/climate/worldclim/2_1/base/wc2.1_10m_bio.zip", paste(getwd(), "bio_zip.zip", sep="/"), mode = "wb")
+    checkAndDownload(sradUrl,sradFilepath)
+    checkAndDownload(vaprUrl,vaprFilepath)
+    checkAndDownload(bioUrl,bioFilepath)
   }
 
   if ("FLO1K" %in% databases_to_use ){
@@ -43,11 +78,11 @@ download_DB <- function(databases_to_use, resolution){
     cat("Downloading datasets from FLO1K...")
 
     if (resolution == 30){
-      download.file("https://ndownloader.figshare.com/files/10597966", paste(getwd(), "flow_30_zip.zip", sep="/"), mode = "wb")
+      checkAndDownload(flow30Url,flow30Filepath)
     }
 
     if (resolution == 10){
-      download.file("https://ndownloader.figshare.com/files/10597972", paste(getwd(), "flow_5_zip.zip", sep="/"), mode = "wb")
+      checkAndDownload(flow10Url,flow10Filepath)
     }
   }
 
