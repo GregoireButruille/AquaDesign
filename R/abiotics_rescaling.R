@@ -20,6 +20,17 @@
 #'
 abiotics_rescaling <- function(flo1k_data,worldclim_data,earthenv_data, minlat, maxlat, minlong, maxlong, resolution, geosphere = FALSE){
 
+  workingDir=getwd()
+  abioticOutFileName=paste0("abiotic_",minlat,"_",maxlat,"_",minlong,"_",maxlong,"_",resolution,"geosphere_",geosphere,".csv")
+  abioticOutFilePath=file.path(workingDir,abioticOutFileName)
+  if (!file.exists(abioticOutFilePath)) {
+    warningMsg=paste0("The file ",abioticOutFilePath," already exist. If you wish to update it, please remove this file and rerun Aquadesign.\n")
+    cat(warningMsg)
+    abiotics_df<-read_excel(abioticOutFilePath)
+    return(abiotics_df)
+  }
+  #else:
+  
   #set parallelisation
   cl <- makePSOCKcluster(detectCores()-2)
   registerDoParallel(cl)
@@ -187,6 +198,7 @@ abiotics_rescaling <- function(flo1k_data,worldclim_data,earthenv_data, minlat, 
     filter(y<maxlat, y>(minlat), x>(minlong), x<maxlong)
   abiotics_df <-na.omit(abiotics_df) #remove NA values
   abiotics_df <-subset(abiotics_df, ph_max!=0) #remove null ph values
+  write_xlsx(abiotics_df,abiotic_file)
 
-  return(abiotics_df)
+  return(abioticOutFilePath)
 }
