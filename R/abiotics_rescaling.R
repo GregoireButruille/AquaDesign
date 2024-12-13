@@ -11,6 +11,7 @@
 #' @param geosphere If TRUE, import data from geosphere, which take a lot of time
 #' @import doParallel
 #' @import foreach
+#' @import openxlsx
 #' @importFrom geosphere daylength
 #' @import parallel
 #' @return
@@ -23,7 +24,7 @@ abiotics_rescaling <- function(flo1k_data,worldclim_data,earthenv_data, minlat, 
   workingDir=getwd()
   abioticOutFileName=paste0("abiotic_",minlat,"_",maxlat,"_",minlong,"_",maxlong,"_",resolution,"geosphere_",geosphere,".csv")
   abioticOutFilePath=file.path(workingDir,abioticOutFileName)
-  if (!file.exists(abioticOutFilePath)) {
+  if (file.exists(abioticOutFilePath)) {
     warningMsg=paste0("The file ",abioticOutFilePath," already exist. If you wish to update it, please remove this file and rerun Aquadesign.\n")
     cat(warningMsg)
     abiotics_df<-read_excel(abioticOutFilePath)
