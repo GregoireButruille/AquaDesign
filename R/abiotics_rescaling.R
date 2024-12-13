@@ -21,13 +21,14 @@
 #'
 abiotics_rescaling <- function(flo1k_data,worldclim_data,earthenv_data, minlat, maxlat, minlong, maxlong, resolution, geosphere = FALSE){
 
+  read.xlsx()
   workingDir=getwd()
-  abioticOutFileName=paste0("abiotic_",minlat,"_",maxlat,"_",minlong,"_",maxlong,"_",resolution,"_geosphere_",geosphere,".csv")
+  abioticOutFileName=paste0("abiotic_",minlat,"_",maxlat,"_",minlong,"_",maxlong,"_",resolution,"_geosphere_",geosphere,".xlsx")
   abioticOutFilePath=file.path(workingDir,abioticOutFileName)
   if (file.exists(abioticOutFilePath)) {
     warningMsg=paste0("The file ",abioticOutFilePath," already exist. If you wish to update it, please remove this file and rerun Aquadesign.\n")
     cat(warningMsg)
-    abiotics_df<-read_excel(abioticOutFilePath)
+    abiotics_df<-read.xlsx(abioticOutFilePath)
     return(abiotics_df)
   }
   #else:
@@ -199,7 +200,7 @@ abiotics_rescaling <- function(flo1k_data,worldclim_data,earthenv_data, minlat, 
     filter(y<maxlat, y>(minlat), x>(minlong), x<maxlong)
   abiotics_df <-na.omit(abiotics_df) #remove NA values
   abiotics_df <-subset(abiotics_df, ph_max!=0) #remove null ph values
-  write_xlsx(abiotics_df,abiotic_file)
+  write.xlsx(abiotics_df,abiotic_file)
 
   return(abioticOutFilePath)
 }
