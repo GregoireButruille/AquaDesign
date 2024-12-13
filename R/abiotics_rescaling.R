@@ -22,7 +22,7 @@
 abiotics_rescaling <- function(flo1k_data,worldclim_data,earthenv_data, minlat, maxlat, minlong, maxlong, resolution, geosphere = FALSE){
 
   workingDir=getwd()
-  abioticOutFileName=paste0("abiotic_",minlat,"_",maxlat,"_",minlong,"_",maxlong,"_",resolution,"geosphere_",geosphere,".csv")
+  abioticOutFileName=paste0("abiotic_",minlat,"_",maxlat,"_",minlong,"_",maxlong,"_",resolution,"_geosphere_",geosphere,".csv")
   abioticOutFilePath=file.path(workingDir,abioticOutFileName)
   if (file.exists(abioticOutFilePath)) {
     warningMsg=paste0("The file ",abioticOutFilePath," already exist. If you wish to update it, please remove this file and rerun Aquadesign.\n")
