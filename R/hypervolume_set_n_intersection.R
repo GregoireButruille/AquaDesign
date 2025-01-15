@@ -147,6 +147,7 @@ hypervolume_set_n_intersection <- function (hv_list, num.points.max = NULL, verb
                                                        , drop = FALSE]
 
     final_points_intersection_list[[i]] <- hv_points_in_i
+    total_hv_points_ss=hv_points_in_i
   }
 
   if (verbose){
