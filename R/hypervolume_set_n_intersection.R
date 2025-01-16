@@ -103,7 +103,7 @@ hypervolume_set_n_intersection <- function (hv_list, num.points.max = NULL, verb
                                              , drop = FALSE] #randomly select points with as many points as the numpointstokeep is equal to
     hv_points_ss_list[[i]] <- hv_points_ss
     l=length(hv_points_ss_list[[i]])
-    vectorLength<- append(vectorOrder,l)
+    vectorLength<- append(vectorLength,l)
   }
 
   point_density = nrow(hv_points_ss_list[[1]])/hv_list[[1]]@Volume
