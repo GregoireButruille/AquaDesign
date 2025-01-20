@@ -6,7 +6,7 @@
 #' @export
 #'
 #' @examples
-get_hv_intersection_volumes <- function(hv_list,nb = NA){
+get_hv_intersection_volumes <- function(hv_list,nb = NA,priority_species=NA){
 
   if (is.na(nb)){
     #ask for the max number of species in combinations
@@ -58,10 +58,31 @@ get_hv_intersection_volumes <- function(hv_list,nb = NA){
       }
     }
 
-    #make a list with the hypervolumes to compare and run the comparison function, add the volume to the dataframe
-    hv_list_test <-  hv_list[[ind]]
-    intersection <- hypervolume_set_n_intersection(hv_list_test)
-    combi_df[[nb_combi+1]][i] <- intersection@Volume
+    #if there is defined prioritary species, check if there is at least one priority species in the combination, if yes, do the calculations, if not, put NA
+    if (!missing(priority_species)){
+      species_in_combination=species_list[ind]
+      flag=FALSE
+      for (species in species_in_combination) {
+      	if(species %in% priority_species){
+      		flag=TRUE
+      	}
+      }
+      if(flag){
+        hv_list_test <-  hv_list[[ind]]
+        intersection <- hypervolume_set_n_intersection(hv_list_test)
+        combi_df[[nb_combi+1]][i] <- intersection@Volume
+      }
+      else{
+        combi_df[[nb_combi+1]][i] <- NA
+      }
+    }
+    #if there aren't prioritary species defined, do the calculations
+    else{  
+      #make a list with the hypervolumes to compare and run the comparison function, add the volume to the dataframe
+      hv_list_test <-  hv_list[[ind]]
+      intersection <- hypervolume_set_n_intersection(hv_list_test)
+      combi_df[[nb_combi+1]][i] <- intersection@Volume
+    }
   }
 
   #rescale the volumes between 0 and 1
