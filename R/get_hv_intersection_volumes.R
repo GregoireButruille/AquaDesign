@@ -73,7 +73,7 @@ get_hv_intersection_volumes <- function(hv_list,nb = NA,priority_species=NA){
         combi_df[[nb_combi+1]][i] <- intersection@Volume
       }
       else{
-        combi_df[[nb_combi+1]][i] <- NA
+        combi_df[[nb_combi+1]][i] <- ""
       }
     }
     #if there aren't prioritary species defined, do the calculations
