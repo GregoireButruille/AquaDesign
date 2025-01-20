@@ -88,6 +88,7 @@ get_hv_intersection_volumes <- function(hv_list,nb = NA,priority_species=NA){
 
   #rescale the volumes between 0 and 1
   combi_df[nb_combi+1] <- as.numeric(combi_df[[nb_combi+1]])
+  print(combi_df)
   rescaled_combi_df <-cbind(combi_df[1:nb_combi], apply(combi_df[nb_combi+1], MARGIN = 2, FUN = function(X) (X - min(X))/diff(range(X))))
 
   return(rescaled_combi_df)
