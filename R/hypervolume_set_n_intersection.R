@@ -135,8 +135,8 @@ hypervolume_set_n_intersection <- function (hv_list, num.points.max = NULL, verb
     pb$tick(0)
   }
 
-  for (i in 1:length(hv_points_ss_list)){
-  #for (i in order(vectorLength)){
+  #for (i in 1:length(hv_points_ss_list)){
+  for (i in order(vectorLength)){
 
     if (verbose){
       if (!pb$finished == TRUE){
