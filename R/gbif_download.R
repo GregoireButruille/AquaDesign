@@ -4,6 +4,7 @@
 #' @return A data frame with all the occurrence points of the species selected
 #' @import taxize
 #' @import rgbif
+#' @import vroom
 #' @export
 #' @examples
 
@@ -41,8 +42,11 @@ gbif_download <- function(species_list,user=NA,pwd=NA,mail=NA){
   occ_download_wait(data)
   gbif_zip_download<-occ_download_get(data[1],overwrite=TRUE)
   print(gbif_citation(gbif_zip_download))
-  unzip(gbif_zip_download)
-  data <- read.csv(paste0(data[1],".csv"),header = TRUE, sep = "\t", quote = "")
 
+  #replacing the unzipping and csv reading with vroom, which has the ability of directly reading the only columns I'm interested with
+  #unzip(gbif_zip_download)
+  #data <- read.csv(paste0(data[1],".csv"),header = TRUE, sep = "\t", quote = "")
+  gbif_zip_path=paste0(data[1],".zip"
+  data <-vroom(gbif_zip_path, quote="", col_select = c(species, decimalLongitude, decimalLatitude,gbifID,countryCode))
   return(data)
 }
