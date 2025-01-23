@@ -39,4 +39,5 @@ Imports:
     svDialogs,
     taxize,
     usethis,
-    utils
+    utils,
+    vroom
