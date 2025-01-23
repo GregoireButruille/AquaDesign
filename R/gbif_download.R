@@ -46,7 +46,7 @@ gbif_download <- function(species_list,user=NA,pwd=NA,mail=NA){
   #replacing the unzipping and csv reading with vroom, which has the ability of directly reading the only columns I'm interested with
   #unzip(gbif_zip_download)
   #data <- read.csv(paste0(data[1],".csv"),header = TRUE, sep = "\t", quote = "")
-  gbif_zip_path=paste0(data[1],".zip"
+  gbif_zip_path=paste0(data[1],".zip")
   data <-vroom(gbif_zip_path, quote="", col_select = c(species, decimalLongitude, decimalLatitude,gbifID,countryCode))
   return(data)
 }
