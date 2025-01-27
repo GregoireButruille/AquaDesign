@@ -38,7 +38,7 @@ gbif_download <- function(species_list,user=NA,pwd=NA,mail=NA){
     }
   }
   #prepare the download, wait for the data set to be ready then download the zip filen unzip it and read the csv
-  data <- occ_download(pred_in("taxonKey", gbif_taxon_keys), pred("hasCoordinate", TRUE), format = "SIMPLE_CSV",user=gbif_user, pwd=gbif_pwd, email=gbif_mail)
+  data <- occ_download(pred_in("taxonKey", gbif_taxon_keys), pred("hasCoordinate", TRUE), pred_lt("decimalLatitude",60), pred_gt("decimalLatitude",-56), pred_lt("decimalLongitude",180), pred_gt("decimalLongitude",-145), format = "SIMPLE_CSV",user=gbif_user, pwd=gbif_pwd, email=gbif_mail)
   occ_download_wait(data)
   gbif_zip_download<-occ_download_get(data[1],overwrite=TRUE)
   print(gbif_citation(gbif_zip_download))
