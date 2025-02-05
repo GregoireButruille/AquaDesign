@@ -39,7 +39,7 @@ gbif_download <- function(species_list,user=NA,pwd=NA,mail=NA,minlat=-90, maxlat
     }
   }
 
-  #prepare the download, wait for the data set to be ready then download the zip filen unzip it and read the csv
+  #prepare the download, wait for the data set to be ready then download the zip file, unzip it and read the csv
   #data <- occ_download(pred_in("taxonKey", gbif_taxon_keys), pred("hasCoordinate", TRUE), format = "SIMPLE_CSV",user=gbif_user, pwd=gbif_pwd, email=gbif_mail)
   data <- occ_download(pred_in("taxonKey", gbif_taxon_keys), pred("hasCoordinate", TRUE), pred_lt("decimalLatitude",maxlat), pred_gt("decimalLatitude",minlat), pred_lt("decimalLongitude",maxlong), pred_gt("decimalLongitude",minlong), format = "SIMPLE_CSV",user=gbif_user, pwd=gbif_pwd, email=gbif_mail)
   occ_download_wait(data)
