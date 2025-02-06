@@ -15,7 +15,8 @@ generate_species_hv <- function(species_list, rescaled_abiotics){
 
   for (i in 1:length(species_list)){
     data <- subset(rescaled_abiotics, species==species_list[i])[,2:length(rescaled_abiotics)]
-    print(species_list[i])
+    progression=paste0("Hypervolumes generation... ",i,"/",length(species_list)," : ",species_list[i]))
+	  print(progression)
     if (log(length(data[[1]]))>(length(rescaled_abiotics)-1)){  #if there are not enough occurrences for some species, a warning appear
       hv_species <- hypervolume(data, method='svm') #generate hypervolume with single vector method
       hv_species@Name <- species_list[[i]] #set hypervolume name
