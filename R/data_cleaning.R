@@ -31,19 +31,19 @@ data_cleaning <- function(data, minlat=NA, maxlat=NA, minlong=NA, maxlong=NA, ch
 
   #facultative coordinates filtering: the filtering should be already done in the download but the user could still do it here
   #it allows the library to still be compatible with old aquadesign scripts, just in case the user didnt update the script
-  if (!is.na(maxlat){
+  if (!is.na(maxlat)){
     data <- data%>%filter(decimalLatitude<maxlat)
   }
   
-  if (!is.na(minlat){
+  if (!is.na(minlat)){
     data <- data%>%filter(decimalLatitude>minlat)
   }
       
-  if (!is.na(maxlong){
+  if (!is.na(maxlong)){
     data <- data%>%filter(decimalLatitude<maxlong)
   }
       
-  if (!is.na(minlong){
+  if (!is.na(minlong)){
     data <- data%>%filter(decimalLatitude<minlong)
   }
       
