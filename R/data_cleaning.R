@@ -16,16 +16,37 @@
 #' @export
 #'
 #' @examples
-data_cleaning <- function(data, minlat, maxlat, minlong, maxlong, check.out = TRUE){
+data_cleaning <- function(data, minlat=NA, maxlat=NA, minlong=NA, maxlong=NA, check.out = TRUE){
 
   #keep only the columns of interest and set spatial extent
-  data <- data%>%
-    dplyr::select(species, decimalLongitude, decimalLatitude, gbifID, countryCode)%>%
-    filter(decimalLatitude<maxlat)%>%
-    filter(decimalLatitude>(minlat))%>%
-    filter(decimalLongitude<maxlong)%>%
-    filter(decimalLongitude>(minlong))
+  #data <- data%>%
+  #  dplyr::select(species, decimalLongitude, decimalLatitude, gbifID, countryCode)%>%
+  #  filter(decimalLatitude<maxlat)%>%
+  #  filter(decimalLatitude>(minlat))%>%
+  #  filter(decimalLongitude<maxlong)%>%
+  #  filter(decimalLongitude>(minlong))
 
+  #not needed anymore since the upload of the data only retain these very columns
+  #data <- data %>% dplyr::select(species, decimalLongitude, decimalLatitude, gbifID, countryCode)
+
+  #facultative coordinates filtering: the filtering should be already done in the download but the user could still do it here
+  #it allows the library to still be compatible with old aquadesign scripts, just in case the user didnt update the script
+  if (!is.na(maxlat){
+    data <- data%>%filter(decimalLatitude<maxlat)
+  }
+  
+  if (!is.na(minlat){
+    data <- data%>%filter(decimalLatitude>minlat)
+  }
+      
+  if (!is.na(maxlong){
+    data <- data%>%filter(decimalLatitude<maxlong)
+  }
+      
+  if (!is.na(minlong){
+    data <- data%>%filter(decimalLatitude<minlong)
+  }
+      
   #prepare data for cleaning
   #an update to CoordinateCleaner passed the default column names "decimallongitude" and "decimallatitude" to "decimalLongitude" and "decimalLatitude", respectively, breaking the functions calls
   #hence, I'm removing the column renaming, keeping the correct ones
