@@ -1,4 +1,4 @@
-hypervolume_set_n_intersection <- function (hv_list, num.points.max = NULL, verbose = TRUE,
+hypervolume_set_n_intersection <- function (hv_list, num.points.max = NULL, verbose = FALSE,
                                             distance.factor = 1, check.hyperplane = FALSE) {
 
   ########################################################################################################################
