@@ -29,7 +29,8 @@ get_hv_intersection_volumes <- function(hv_list,nb = NA,priority_species=NA){
   list_combi <- list_combi[-(1:length(species_list))]
 
   #inform about the number of combinations
-  print(paste0("combinations to calculate :" , as.character(length(list_combi))))
+  number_of_combinations_to_calculate=length(list_combi)
+  print(paste0("combinations to calculate :" , as.character(number_of_combinations_to_calculate)))
 
   combi_df <- data.frame(matrix(ncol = nb_combi, nrow = 0))
   #convert the combinations list into a dataframe
@@ -45,7 +46,7 @@ get_hv_intersection_volumes <- function(hv_list,nb = NA,priority_species=NA){
   #for each combination
   for (i in 1:length(combi_df[,1])){
 
-    #Initialize and fill a list of indexes corresponding of the Hypervolumes to compare  in combination number i
+    #Initialize and fill a list of indexes corresponding of the Hypervolumes to compare in combination number i
     ind <- c()
     hv_list_test <- new("HypervolumeList")
 
@@ -62,7 +63,16 @@ get_hv_intersection_volumes <- function(hv_list,nb = NA,priority_species=NA){
     hv_list_test <-  hv_list[[ind]]
     intersection <- hypervolume_set_n_intersection(hv_list_test)
     combi_df[[nb_combi+1]][i] <- intersection@Volume
+    #progress
+    if(i%%100==0){
+      progression=paste0("Hypervolumes intersections calculations... ",i,"/",number_of_combinations_to_calculate))
+			print(progression)
+    }
     
+  }
+  if(!number_of_combinations_to_calculate%%100==0){
+      progression=paste0("Hypervolumes intersections calculations... ",i,"/",number_of_combinations_to_calculate))
+			print(progression)
   }
   
   #rescale the volumes between 0 and 1
