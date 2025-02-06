@@ -65,14 +65,14 @@ get_hv_intersection_volumes <- function(hv_list,nb = NA,priority_species=NA){
     combi_df[[nb_combi+1]][i] <- intersection@Volume
     #progress
     if(i%%100==0){
-      progression=paste0("Hypervolumes intersections calculations... ",i,"/",number_of_combinations_to_calculate))
-			print(progression)
+	progression=paste0("Hypervolumes intersections calculations... ",i,"/",number_of_combinations_to_calculate))
+	print(progression)
     }
     
   }
   if(!number_of_combinations_to_calculate%%100==0){
-      progression=paste0("Hypervolumes intersections calculations... ",i,"/",number_of_combinations_to_calculate))
-			print(progression)
+	progression=paste0("Hypervolumes intersections calculations... ",i,"/",number_of_combinations_to_calculate))
+	print(progression)
   }
   
   #rescale the volumes between 0 and 1
