@@ -20,23 +20,18 @@
 #'
 abiotics_rescaling <- function(flo1k_data,worldclim_data,earthenv_data, minlat, maxlat, minlong, maxlong, resolution, geosphere = FALSE){
 
-  workingDir=getwd()
-  abioticOutFileName=paste0("abiotic_",minlat,"_",maxlat,"_",minlong,"_",maxlong,"_",resolution,"_geosphere_",geosphere,".csv")
-  abioticOutFilePath=file.path(workingDir,abioticOutFileName)
-  if (file.exists(abioticOutFilePath)) {
-    warningMsg=paste0("The file ",abioticOutFilePath," already exist. If you wish to update it, please remove this file and rerun Aquadesign.\n")
-    cat(warningMsg)
-    abiotics_df<-read.csv(abioticOutFilePath)
-    return(abiotics_df)
+  number_of_databases_to_do=3
+  if(geosphere){
+    number_of_databases_to_do=4
   }
-  #else:
   
   #set parallelisation
   cl <- makePSOCKcluster(detectCores()-2)
   registerDoParallel(cl)
   getDoParWorkers()
 
-  cat("EarthEnv  1/4...\n")
+  progress=paste0("EarthEnv  1/",number_of_databases_to_do,"...\n")
+  cat(progress)
 
   #create abiotics_df by rescaling the first layer of earthenv_data
   abiotics_df <- aggregate(earthenv_data[[1]], fact=2*resolution,fun=mean)#60 arcsecs * 60 = 30 arcmins    #60 arcsecs * 20 = 10 arcmins
@@ -54,7 +49,8 @@ abiotics_rescaling <- function(flo1k_data,worldclim_data,earthenv_data, minlat, 
     abiotics_df <- merge(abiotics_df, tmp_df, by = c("x", "y"))
   }
 
-  cat("FLO1K  2/4...\n")
+  progress=paste0("FLO1K  2/",number_of_databases_to_do,"...\n")
+  cat(progress)
 
   for (i in 1:length(flo1k_data)){
     flo1k_files_names <- c("av", "mi", "ma")
@@ -74,7 +70,8 @@ abiotics_rescaling <- function(flo1k_data,worldclim_data,earthenv_data, minlat, 
     abiotics_df <- merge(abiotics_df, flow_df, xy = TRUE, centroids = TRUE, by = c("x", "y"))
   }
 
-  cat("WorldClim  3/4...\n")
+  progress=paste0("WorldClim  3/",number_of_databases_to_do,"...\n")
+  cat(progress)
 
   if (resolution == 30){
     srad<-aggregate(worldclim_data[[1]], fact=3,fun=mean)     #fact = 3 to pass from 10 to 30 arcmins
