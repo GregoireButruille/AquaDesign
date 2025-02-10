@@ -46,11 +46,19 @@ gbif_download <- function(species_list,user=NA,pwd=NA,mail=NA,minlat=-90, maxlat
   gbif_zip_download<-occ_download_get(data[1],overwrite=TRUE)
   print(gbif_citation(gbif_zip_download))
 
-  #replacing the unzipping and csv reading with vroom, which has the ability of directly reading the zip, and only the columns I'm interested with
-  #unzip(gbif_zip_download)
-  #data <- read.csv(paste0(data[1],".csv"),header = TRUE, sep = "\t", quote = "")
   gbif_zip_path=paste0(data[1],".zip")
-  data <-vroom(gbif_zip_path, quote="", col_select = c(species, decimalLongitude, decimalLatitude,gbifID,countryCode))
-  #file.remove(gbif_zip_path)
+  gbif_csv_path=paste0(data[1],".csv")
+ 
+  unzip(gbif_zip_download)
+  data <- read.csv(gbif_csv_path,header = TRUE, sep = "\t", quote = "")
+  
+  #I tried replacing the unzipping and csv reading with vroom, which has the ability of directly reading the zip, and only the columns I'm interested with... but :
+  #the file is unzipped in Appdata
+  #the unzipped file is supposed to be destroyed when R session ends but isn't
+  #the actual reading occurs when the data is needed for calculation, so no time is gained
+  #data <-vroom(gbif_zip_path, quote="", col_select = c(species, decimalLongitude, decimalLatitude,gbifID,countryCode))
+  
+  file.remove(gbif_zip_path)
+  file.remove(gbif_csv_path)
   return(data)
 }
