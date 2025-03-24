@@ -26,8 +26,8 @@ data_cleaning <- function(data, minlat=NA, maxlat=NA, minlong=NA, maxlong=NA, ch
   #  filter(decimalLongitude<maxlong)%>%
   #  filter(decimalLongitude>(minlong))
 
-  #keep only the columns of interest
-  data <- data %>% dplyr::select(species, decimalLongitude, decimalLatitude, gbifID, countryCode)
+  #keep only the columns of interest : it's already done in the gbif csv reading now
+  #data <- data %>% dplyr::select(species, decimalLongitude, decimalLatitude, gbifID, countryCode)
 
   #facultative coordinates filtering: the filtering should be already done in the download but the user could still do it here
   #it allows the library to still be compatible with old aquadesign scripts, just in case the user didnt update the script
