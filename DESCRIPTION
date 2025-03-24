@@ -40,4 +40,4 @@ Imports:
     taxize,
     usethis,
     utils,
-    vroom
+    data.table
