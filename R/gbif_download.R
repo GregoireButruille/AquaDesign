@@ -4,7 +4,7 @@
 #' @return A data frame with all the occurrence points of the species selected
 #' @import taxize
 #' @import rgbif
-#' @import vroom
+#' @import data.table
 #' @export
 #' @examples
 
@@ -50,7 +50,9 @@ gbif_download <- function(species_list,user=NA,pwd=NA,mail=NA,minlat=-90, maxlat
   gbif_csv_path=paste0(data[1],".csv")
  
   unzip(gbif_zip_download)
-  data <- read.csv(gbif_csv_path,header = TRUE, sep = "\t", quote = "")
+  #data <- read.csv(gbif_csv_path,header = TRUE, sep = "\t", quote = "")
+  #read only the specified columns with fread, gaining approx 13x the size in memory (3.5G to 273Mo on a test)
+  data <- fread(gbif_csv_path,sep = "\t",quote = "",na.strings = c("", "NA"),fill = TRUE,select = c("species", "decimalLongitude", "decimalLatitude", "gbifID","countryCode"))
   
   #I tried replacing the unzipping and csv reading with vroom, which has the ability of directly reading the zip, and only the columns I'm interested with... but :
   #the file is unzipped in Appdata
