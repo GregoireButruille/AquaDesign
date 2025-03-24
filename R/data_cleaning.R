@@ -16,8 +16,8 @@
 #' @export
 #'
 #' @examples
-data_cleaning <- function(data, minlat=NA, maxlat=NA, minlong=NA, maxlong=NA, check.out = TRUE){
-
+data_cleaning <- function(data, minlat=NA, maxlat=NA, minlong=NA, maxlong=NA, check.out = FALSE, filtercapitals = TRUE, filtercountrycentroids = TRUE, filtercountrymismatches = TRUE, filtergbifheadquarters=TRUE, filterinstitutions=TRUE, filtersea = TRUE){
+  
   #keep only the columns of interest and set spatial extent
   #data <- data%>%
   #  dplyr::select(species, decimalLongitude, decimalLatitude, gbifID, countryCode)%>%
@@ -51,25 +51,46 @@ data_cleaning <- function(data, minlat=NA, maxlat=NA, minlong=NA, maxlong=NA, ch
   #an update to CoordinateCleaner passed the default column names "decimallongitude" and "decimallatitude" to "decimalLongitude" and "decimalLatitude", respectively, breaking the functions calls
   #hence, I'm removing the column renaming, keeping the correct ones
   #names(data)[2:3] <- c("decimallongitude", "decimallatitude") #these are default names for latitude and longitude in the following functions
+
   data$countryCode <-  countrycode(data$countryCode, origin =  'iso2c', destination = 'iso3c') #iso 2 --> iso 3 changes countrycode from 2 letters to 3 letters (ex : FR --> FRA) to be able to use cc_count()
 
   #country code puts Na for countrycodes not matched unambiguously (XK and ZZ = Kosovo and undefined countries), remove the Na
   data <- na.omit(data)
 
-   #removes suspicious points (buffer = range in meters)
+  #removes suspicious points (buffer = range in meters)
   #cc_coun is at least 30 minutes long (it didn't end after 30min), the other functions are mere seconds, there is probably a problem with it, so I'm removing it
   #cc_sea() is also long, launch a weird download, and we're treating sea water fishes sometimes
-  data <- data%>%
-    cc_val()%>%  #invalid values
-    cc_cap(buffer=10000)%>%   #capitals
-    cc_cen(buffer = 1000)%>%  #country centroids
+
+  #in all cases remove invalid values
+  data <- data%>% cc_val()
+  if (filtercapitals){
+    data <- data%>% cc_cap(buffer=10000)
+  }
+  if (filtercountrycentroids){
+    data <- data%>% cc_cen(buffer = 1000)
+  }
+  if (filtercountrymismatches){
+    data <- data%>% cc_coun(iso3 = "countryCode")
+  }
+  if (filtergbifheadquarters){
+    data <- data%>% cc_gbif(buffer=1000)
+  }
+  if (filterinstitutions){
+    data <- data%>% cc_inst(buffer=100)
+  }
+  if (filtersea){
+    data <- data%>% cc_sea()
+  }
+  
+  #data <- data%>%
+  #  cc_val()%>%  #invalid values
+  #  cc_cap(buffer=10000)%>%   #capitals
+  #  cc_cen(buffer = 1000)%>%  #country centroids
   #  cc_coun(iso3 = "countryCode")%>%  #country mismatches
-    cc_gbif(buffer=1000)%>%  #gbif HeadQuarters
+  #  cc_gbif(buffer=1000)%>%  #gbif HeadQuarters
   #  cc_inst(buffer=100)%>%  #institutions
-    cc_inst(buffer=100)  #institutions
   #  cc_sea()  #sea
   
-
   if (check.out == TRUE){
     #check outliers
     data <- data%>%   #/!\ takes quite a long time /!\
@@ -83,7 +104,7 @@ data_cleaning <- function(data, minlat=NA, maxlat=NA, minlong=NA, maxlong=NA, ch
       )
   }
 
-  #Renaming back latitude and longitude is obsolete since the columns stays at deciamlLongitude and decimalLatitude from the start
+  #Renaming back latitude and longitude is obsolete since the columns stays at decimalLongitude and decimalLatitude from the start
   #names(data)[2:3] <- c("decimalLongitude", "decimalLatitude")
 
   return(data)
