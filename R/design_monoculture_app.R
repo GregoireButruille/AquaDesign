@@ -1,7 +1,12 @@
 #' Title Plot species density diagrams for individual species
 #'
+#' @param species_df
 #' @param abiotics_df
 #' @param species_list
+#' @param minlat Float; Minimum latitude (default=-56)
+#' @param maxlat Float; Maximum latitude (default=60)
+#' @param minlong Float; Minimum longitude (default=-145)
+#' @param maxlong Float; Maximum longitude (default=180)
 #'
 #' @return
 #' @export
