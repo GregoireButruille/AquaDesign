@@ -1,9 +1,9 @@
-#' Title
+#' Title Calculate the volume of the intersection of the hypervolumes
 #'
 #' @param hv_list List of hypervolumes
-#' @param num.points.max Integer
-#' @param verbose Boolean
-#' @param distance.factor Integer
+#' @param num.points.max Integer; The maximum number of points to keep for each hypervolume (default=NULL, the number of point is calculated by ceiling(10^(3 + sqrt(hv_list[[i]]@Dimensionality))))
+#' @param verbose Boolean; Returns the calculated maximum number of points and the minimal density (default=TRUE)
+#' @param distance.factor Integer; Used to calculate if two points on two volumes are overlapping : cutoff_dist = point_density^(-1/dim) * distance.factor (default=1)
 #'
 #'@importFrom purrr reduce
 #' @return
