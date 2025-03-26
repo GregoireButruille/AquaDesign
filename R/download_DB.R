@@ -1,7 +1,7 @@
 #' Title Download datasets from various databases
 #'
 #' @param databases_to_use List of databases to use
-#' @param resolution Resolution
+#' @param resolution Integer; Chosen resolution (10 or 30, default 30)
 #'
 #'@importFrom utils download.file
 #'@import svDialogs
@@ -10,7 +10,7 @@
 #'
 #' @examples
 
-download_DB <- function(databases_to_use, resolution){
+download_DB <- function(databases_to_use, resolution=30){
     
   options(timeout = 1000)
   workingDir=getwd()
