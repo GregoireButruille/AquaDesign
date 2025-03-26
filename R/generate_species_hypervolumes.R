@@ -2,7 +2,7 @@
 #'
 #' @param species_list_selected List of the selected species
 #' @param rescaled_abiotics Selected and rescaled abiotics pca axis in a data frame
-#' @param nb_axis Number of axis retained in the pca
+#' @param skip_check Boolean; By default the program won't work if there are not enough occurences of a species. You can skip this check (log(length(data[[1]]))>(length(rescaled_abiotics)-1)) by turning this flag to TRUE (default=FALSE)
 #'
 #'@import hypervolume
 #' @return
