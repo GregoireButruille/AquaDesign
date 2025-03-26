@@ -1,4 +1,4 @@
-#' Title Exctract chosen paramters from EarthEnv
+#' Title Extract chosen paramters (annual_meanT, T_seasonality, maxT_WM, minT_CM, annual_rangeT, meanT_DQ, ph_max, elevation_avg, slope_avg) from EarthEnv
 #'
 #' @return
 #' @import raster
