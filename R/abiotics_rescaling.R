@@ -3,12 +3,12 @@
 #' @param flo1k_data raster stack with data from FLO1K
 #' @param worldclim_data  raster stack with data from WorldClim
 #' @param earthenv_data  raster stack with data from EarthEnv
-#' @param minlat Mininum latitude
-#' @param maxlat Maximum latitude
-#' @param minlong Minimum longitude
-#' @param maxlong Maximum longitude
-#' @param resolution Resolution
-#' @param geosphere If TRUE, import data from geosphere, which take a lot of time
+#' @param minlat Float; Mininum latitude
+#' @param maxlat Float; Maximum latitude
+#' @param minlong Float; Minimum longitude
+#' @param maxlong Float; Maximum longitude
+#' @param resolution Integer; Chosen resolution (10 or 30, default 30)
+#' @param geosphere Boolean; If TRUE, import data from geosphere (default=FALSE, takes a long time)
 #' @import doParallel
 #' @import foreach
 #' @importFrom geosphere daylength
@@ -18,7 +18,7 @@
 #'
 #' @examples
 #'
-abiotics_rescaling <- function(flo1k_data,worldclim_data,earthenv_data, minlat, maxlat, minlong, maxlong, resolution, geosphere = FALSE){
+abiotics_rescaling <- function(flo1k_data,worldclim_data,earthenv_data, minlat, maxlat, minlong, maxlong, resolution=30, geosphere = FALSE){
 
   number_of_databases_to_do=3
   if(geosphere){
