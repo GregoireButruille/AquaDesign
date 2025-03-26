@@ -166,7 +166,7 @@ hypervolume_set_n_intersection <- function (hv_list, num.points.max = NULL, verb
 
     final_points_intersection_list[[i]] <- hv_points_in_i
     #optimisation PF : since we only care about the points that are common in ALL the compared hypervolumes, we can remove the points which are not shared. (only keep the ones that are shared)
-    #that's why we are calculating on descending order of points: the bigger HV are treated first, to remove more points, to gain more time
+    #that's why we are calculating on ascending order of points: the smaller HV are treated first, to remove more points, to gain more time
     total_hv_points_ss=hv_points_in_i
   }
 
