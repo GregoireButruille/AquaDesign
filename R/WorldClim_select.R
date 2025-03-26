@@ -1,4 +1,4 @@
-#' Title Exctract chosen paramters from WorldClim
+#' Title Extract chosen paramters (read srad, vapr and prec) from WorldClim
 #'
 #' @return
 #' @export
