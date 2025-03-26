@@ -1,17 +1,17 @@
 #' Title Remove coordinates points outside specified range or if they are suspicious
 #'
-#' @param data A data frame downloaded from GBIF
-#' @param minlat Minimum latitude (optional)
-#' @param maxlat Maximum latitude (optional)
-#' @param minlong Minimum longitude (optional)
-#' @param maxlong Maximum longitude (optional)
-#' @param check.out Check outliers (default=FALSE, takes a long time for a large number of occurences)
-#' @param filtercapitals Remove coordinates equal to countries capitals (default=TRUE)
-#' @param filtercountrycentroids Remove coordinates equal to countries centroids (default=TRUE)
-#' @param filtercountrymismatches Remove coordinates if the coordinates aren't in the country corresponding to countryCode (default=FALSE, takes a long time)
-#' @param filtergbifheadquarters Remove coordinates equal to the GBIF headquarters (default=TRUE)
-#' @param filterinstitutions Remove coordinates equal to the world institutions (default=TRUE)
-#' @param filtersea Remove coordinates in seas and oceans (default=FALSE, takes a long time)
+#' @param data Dataframe: A data frame downloaded from GBIF
+#' @param minlat Float; Minimum latitude (optional)
+#' @param maxlat Float; Maximum latitude (optional)
+#' @param minlong Float; Minimum longitude (optional)
+#' @param maxlong Float; Maximum longitude (optional)
+#' @param check.out Boolean; Check outliers (default=FALSE, takes a long time for a large number of occurences)
+#' @param filtercapitals Boolean; Remove coordinates equal to countries capitals (default=TRUE)
+#' @param filtercountrycentroids Boolean; Remove coordinates equal to countries centroids (default=TRUE)
+#' @param filtercountrymismatches Boolean; Remove coordinates if the coordinates aren't in the country corresponding to countryCode (default=FALSE, takes a long time)
+#' @param filtergbifheadquarters Boolean; Remove coordinates equal to the GBIF headquarters (default=TRUE)
+#' @param filterinstitutions Boolean; Remove coordinates equal to the world institutions (default=TRUE)
+#' @param filtersea Boolean; Remove coordinates in seas and oceans (default=FALSE, takes a long time)
 #'
 #'@importFrom dplyr select
 #'@importFrom dplyr filter
