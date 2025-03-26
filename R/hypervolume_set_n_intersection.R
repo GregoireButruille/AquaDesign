@@ -1,3 +1,17 @@
+#' Title Calculate the volume of the intersection of the hypervolumes
+#'
+#' @param hv_list List of hypervolumes
+#' @param num.points.max Integer; The maximum number of points to keep for each hypervolume (default=NULL, the number of point is calculated by ceiling(10^(3 + sqrt(hv_list[[i]]@Dimensionality))))
+#' @param verbose Boolean; Returns the calculated maximum number of points, the minimal density and the progression (default=FALSE)
+#' @param distance.factor Integer; Used to calculate if two points on two volumes are overlapping : cutoff_dist = point_density^(-1/dim) * distance.factor (default=1)
+#' @param check.hyperplane Boolean; If true, check if the data is hyperplanar (default=FALSE)
+#'
+#'@importFrom purrr reduce
+#' @return
+#' @export
+#'
+#' @examples
+
 hypervolume_set_n_intersection <- function (hv_list, num.points.max = NULL, verbose = FALSE,
                                             distance.factor = 1, check.hyperplane = FALSE) {
 
