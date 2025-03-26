@@ -1,11 +1,17 @@
-#' Title Remove suspicious occurence points
+#' Title Remove coordinates points outside specified range or if they are suspicious
 #'
 #' @param data A data frame downloaded from GBIF
-#' @param minlat Minimum latitude
-#' @param maxlat Maximum latitude
-#' @param minlong Minimum longitude
-#' @param maxlong Maximum longitude
-#' @param check.out Check outliers or no (take a long time for a large number of occurences)
+#' @param minlat Minimum latitude (optional)
+#' @param maxlat Maximum latitude (optional)
+#' @param minlong Minimum longitude (optional)
+#' @param maxlong Maximum longitude (optional)
+#' @param check.out Check outliers (default=FALSE, takes a long time for a large number of occurences)
+#' @param filtercapitals Remove coordinates equal to countries capitals (default=TRUE)
+#' @param filtercountrycentroids Remove coordinates equal to countries centroids (default=TRUE)
+#' @param filtercountrymismatches Remove coordinates if the coordinates aren't in the country corresponding to countryCode (default=FALSE, takes a long time)
+#' @param filtergbifheadquarters Remove coordinates equal to the GBIF headquarters (default=TRUE)
+#' @param filterinstitutions Remove coordinates equal to the world institutions (default=TRUE)
+#' @param filtersea Remove coordinates in seas and oceans (default=FALSE, takes a long time)
 #'
 #'@importFrom dplyr select
 #'@importFrom dplyr filter
@@ -16,7 +22,10 @@
 #' @export
 #'
 #' @examples
-data_cleaning <- function(data, minlat=NA, maxlat=NA, minlong=NA, maxlong=NA, check.out = FALSE, filtercapitals = TRUE, filtercountrycentroids = TRUE, filtercountrymismatches = TRUE, filtergbifheadquarters=TRUE, filterinstitutions=TRUE, filtersea = TRUE){
+data_cleaning <- function(data, minlat=NA, maxlat=NA, minlong=NA, maxlong=NA, check.out = FALSE, filtercapitals = TRUE, filtercountrycentroids = TRUE, filtercountrymismatches = FALSE, filtergbifheadquarters=TRUE, filterinstitutions=TRUE, filtersea = FALSE){
+  #The filtering of country mismatches (cc_coun) is at least 30 minutes long (it didn't end after 30min), the other functions are mere seconds, there is probably a problem with it, so I'm removing it
+  #The filtering of marine life (cc_sea) is also long
+  #As a result, I'm desactivating this filters by default in data_cleaning arguments
   
   #keep only the columns of interest and set spatial extent
   #data <- data%>%
@@ -58,8 +67,6 @@ data_cleaning <- function(data, minlat=NA, maxlat=NA, minlong=NA, maxlong=NA, ch
   data <- na.omit(data)
 
   #removes suspicious points (buffer = range in meters)
-  #cc_coun is at least 30 minutes long (it didn't end after 30min), the other functions are mere seconds, there is probably a problem with it, so I'm removing it
-  #cc_sea() is also long, launch a weird download, and we're treating sea water fishes sometimes
 
   #in all cases remove invalid values
   data <- data%>% cc_val()
