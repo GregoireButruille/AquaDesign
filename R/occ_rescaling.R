@@ -1,7 +1,7 @@
 #' Title Rescale occurence data at 10 or 30 arcmins
 #'
 #' @param data_cl GBIF cleaned data frame
-#' @param resolution Resolution
+#' @param resolution Integer; Chosen resolution (10 or 30, default 30)
 #'
 #'@import raster
 #'@import progress
@@ -10,7 +10,7 @@
 #' @export
 #'
 #' @examples
-occ_rescaling <- function(data_cl, resolution){
+occ_rescaling <- function(data_cl, resolution=30){
 
   #create empty dataframe
   species_df<- data.frame(matrix(ncol = 3, nrow = 0))
