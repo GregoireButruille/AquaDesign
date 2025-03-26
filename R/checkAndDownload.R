@@ -1,7 +1,7 @@
-#' Title Download datasets from various databases
+#' Title Download datasets from various databases if the files do not already exist on hard drive
 #'
-#' @param url Url to download
-#' @param filePath path to put the downloaded file
+#' @param url String; Url to download
+#' @param filePath String; Output path of the downloaded file
 #'
 #'@importFrom utils download.file
 #' @return
