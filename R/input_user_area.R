@@ -1,4 +1,4 @@
-#' Title
+#' Title Filter the input by min and max latitude and longitude (asked by prompt)
 #'
 #' @param abiotics_df abiotic variables data frame
 #'
