@@ -3,10 +3,10 @@
 #' @return
 #' @export
 #' @importFrom utils unzip
-#' @param resolution Resolution
+#' @param resolution Integer; Chosen resolution (10 or 30, default 30)
 #'
 #' @examples
-FLO1K_select <- function(resolution) {
+FLO1K_select <- function(resolution=30) {
 
   flo1k_files_names <- c("av", "mi", "ma")
 
