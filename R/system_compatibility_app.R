@@ -4,6 +4,8 @@
 #' @param abiotics_df data frame with abiotics data
 #' @param user_param_syst user parameters
 #' @param user_param_rescaled user parameters rescaled
+#' @param species_abiotics_df Dataframe; Species abiotic data
+#' @param species_list List; List of species name
 #'
 #'@importFrom data.table transpose
 #' @return
