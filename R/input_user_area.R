@@ -2,7 +2,7 @@
 #'
 #' @param abiotics_df abiotic variables data frame
 #'
-#' @return
+#' @return Returns the abiotic dataframe filtered by the latitutde and longitude specified
 #' @export
 #'
 #' @examples
