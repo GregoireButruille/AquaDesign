@@ -1,9 +1,9 @@
-#' Title App to design polyculture system
+#' Title App to design polyculture system : prints a plot of best polyculture combinations
 #'
 #' @param rescaled_combi_df Data frame with rescaled compatibility index
 #' @param species_abiotics_df dataframe with all abiotic variables
 #'
-#' @return
+#' @return Returns nothing
 #' @import ggplot2
 #'@importFrom dplyr arrange
 #'@importFrom dplyr slice
