@@ -3,7 +3,7 @@
 #' @param abiotics_df data frame with abiotics data
 #' @param species_df data frame with species occurrences
 #'
-#' @return
+#' @return Returns a dataframe of abiotic data matching the species coordinates
 #' @export
 #'
 #' @examples
