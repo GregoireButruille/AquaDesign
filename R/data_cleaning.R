@@ -1,4 +1,4 @@
-#' Title Remove coordinates points outside specified range or if they are suspicious
+#' Title Remove points from species coordinates outside specified range or if they are suspicious
 #'
 #' @param data Dataframe: A data frame downloaded from GBIF
 #' @param minlat Float; Minimum latitude (optional)
@@ -18,7 +18,7 @@
 #'@import countrycode
 #'@import CoordinateCleaner
 #'@import rnaturalearthdata
-#' @return
+#' @return Returns a cleaned species coordinates dataframe
 #' @export
 #'
 #' @examples
