@@ -1,11 +1,11 @@
-#' Title Generate a list of hypervolume from a list of species
+#' Title Generate a list of hypervolumes from a list of species
 #'
 #' @param species_list_selected List of the selected species
 #' @param rescaled_abiotics Selected and rescaled abiotics pca axis in a data frame
 #' @param skip_check Boolean; By default the program won't work if there are not enough occurences of a species. You can skip this check (log(length(data[[1]]))>(length(rescaled_abiotics)-1)) by turning this flag to TRUE (default=FALSE)
 #'
 #'@import hypervolume
-#' @return
+#' @return Returns hypervolumes list
 #' @export
 #'
 #' @examples
