@@ -4,18 +4,17 @@
 #' Title
 #'
 #' @param data
-#' @param radius
+#' @param radius Float; radius to search
 #' @param points
-#' @param getid.nearestneighbor
-#' @param verbose
+#' @param getid.nearestneighbor Boolean; affected to nothing ? (default=FALSE)
+#' @param verbose Boolean (default=TRUE)
 #'
 #' @return
 #' @export
 #'
 #' @examples
-evalfspherical <- function(data, radius, points, getid.nearestneighbor=FALSE, verbose=TRUE)
+evalfspherical <- function(data, radius, points, getid.nearestneighbor=FALSE, verbose=TRUE){
 
-{
   result = rep(NA, nrow(points))
 
   points_numeric = t(as.matrix(points))
