@@ -1,17 +1,19 @@
-#' Title Rescale occurence data at 10 or 30 arcmins
+#' Title Rescale species coordinates and/or abiotic coordinates at 10 or 30 arcmins
 #'
-#' @param data_cl GBIF cleaned data frame
+#' @param data_cl species coordinates and/or abiotic coordinates dataframe
 #' @param resolution Integer; Chosen resolution (10 or 30, default 30)
 #'
 #'@import raster
 #'@import progress
 #'@import sf
-#' @return
+#' @return Returns a rescaled coordinates dataframe
 #' @export
 #'
 #' @examples
 occ_rescaling <- function(data_cl, resolution=30){
 
+  #Coordinates=occurences, hence the name of this function
+  
   #create empty dataframe
   species_df<- data.frame(matrix(ncol = 3, nrow = 0))
   colnames(species_df) <- c("x", "y", "species")
