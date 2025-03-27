@@ -1,4 +1,4 @@
-#' Title App to test if the user's system is suitable to a species or combination
+#' Title App to test if the user's aquaculture system is suitable to a species or combination
 #'
 #' @param hv_list a list of hypervolumes
 #' @param abiotics_df data frame with abiotics data
@@ -8,7 +8,7 @@
 #' @param species_list List; List of species name
 #'
 #'@importFrom data.table transpose
-#' @return
+#' @return Returns nothing
 #' @export
 #'
 #' @examples
