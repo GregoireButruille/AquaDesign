@@ -7,7 +7,7 @@
 #' @param check.hyperplane Boolean; If true, check if the data is hyperplanar (default=FALSE)
 #'
 #'@importFrom purrr reduce
-#' @return
+#' @return Returns a Hypervolume containing @Method, @Data, @Dimensionality, @Volume, @PointDensity, @Parameters, @RandomPoints and @ValueAtRandomPoints
 #' @export
 #'
 #' @examples
