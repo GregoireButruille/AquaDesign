@@ -1,6 +1,6 @@
 #' Title Extract chosen paramters (annual_meanT, T_seasonality, maxT_WM, minT_CM, annual_rangeT, meanT_DQ, ph_max, elevation_avg, slope_avg) from EarthEnv
 #'
-#' @return
+#' @return A raster brick containing EarthEnv data
 #' @import raster
 #' @import ncdf4
 #' @export
