@@ -2,7 +2,7 @@
 #'
 #' @param abiotics_df data frame with abiotics data
 #'
-#' @return
+#' @return Returns a dataframe with the edited user parameters
 #' @export
 #'
 #' @examples
