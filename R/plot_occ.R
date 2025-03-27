@@ -1,9 +1,9 @@
-#' Title Plot retained and remove occurence points per species
+#' Title Plot retained and removed occurence points per species
 #'
-#' @param data
-#' @param data_cl
+#' @param data Dataframe; The whole species coordinates dataframe
+#' @param data_cl Dataframe; The filtered species coordinates dataframe
 #'
-#' @return
+#' @return Returns nothing
 #' @export
 #' @import rnaturalearth
 #' @examples
