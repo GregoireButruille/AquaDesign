@@ -2,16 +2,18 @@
 % Please edit documentation in R/plot_occ.R
 \name{plot_occ}
 \alias{plot_occ}
-\title{Title Plot retained and remove occurence points per species}
+\title{Title Plot retained and removed occurence points per species}
 \usage{
 plot_occ(data, data_cl)
 }
 \arguments{
-\item{data_cl}{}
+\item{data}{Dataframe; The whole species coordinates dataframe}
+
+\item{data_cl}{Dataframe; The filtered species coordinates dataframe}
 }
 \value{
-
+Returns nothing
 }
 \description{
-Title Plot retained and remove occurence points per species
+Title Plot retained and removed occurence points per species
 }

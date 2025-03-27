@@ -9,9 +9,6 @@ input_pop_origin(abiotics_df)
 \arguments{
 \item{abiotics_df}{abiotic variables data frame}
 }
-\value{
-
-}
 \description{
 Title
 }

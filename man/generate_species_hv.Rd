@@ -4,17 +4,14 @@
 \alias{generate_species_hv}
 \title{Title Generate a list of hypervolume from a list of species}
 \usage{
-generate_species_hv(species_list, rescaled_abiotics)
+generate_species_hv(species_list, rescaled_abiotics, skip_check = FALSE)
 }
 \arguments{
 \item{rescaled_abiotics}{Selected and rescaled abiotics pca axis in a data frame}
 
+\item{skip_check}{Boolean; By default the program won't work if there are not enough occurences of a species. You can skip this check (log(length(data[\link{1}]))>(length(rescaled_abiotics)-1)) by turning this flag to TRUE (default=FALSE)}
+
 \item{species_list_selected}{List of the selected species}
-
-\item{nb_axis}{Number of axis retained in the pca}
-}
-\value{
-
 }
 \description{
 Title Generate a list of hypervolume from a list of species

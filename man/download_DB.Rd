@@ -2,18 +2,18 @@
 % Please edit documentation in R/download_DB.R
 \name{download_DB}
 \alias{download_DB}
-\title{Title Download datasets from various databases}
+\title{Title Download datasets from various databases (EarthEnv, WorldClim, FLO1K)}
 \usage{
-download_DB(databases_to_use, resolution)
+download_DB(databases_to_use, resolution = 30)
 }
 \arguments{
 \item{databases_to_use}{List of databases to use}
 
-\item{resolution}{Resolution}
+\item{resolution}{Integer; Chosen resolution (10 or 30, default 30)}
 }
 \value{
-
+Returns nothing
 }
 \description{
-Title Download datasets from various databases
+Title Download datasets from various databases (EarthEnv, WorldClim, FLO1K)
 }

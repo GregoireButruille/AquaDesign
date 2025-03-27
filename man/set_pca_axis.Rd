@@ -9,9 +9,6 @@ set_pca_axis(species_abiotics_df)
 \arguments{
 \item{species_abiotics_df}{data frame with merged species and abiotics}
 }
-\value{
-
-}
 \description{
 Title Convert dataframe into PCA projection
 }

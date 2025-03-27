@@ -9,9 +9,6 @@ fastPdist2(Ar, Br)
 \arguments{
 \item{Br}{}
 }
-\value{
-
-}
 \description{
 Title
 }

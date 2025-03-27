@@ -12,7 +12,7 @@ abiotics_species_merge(abiotics_df, species_df)
 \item{species_df}{data frame with species occurrences}
 }
 \value{
-
+Returns a dataframe of abiotic data matching the species coordinates
 }
 \description{
 Title Merge species and abiotics dataframes by matching coordinates

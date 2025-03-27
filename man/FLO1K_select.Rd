@@ -2,16 +2,16 @@
 % Please edit documentation in R/FLO1K_select.R
 \name{FLO1K_select}
 \alias{FLO1K_select}
-\title{Title Exctract chosen paramters from FLO1K}
+\title{Title Extract chosen paramters (all) from FLO1K}
 \usage{
-FLO1K_select(resolution)
+FLO1K_select(resolution = 30)
 }
 \arguments{
-\item{resolution}{Resolution}
+\item{resolution}{Integer; Chosen resolution (10 or 30, default 30)}
 }
 \value{
-
+A raster brick containing FLO1K data
 }
 \description{
-Title Exctract chosen paramters from FLO1K
+Title Extract chosen paramters (all) from FLO1K
 }

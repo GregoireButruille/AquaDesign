@@ -2,16 +2,37 @@
 % Please edit documentation in R/gbif_download.R
 \name{gbif_download}
 \alias{gbif_download}
-\title{downloading gbif data}
+\title{Title Downloading gbif data}
 \usage{
-gbif_download(species_list)
+gbif_download(
+  species_list,
+  user = NA,
+  pwd = NA,
+  mail = NA,
+  minlat = -90,
+  maxlat = 90,
+  minlong = -180,
+  maxlong = 180
+)
 }
 \arguments{
-\item{species_list}{The list of species to be considered (Scientific names)}
+\item{species_list}{List; The list of species to be considered (Scientific names)}
+
+\item{user}{String; the gbif user name (If not given, will be asked via a prompt)}
+
+\item{pwd}{String; the gbif password (If not given, will be asked via a prompt)}
+
+\item{minlat}{Float; Minimum latitude (default=-90)}
+
+\item{maxlat}{Float; Maximum latitude (default=90)}
+
+\item{minlong}{Float; Minimum longitude (default=-180)}
+
+\item{maxlong}{Float; Maximum longitude (default=180)}
 }
 \value{
-A data frame with all the occurrence points of the species selected
+A data frame with all the occurrence points of the species selected, with the following columns: "species", "decimalLongitude", "decimalLatitude", "gbifID","countryCode"
 }
 \description{
-downloading gbif data
+Title Downloading gbif data
 }

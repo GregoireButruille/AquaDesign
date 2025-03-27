@@ -2,26 +2,51 @@
 % Please edit documentation in R/data_cleaning.R
 \name{data_cleaning}
 \alias{data_cleaning}
-\title{Title Remove suspicious occurence points}
+\title{Title Remove points from species coordinates outside specified range or if they are suspicious}
 \usage{
-data_cleaning(data, minlat, maxlat, minlong, maxlong, check.out = TRUE)
+data_cleaning(
+  data,
+  minlat = NA,
+  maxlat = NA,
+  minlong = NA,
+  maxlong = NA,
+  check.out = FALSE,
+  filtercapitals = TRUE,
+  filtercountrycentroids = TRUE,
+  filtercountrymismatches = FALSE,
+  filtergbifheadquarters = TRUE,
+  filterinstitutions = TRUE,
+  filtersea = FALSE
+)
 }
 \arguments{
-\item{data}{A data frame downloaded from GBIF}
+\item{data}{Dataframe: A data frame downloaded from GBIF}
 
-\item{minlat}{Minimum latitude}
+\item{minlat}{Float; Minimum latitude (optional)}
 
-\item{maxlat}{Maximum latitude}
+\item{maxlat}{Float; Maximum latitude (optional)}
 
-\item{minlong}{Minimum longitude}
+\item{minlong}{Float; Minimum longitude (optional)}
 
-\item{maxlong}{Maximum longitude}
+\item{maxlong}{Float; Maximum longitude (optional)}
 
-\item{check.out}{Check outliers or no (take a long time for a large number of occurences)}
+\item{check.out}{Boolean; Check outliers (default=FALSE, takes a long time for a large number of occurences)}
+
+\item{filtercapitals}{Boolean; Remove coordinates equal to countries capitals (default=TRUE)}
+
+\item{filtercountrycentroids}{Boolean; Remove coordinates equal to countries centroids (default=TRUE)}
+
+\item{filtercountrymismatches}{Boolean; Remove coordinates if the coordinates aren't in the country corresponding to countryCode (default=FALSE, takes a long time)}
+
+\item{filtergbifheadquarters}{Boolean; Remove coordinates equal to the GBIF headquarters (default=TRUE)}
+
+\item{filterinstitutions}{Boolean; Remove coordinates equal to the world institutions (default=TRUE)}
+
+\item{filtersea}{Boolean; Remove coordinates in seas and oceans (default=FALSE, takes a long time)}
 }
 \value{
-
+Returns a cleaned species coordinates dataframe
 }
 \description{
-Title Remove suspicious occurence points
+Title Remove points from species coordinates outside specified range or if they are suspicious
 }

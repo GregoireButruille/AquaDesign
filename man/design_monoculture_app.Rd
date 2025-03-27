@@ -15,10 +15,13 @@ design_monoculture_app(
 )
 }
 \arguments{
-\item{species_list}{}
-}
-\value{
+\item{minlat}{Float; Minimum latitude (default=-56)}
 
+\item{maxlat}{Float; Maximum latitude (default=60)}
+
+\item{minlong}{Float; Minimum longitude (default=-145)}
+
+\item{maxlong}{Float; Maximum longitude (default=180)}
 }
 \description{
 Title Plot species density diagrams for individual species

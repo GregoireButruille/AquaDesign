@@ -2,7 +2,7 @@
 % Please edit documentation in R/clustering.R
 \name{clustering}
 \alias{clustering}
-\title{Title}
+\title{Title Prints a clusterised plot of the data}
 \usage{
 clustering(abiotics_df)
 }
@@ -10,8 +10,8 @@ clustering(abiotics_df)
 \item{abiotics_df}{The dataframe with all abiotic data rasterized}
 }
 \value{
-
+Returns nothing
 }
 \description{
-Title
+Title Prints a clusterised plot of the data
 }

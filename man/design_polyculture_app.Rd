@@ -2,7 +2,7 @@
 % Please edit documentation in R/design_polyculture_app.R
 \name{design_polyculture_app}
 \alias{design_polyculture_app}
-\title{Title App to design polyculture system}
+\title{Title App to design polyculture system : prints a plot of best polyculture combinations}
 \usage{
 design_polyculture_app(rescaled_combi_df, species_abiotics_df)
 }
@@ -12,8 +12,8 @@ design_polyculture_app(rescaled_combi_df, species_abiotics_df)
 \item{species_abiotics_df}{dataframe with all abiotic variables}
 }
 \value{
-
+Returns nothing
 }
 \description{
-Title App to design polyculture system
+Title App to design polyculture system : prints a plot of best polyculture combinations
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/generate_intersection_hv.R
 \name{generate_intersection_hv}
 \alias{generate_intersection_hv}
-\title{Title Generate a list of hypervolumes corresponding to the intersections of the input hypervolume list.}
+\title{Title Calculate the intersection of hypervolumes}
 \usage{
 generate_intersection_hv(hv_list)
 }
@@ -10,8 +10,8 @@ generate_intersection_hv(hv_list)
 \item{hv_list}{list of species hypervolumes}
 }
 \value{
-
+Returns a list of hypervolumes intersections
 }
 \description{
-Title Generate a list of hypervolumes corresponding to the intersections of the input hypervolume list.
+Title Calculate the intersection of hypervolumes
 }

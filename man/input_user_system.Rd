@@ -10,7 +10,7 @@ input_user_system(abiotics_df)
 \item{abiotics_df}{data frame with abiotics data}
 }
 \value{
-
+Returns a dataframe with the edited user parameters
 }
 \description{
 Title Register the parameters corresponding to user's system

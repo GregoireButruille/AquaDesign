@@ -9,9 +9,6 @@ kdtree_build_intl(d, nr, nc)
 \arguments{
 \item{nc}{}
 }
-\value{
-
-}
 \description{
 Title
 }

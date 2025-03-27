@@ -2,7 +2,7 @@
 % Please edit documentation in R/input_user_area.R
 \name{input_user_area}
 \alias{input_user_area}
-\title{Title}
+\title{Title Filter the input by min and max latitude and longitude (asked by prompt)}
 \usage{
 input_user_area(abiotics_df)
 }
@@ -10,8 +10,8 @@ input_user_area(abiotics_df)
 \item{abiotics_df}{abiotic variables data frame}
 }
 \value{
-
+Returns the abiotic dataframe filtered by the latitutde and longitude specified
 }
 \description{
-Title
+Title Filter the input by min and max latitude and longitude (asked by prompt)
 }

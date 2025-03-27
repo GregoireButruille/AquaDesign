@@ -13,10 +13,11 @@ evalfspherical(
 )
 }
 \arguments{
-\item{verbose}{}
-}
-\value{
+\item{radius}{Float; radius to search}
 
+\item{getid.nearestneighbor}{Boolean; affected to nothing ? (default=FALSE)}
+
+\item{verbose}{Boolean (default=TRUE)}
 }
 \description{
 Title

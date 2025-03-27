@@ -2,16 +2,13 @@
 % Please edit documentation in R/EarthEnv_select.R
 \name{EarthEnv_select}
 \alias{EarthEnv_select}
-\title{Title Exctract chosen paramters from EarthEnv}
+\title{Title Extract chosen paramters (annual_meanT, T_seasonality, maxT_WM, minT_CM, annual_rangeT, meanT_DQ, ph_max, elevation_avg, slope_avg) from EarthEnv}
 \usage{
 EarthEnv_select()
 }
 \value{
-
+A raster brick containing EarthEnv data
 }
 \description{
-Title Exctract chosen paramters from EarthEnv
-}
-\examples{
-
+Title Extract chosen paramters (annual_meanT, T_seasonality, maxT_WM, minT_CM, annual_rangeT, meanT_DQ, ph_max, elevation_avg, slope_avg) from EarthEnv
 }

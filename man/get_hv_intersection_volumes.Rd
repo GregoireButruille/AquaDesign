@@ -2,16 +2,20 @@
 % Please edit documentation in R/get_hv_intersection_volumes.R
 \name{get_hv_intersection_volumes}
 \alias{get_hv_intersection_volumes}
-\title{Title Generate a dataframe with all the combination's intersections volumes}
+\title{Title Generate a dataframe with all the combinations intersections volumes}
 \usage{
-get_hv_intersection_volumes(hv_list)
+get_hv_intersection_volumes(hv_list, nb_combi = NA, priority_species = NA)
 }
 \arguments{
-\item{hv_list}{A list of hypervolumes}
+\item{hv_list}{List; A list of hypervolumes}
+
+\item{nb_combi}{Integer; The max number of species in combination (for example "4", will do all the combinations with 2 species, then all with 3, then all with 4)}
+
+\item{priority_species}{List; A list of species name that must be in a combination for that combination to be retained (at least one species of this list)}
 }
 \value{
-
+Returns a list of hypervolumes intersections for all combinations (rescaled between 0 and 1)
 }
 \description{
-Title Generate a dataframe with all the combination's intersections volumes
+Title Generate a dataframe with all the combinations intersections volumes
 }

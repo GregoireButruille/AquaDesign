@@ -9,9 +9,6 @@ kdtree_ball_query_id_multiple(tr, ptlist, nr, nc, r, verb)
 \arguments{
 \item{verb}{}
 }
-\value{
-
-}
 \description{
 Title
 }

@@ -9,9 +9,6 @@ set_system(species_abiotics_df, user_param_syst)
 \arguments{
 \item{user_param_syst}{}
 }
-\value{
-
-}
 \description{
 Title Project user's system into PCA space
 }

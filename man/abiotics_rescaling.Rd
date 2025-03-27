@@ -12,7 +12,7 @@ abiotics_rescaling(
   maxlat,
   minlong,
   maxlong,
-  resolution,
+  resolution = 30,
   geosphere = FALSE
 )
 }
@@ -23,24 +23,21 @@ abiotics_rescaling(
 
 \item{earthenv_data}{raster stack with data from EarthEnv}
 
-\item{minlat}{Mininum latitude}
+\item{minlat}{Float; Mininum latitude}
 
-\item{maxlat}{Maximum latitude}
+\item{maxlat}{Float; Maximum latitude}
 
-\item{minlong}{Minimum longitude}
+\item{minlong}{Float; Minimum longitude}
 
-\item{maxlong}{Maximum longitude}
+\item{maxlong}{Float; Maximum longitude}
 
-\item{resolution}{Resolution}
+\item{resolution}{Integer; Chosen resolution (10 or 30, default 30)}
 
-\item{geosphere}{If TRUE, import data from geosphere, which take a lot of time}
+\item{geosphere}{Boolean; If TRUE, import data from geosphere (default=FALSE, takes a long time)}
 }
 \value{
-
+Returns a rescaled abiotics dataframe
 }
 \description{
 Title Rescale abiotics data to 10 or 30 arcmins
-}
-\examples{
-
 }

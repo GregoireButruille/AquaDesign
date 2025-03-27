@@ -2,13 +2,13 @@
 % Please edit documentation in R/WorldClim_select.R
 \name{WorldClim_select}
 \alias{WorldClim_select}
-\title{Title Exctract chosen paramters from WorldClim}
+\title{Title Extract chosen parameters (read srad, vapr and prec) from WorldClim}
 \usage{
 WorldClim_select()
 }
 \value{
-
+Returns a raster brick containing WorldClim data
 }
 \description{
-Title Exctract chosen paramters from WorldClim
+Title Extract chosen parameters (read srad, vapr and prec) from WorldClim
 }

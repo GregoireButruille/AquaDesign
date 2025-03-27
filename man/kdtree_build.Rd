@@ -9,9 +9,6 @@ kdtree_build(data, verbose = TRUE)
 \arguments{
 \item{verbose}{}
 }
-\value{
-
-}
 \description{
 Title
 }

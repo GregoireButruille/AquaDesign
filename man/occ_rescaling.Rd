@@ -2,18 +2,18 @@
 % Please edit documentation in R/occ_rescaling.R
 \name{occ_rescaling}
 \alias{occ_rescaling}
-\title{Title Rescale occurence data at 10 or 30 arcmins}
+\title{Title Rescale species coordinates and/or abiotic coordinates at 10 or 30 arcmins}
 \usage{
-occ_rescaling(data_cl, resolution)
+occ_rescaling(data_cl, resolution = 30)
 }
 \arguments{
-\item{data_cl}{GBIF cleaned data frame}
+\item{data_cl}{species coordinates and/or abiotic coordinates dataframe}
 
-\item{resolution}{Resolution}
+\item{resolution}{Integer; Chosen resolution (10 or 30, default 30)}
 }
 \value{
-
+Returns a rescaled coordinates dataframe
 }
 \description{
-Title Rescale occurence data at 10 or 30 arcmins
+Title Rescale species coordinates and/or abiotic coordinates at 10 or 30 arcmins
 }

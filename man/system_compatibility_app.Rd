@@ -2,7 +2,7 @@
 % Please edit documentation in R/system_compatibility_app.R
 \name{system_compatibility_app}
 \alias{system_compatibility_app}
-\title{Title App to test if the user's system is suitable to a species or combination}
+\title{Title App to test if the user's aquaculture system is suitable to a species or combination}
 \usage{
 system_compatibility_app(
   hv_list,
@@ -21,10 +21,14 @@ system_compatibility_app(
 \item{user_param_syst}{user parameters}
 
 \item{user_param_rescaled}{user parameters rescaled}
+
+\item{species_abiotics_df}{Dataframe; Species abiotic data}
+
+\item{species_list}{List; List of species name}
 }
 \value{
-
+Returns nothing
 }
 \description{
-Title App to test if the user's system is suitable to a species or combination
+Title App to test if the user's aquaculture system is suitable to a species or combination
 }

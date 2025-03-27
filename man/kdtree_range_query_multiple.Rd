@@ -9,9 +9,6 @@ kdtree_range_query_multiple(tr, pminlist, pmaxlist, nr, nc, verb)
 \arguments{
 \item{verb}{}
 }
-\value{
-
-}
 \description{
 Title
 }
