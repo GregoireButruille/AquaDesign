@@ -1,8 +1,8 @@
-#' Title Generate a list of hypervolumes corresponding to the intersections of the input hypervolume list.
+#' Title Calculate the intersection of hypervolumes
 #'
 #' @param hv_list list of species hypervolumes
 #'
-#' @return
+#' @return Returns a list of hypervolumes intersections
 #' @export
 #'
 #' @examples
