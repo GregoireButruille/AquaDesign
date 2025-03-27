@@ -15,6 +15,12 @@ design_monoculture_app(
 )
 }
 \arguments{
+\item{species_df}{Dataframe of species coordinates}
+
+\item{abiotics_df}{Dataframe of abiotics data and coordinates}
+
+\item{species_list}{List of species name}
+
 \item{minlat}{Float; Minimum latitude (default=-56)}
 
 \item{maxlat}{Float; Maximum latitude (default=60)}
@@ -22,6 +28,9 @@ design_monoculture_app(
 \item{minlong}{Float; Minimum longitude (default=-145)}
 
 \item{maxlong}{Float; Maximum longitude (default=180)}
+}
+\value{
+Returns nothing
 }
 \description{
 Title Plot species density diagrams for individual species

@@ -2,7 +2,7 @@
 % Please edit documentation in R/generate_species_hypervolumes.R
 \name{generate_species_hv}
 \alias{generate_species_hv}
-\title{Title Generate a list of hypervolume from a list of species}
+\title{Title Generate a list of hypervolumes from a list of species}
 \usage{
 generate_species_hv(species_list, rescaled_abiotics, skip_check = FALSE)
 }
@@ -13,6 +13,9 @@ generate_species_hv(species_list, rescaled_abiotics, skip_check = FALSE)
 
 \item{species_list_selected}{List of the selected species}
 }
+\value{
+Returns hypervolumes list
+}
 \description{
-Title Generate a list of hypervolume from a list of species
+Title Generate a list of hypervolumes from a list of species
 }

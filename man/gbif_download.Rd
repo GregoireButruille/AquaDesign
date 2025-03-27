@@ -22,6 +22,8 @@ gbif_download(
 
 \item{pwd}{String; the gbif password (If not given, will be asked via a prompt)}
 
+\item{mail}{String; the gbif user mail (If not given, will be asked via a prompt)}
+
 \item{minlat}{Float; Minimum latitude (default=-90)}
 
 \item{maxlat}{Float; Maximum latitude (default=90)}
