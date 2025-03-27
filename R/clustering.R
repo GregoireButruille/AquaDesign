@@ -1,10 +1,10 @@
-#' Title
+#' Title Prints a clusterised plot of the data
 #'
 #' @param abiotics_df The dataframe with all abiotic data rasterized
 #'
 #'@importFrom Hmisc varclus
 #'@import shiny
-#' @return
+#' @return Returns nothing
 #' @export
 #'
 #' @examples
