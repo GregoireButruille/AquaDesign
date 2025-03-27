@@ -1,11 +1,11 @@
-#' Title Download datasets from various databases
+#' Title Download datasets from various databases (EarthEnv, WorldClim, FLO1K)
 #'
 #' @param databases_to_use List of databases to use
 #' @param resolution Integer; Chosen resolution (10 or 30, default 30)
 #'
 #'@importFrom utils download.file
 #'@import svDialogs
-#' @return
+#' @return Returns nothing
 #' @export
 #'
 #' @examples
