@@ -1,6 +1,6 @@
 #' Title Extract chosen paramters (all) from FLO1K
 #'
-#' @return
+#' @return A raster brick containing FLO1K data
 #' @export
 #' @importFrom utils unzip
 #' @param resolution Integer; Chosen resolution (10 or 30, default 30)
