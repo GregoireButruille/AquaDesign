@@ -1,10 +1,10 @@
-#' Title Generate a dataframe with all the combination's intersections volumes
+#' Title Generate a dataframe with all the combinations intersections volumes
 #'
 #' @param hv_list List; A list of hypervolumes
 #' @param nb_combi Integer; The max number of species in combination (for example "4", will do all the combinations with 2 species, then all with 3, then all with 4)
 #' @param priority_species List; A list of species name that must be in a combination for that combination to be retained (at least one species of this list)
 #'
-#' @return
+#' @return Returns a list of hypervolumes intersections for all combinations (rescaled between 0 and 1)
 #' @export
 #'
 #' @examples
