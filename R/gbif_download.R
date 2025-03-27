@@ -3,6 +3,7 @@
 #' @param species_list List; The list of species to be considered (Scientific names)
 #' @param user String; the gbif user name (If not given, will be asked via a prompt)
 #' @param pwd String; the gbif password (If not given, will be asked via a prompt)
+#' @param mail String; the gbif user mail (If not given, will be asked via a prompt)
 #' @param minlat Float; Minimum latitude (default=-90)
 #' @param maxlat Float; Maximum latitude (default=90)
 #' @param minlong Float; Minimum longitude (default=-180)
