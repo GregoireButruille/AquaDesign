@@ -1,6 +1,6 @@
-#' Title Extract chosen paramters (read srad, vapr and prec) from WorldClim
+#' Title Extract chosen parameters (read srad, vapr and prec) from WorldClim
 #'
-#' @return
+#' @return Returns a raster brick containing WorldClim data
 #' @export
 #'
 #' @examples
