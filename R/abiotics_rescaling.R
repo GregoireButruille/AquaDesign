@@ -13,7 +13,7 @@
 #' @import foreach
 #' @importFrom geosphere daylength
 #' @import parallel
-#' @return
+#' @return Returns a rescaled abiotics dataframe
 #' @export
 #'
 #' @examples
